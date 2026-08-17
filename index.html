@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Progress</title>
+  <style>
+    :root {
+      --bg:#f4efe6; --panel:#fbf8f2; --panel-2:#f6f1e8;
+      --navy:#183453; --navy-2:#294763; --text:#26384a; --muted:#7d858c;
+      --line:#ddd5c8; --line-strong:#c8beae; --gold:#b58127; --gold-soft:#f3e7ca;
+      --green:#3d8766; --green-soft:#e8f2ec; --orange:#b96836; --orange-soft:#f6e7dc;
+      --red:#a74c47; --red-soft:#f5e6e4; --shadow:0 8px 28px rgba(24,52,83,.05);
+    }
+    * { box-sizing:border-box; }
+    html,body { width:100%; min-height:100%; margin:0; overflow-x:hidden; overflow-y:auto; background:var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    body { min-height:100vh; padding:18px; }
+    button,a { color:inherit; font:inherit; }
+    h1,h2,h3 { margin:0; color:var(--navy); font-family:Georgia,"Times New Roman",serif; font-weight:600; }
+    :focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+    .dashboard { width:min(100%,1536px); min-height:calc(100vh - 36px); height:auto; margin:0 auto; display:grid; grid-template-rows:132px auto 86px; gap:12px; }
+    .header { position:relative; display:grid; grid-template-columns:492px minmax(0,1fr); gap:16px; align-items:end; min-width:0; }
+    .brand { align-self:start; display:grid; grid-template-columns:72px minmax(0,1fr); gap:16px; align-items:center; min-width:0; padding-top:4px; }
+    .crest { width:72px; height:86px; color:var(--gold); }
+    .crest text { fill:var(--gold); font:600 33px Georgia,"Times New Roman",serif; }
+    .brand-copy { min-width:0; }
+    .brand-copy h1 { font-size:34px; line-height:1.03; letter-spacing:-.025em; white-space:nowrap; }
+    .brand-copy p { margin:10px 0 0; max-width:440px; color:#516076; font-size:13px; line-height:1.45; }
+    .updated { position:absolute; top:10px; right:10px; color:#252c34; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+    .status-strip { height:90px; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); border:1px solid var(--line); border-radius:12px; background:rgba(251,248,242,.82); box-shadow:var(--shadow); overflow:hidden; min-width:0; }
+    .status-item { display:grid; grid-template-columns:26px minmax(0,1fr); gap:8px; align-content:center; min-width:0; padding:10px; border-right:1px solid var(--line); }
+    .status-item:last-child { border-right:0; }
+    .status-icon { width:24px; height:24px; color:var(--navy); align-self:start; }
+    .status-item.phase .status-icon,.status-item.decisions .status-icon { color:#d58a00; }
+    .status-item.health .status-icon,.status-item.health .status-value { color:#15945a; }
+    .status-item.blockers .status-icon { color:#df241f; }
+    .status-item.blockers .status-value { color:var(--text); }
+    .status-item.finalAcceptance .status-icon { color:#1e0d45; }
+    .status-label { margin:0 0 7px; overflow:hidden; color:var(--text); font-size:8.3px; font-weight:800; letter-spacing:.1em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
+    .status-value { overflow:hidden; color:var(--text); font-size:15px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
+    .status-sub { margin-top:4px; overflow:hidden; color:#596474; font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
+    .main { min-height:0; display:grid; grid-template-columns:312px minmax(0,1fr); grid-template-rows:540px 340px; gap:12px 14px; }
+    .card { min-width:0; min-height:0; border:1px solid var(--line); border-radius:11px; background:rgba(251,248,242,.9); box-shadow:var(--shadow); }
+    .eyebrow { margin:0 0 6px; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .acceptance { grid-column:1; grid-row:1; display:flex; flex-direction:column; padding:18px; }
+    .acceptance h2 { font-size:23px; line-height:1.05; }
+    .acceptance-number { display:flex; align-items:baseline; gap:7px; margin:27px 0 4px; color:var(--navy); font-variant-numeric:lining-nums; }
+    .acceptance-number strong { font:500 52px/1 Georgia,"Times New Roman",serif; font-variant-numeric:lining-nums; }
+    .acceptance-number span { color:#687384; font-size:19px; }
+    .acceptance-copy { margin:0 0 16px; color:#536076; font-size:12px; }
+    .future-label { display:none; }
+    .bar { height:7px; margin-top:7px; overflow:hidden; border-radius:3px; background:#e5dfd4; }
+    .bar>span { display:block; height:100%; background:var(--green); }
+    .progress-meta { display:flex; justify-content:space-between; gap:8px; margin-top:14px; color:var(--navy); font-size:10px; font-weight:800; }
+    .acceptance .bar { order:initial; }
+    .notice { display:flex; gap:11px; margin-top:27px; padding:14px; border:1px solid #d9dfe8; border-radius:6px; background:#f3f5f8; color:#193d72; font-size:10.5px; line-height:1.55; }
+    .notice svg { width:16px; height:16px; flex:0 0 auto; color:#174c9f; }
+    .route { grid-column:2; grid-row:1; display:grid; grid-template-rows:42px 210px minmax(0,1fr); gap:10px; overflow:hidden; padding:14px 12px 12px; }
+    .route-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:0 4px 0 16px; }
+    .route h2 { display:none; }
+    .timeline-controls { display:flex; gap:8px; align-items:center; color:#3b4755; font-size:10px; }
+    .drag-icon { width:15px; height:15px; color:var(--navy); }
+    .arrow { width:36px; height:34px; display:grid; place-items:center; border:1px solid var(--line-strong); border-radius:7px; background:rgba(251,248,242,.75); color:var(--navy); cursor:pointer; }
+    .arrow:hover { background:var(--panel-2); }
+    .arrow:disabled { opacity:.35; cursor:default; }
+    .arrow svg { width:15px; height:15px; }
+    .timeline-shell { position:relative; min-width:0; overflow:hidden; }
+    .timeline-shell::before,.timeline-shell::after { content:""; position:absolute; top:0; bottom:0; z-index:4; width:54px; pointer-events:none; transition:opacity .18s ease; }
+    .timeline-shell::before { left:0; opacity:0; background:linear-gradient(90deg,var(--panel),rgba(251,248,242,0)); }
+    .timeline-shell::after { right:0; background:linear-gradient(270deg,var(--panel),rgba(251,248,242,0)); }
+    .timeline-shell.fade-left::before { opacity:1; }
+    .timeline-shell:not(.fade-right)::after { opacity:0; }
+    .timeline { height:100%; display:flex; overflow-x:auto; overflow-y:hidden; scroll-behavior:smooth; scrollbar-width:none; cursor:grab; overscroll-behavior-x:contain; }
+    .timeline.dragging { cursor:grabbing; scroll-behavior:auto; user-select:none; }
+    .timeline::-webkit-scrollbar { display:none; }
+    .milestone { position:relative; flex:0 0 164px; height:100%; padding:32px 8px 0; border:0; background:transparent; text-align:center; cursor:pointer; }
+    .milestone::before,.milestone::after { content:""; position:absolute; top:7px; z-index:0; height:2px; background:#8f9aa8; }
+    .milestone::before { left:50%; right:-50%; }
+    .milestone::after { left:-50%; right:50%; }
+    .milestone:first-child::after { background:var(--gold); }
+    .milestone.current::after { background:var(--gold); }
+    .milestone:last-child::before { display:none; }
+    .node { position:absolute; top:-2px; left:calc(50% - 10px); z-index:2; width:20px; height:20px; border:2px solid #8f9aa8; border-radius:50%; background:var(--panel); }
+    .milestone.current .node { top:-6px; left:calc(50% - 14px); width:28px; height:28px; border:6px solid var(--gold-soft); background:var(--gold); outline:2px solid var(--gold); }
+    .milestone.selected:not(.current) .node { outline:2px solid var(--navy); outline-offset:3px; }
+    .milestone-code { display:block; color:#111b2b; font-size:18px; font-weight:900; font-variant-numeric:lining-nums; }
+    .milestone.current .milestone-code { color:#a76d00; }
+    .milestone-date { display:block; margin-top:3px; color:#3f4751; font-size:10px; }
+    .milestone-summary { min-height:60px; margin:12px 0 0; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; color:#0c1d33; font-size:10.5px; line-height:1.48; }
+    .milestone-code,.milestone-date,.milestone-summary { position:relative; top:-19px; }
+    .chip { display:inline-flex; margin-top:8px; padding:4px 9px; border:1px solid #d7dce2; border-radius:999px; background:#f1f3f6; color:#274166; font-size:9px; font-weight:800; line-height:1; white-space:nowrap; }
+    .chip.in-progress { border-color:#ecd397; background:#fbf0d8; color:#9d6500; }
+    .detail { min-width:0; overflow:hidden; display:grid; grid-template-columns:92px minmax(0,1fr) 220px 250px; gap:18px; padding:14px 16px; border-left:4px solid var(--gold); border-radius:0 0 8px 0; background:var(--panel-2); }
+    .detail-marker { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:2px; }
+    .detail-badge { width:60px; height:60px; display:grid; place-items:center; border-radius:50%; background:var(--gold-soft); color:#ae7300; font-size:21px; font-weight:800; font-variant-numeric:lining-nums; }
+    .detail-date { margin-top:10px; color:#3f4751; font-size:9.5px; white-space:nowrap; }
+    .detail-main { min-width:0; }
+    .detail-title { overflow:hidden; color:#102a4b; font:600 15px/1.2 Georgia,"Times New Roman",serif; text-overflow:ellipsis; white-space:nowrap; }
+    .detail-desc { margin:8px 0 0; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; color:#536076; font-size:10px; line-height:1.4; }
+    .acceptance-test { margin:8px 0 0; overflow:hidden; color:#142a43; font-size:9.8px; text-overflow:ellipsis; white-space:nowrap; }
+    .acceptance-test strong { color:#0c203a; }
+    .condition-line { display:flex; justify-content:space-between; gap:8px; margin-top:10px; color:#111b2b; font-size:9.5px; font-weight:800; }
+    .detail-meta { min-width:0; margin:0; padding:4px 0 0 20px; border-left:1px solid var(--line); display:grid; grid-template-columns:auto minmax(0,1fr); gap:8px 12px; align-content:start; font-size:9.5px; }
+    .detail-meta dt { color:#536076; }
+    .detail-meta dd { margin:0; overflow:hidden; color:#102a4b; font-weight:800; text-align:right; text-overflow:ellipsis; white-space:nowrap; }
+    .detail-meta .chip { margin:0; padding:0; border:0; background:transparent; color:#111b2b; }
+    .detail-meta .chip::before { content:""; width:8px; height:8px; margin:1px 8px 0 0; border-radius:50%; background:var(--gold); }
+    .evidence-box { min-width:0; display:flex; flex-direction:column; justify-content:center; padding:14px 16px; border:1px solid var(--line); border-radius:6px; background:rgba(251,248,242,.78); }
+    .evidence-box strong { color:#102a4b; font-size:14px; }
+    .evidence-box small { margin:6px 0 15px; color:#667183; font-size:9.5px; }
+    .link { width:max-content; padding:0; border:0; background:none; color:#0b3268; font-size:10px; font-weight:800; text-align:left; text-decoration:none; cursor:pointer; }
+    .bottom { grid-column:1/-1; grid-row:2; min-height:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .mini-card { display:flex; flex-direction:column; overflow:hidden; padding:14px 16px 12px; }
+    .mini-heading { height:29px; display:flex; align-items:flex-start; gap:11px; margin-bottom:4px; color:#0c326f; }
+    .mini-heading svg { width:20px; height:20px; flex:0 0 auto; }
+    .mini-label { margin:4px 0 0; color:#0f2d58; font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+    .mini-count { margin-left:auto; color:#cf241f; font-size:10px; font-weight:900; }
+    .list { min-height:0; display:flex; flex-direction:column; margin:0; padding:0; list-style:none; }
+    .list-item { padding:8px 0; border-bottom:1px solid var(--line); color:#142a43; font-size:10px; line-height:1.4; }
+    .list-item:last-child { border-bottom:0; }
+    .done { display:grid; grid-template-columns:20px 1fr; gap:10px; color:#142a43; }
+    .check { width:18px; height:18px; display:grid; place-items:center; border:1.6px solid #19a15f; border-radius:50%; color:#19a15f; }
+    .check svg { width:11px; height:11px; }
+    .next-current { display:grid; grid-template-columns:40px 1fr; gap:8px; margin:0; padding:11px 10px; border:0; border-radius:4px; background:#12345e; color:white; }
+    .next-current strong { font-size:15px; }
+    .next-current span { color:#f1f4f7; }
+    .next-code { display:inline-block; width:38px; color:#0e2340; font-weight:900; }
+    .decisions-card { border-top:1px solid var(--line); }
+    .decision { display:grid; grid-template-columns:34px minmax(0,1fr) auto; gap:9px; align-items:start; padding:7px 0; }
+    .decision-icon { width:34px; height:34px; display:grid; place-items:center; border-radius:8px; background:#eef3fa; color:#0f52ad; }
+    .decision:nth-child(2) .decision-icon { background:#ebf6ef; color:#15945a; }
+    .decision:nth-child(3) .decision-icon { background:#f1f4fb; color:#1b3f99; }
+    .decision-icon svg { width:22px; height:22px; }
+    .decision-title { color:#0e2a4c; font-weight:800; }
+    .impact,.decision-meta { margin-top:2px; color:#667183; font-size:8.8px; }
+    .decision-meta { display:flex; gap:7px; }
+    .decision-side { text-align:right; }
+    .priority { display:inline-flex; padding:0; border-radius:0; background:transparent; color:#df241f; font-size:8.8px; font-weight:900; }
+    .priority.medium { background:transparent; color:#b36f00; }
+    .decision-due { display:block; margin-top:13px; color:#667183; font-size:8.6px; white-space:nowrap; }
+    .forge-card { background:rgba(251,248,242,.9); }
+    .forge-frame { padding:9px 10px 8px; border:1px solid var(--line); border-radius:5px; }
+    .forge-title { margin:0 0 8px; color:#172a43; font-size:9px; font-weight:700; }
+    .forge-zero { display:grid; grid-template-columns:72px minmax(0,1fr) 72px; align-items:center; gap:10px; }
+    .donut { width:66px; height:66px; display:grid; place-items:center; border:10px solid #d8d4ce; border-radius:50%; color:#111b2b; font-size:15px; font-weight:900; }
+    .forge-metrics { display:grid; grid-template-columns:10px 15px 1fr; gap:4px 5px; color:#556074; font-size:8.5px; }
+    .metric-dot { width:8px; height:8px; margin-top:1px; border-radius:50%; background:#c8c6c2; }
+    .metric-dot.passed { background:#19a15f; }
+    .metric-dot.failed { background:#df241f; }
+    .forge-total-label { color:#596474; font-size:8.5px; text-align:center; }
+    .forge-total-label strong { display:block; margin-top:4px; color:#111b2b; }
+    .signals-title { margin:9px 0 2px; color:#172a43; font-size:9.5px; font-weight:800; }
+    .signal { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--line); color:#334359; font-size:8.5px; }
+    .mini-footer { margin-top:auto; padding-top:6px; color:#0b3268; font-size:9px; font-weight:800; text-decoration:none; }
+    .log { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 140px; grid-template-rows:20px 1fr 1fr; column-gap:16px; overflow:hidden; padding:8px 18px; border:1px solid var(--line); border-radius:10px; background:rgba(251,248,242,.72); font-size:9px; }
+    .log-title { grid-column:1/-1; grid-row:1; color:#0f3567; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
+    .log-entry { grid-column:1; min-width:0; overflow:hidden; border-top:1px solid #e6e0d6; color:#4c596a; line-height:21px; text-overflow:ellipsis; white-space:nowrap; }
+    #log-one { grid-row:2; }
+    #log-two { grid-row:3; }
+    .log-entry strong { display:inline-block; width:145px; color:#12345e; }
+    .log-link { grid-column:2; grid-row:2/span 2; align-self:center; color:#0b3268; font-weight:800; text-align:right; text-decoration:none; }
+    @media (max-width:1150px) {
+      html,body { overflow:auto; }
+      .dashboard { height:auto; grid-template-rows:auto auto auto; }
+      .header { grid-template-columns:1fr; gap:12px; }
+      .updated { position:static; grid-row:1; justify-self:end; }
+      .status-strip { grid-template-columns:repeat(3,1fr); height:auto; }
+      .status-item { border-bottom:1px solid var(--line); }
+      .main { grid-template-columns:1fr; grid-template-rows:auto auto auto; }
+      .acceptance,.route,.bottom { grid-column:1; grid-row:auto; }
+      .route { min-height:520px; }
+      .bottom { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .detail { grid-template-columns:80px minmax(0,1fr); overflow:visible; }
+      .detail-meta,.evidence-box { border-left:0; }
+    }
+    .status-item.clickable { cursor:pointer; transition:background .12s ease; }
+    .status-item.clickable:hover, .status-item.clickable:focus-visible { background:var(--panel-2); }
+    .status-item.clickable .status-sub { color:var(--navy); text-decoration:underline; text-underline-offset:2px; }
+    .kpi-modal-backdrop { position:fixed; inset:0; z-index:60; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(24,52,83,.34); }
+    .kpi-modal-backdrop.open { display:flex; }
+    .kpi-modal { width:100%; max-width:440px; padding:22px; border:1px solid var(--line); border-radius:12px; background:var(--panel); box-shadow:0 24px 64px rgba(24,52,83,.28); }
+    .kpi-modal .modal-eyebrow { margin:0 0 8px; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .kpi-modal h3 { font-size:19px; margin:0 0 8px; }
+    .kpi-modal p.modal-body { margin:0 0 18px; color:var(--text); font-size:13px; line-height:1.55; }
+    .kpi-modal button { padding:8px 18px; border:0; border-radius:7px; background:var(--navy); color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
+    .kpi-modal button:hover { background:var(--navy-2); }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <header class="header">
+      <div class="brand">
+        <svg class="crest" viewBox="0 0 72 86" aria-hidden="true">
+          <defs><linearGradient id="gmark" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9c6f22"/><stop offset="1" stop-color="#d8ac53"/></linearGradient></defs>
+          <path d="M36 9 63 26 63 60 36 77 9 60 9 26Z" fill="url(#gmark)"/>
+          <text x="36" y="57" text-anchor="middle" style="fill:#f4efe6" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="40">G</text>
+        </svg>
+        <div class="brand-copy"><h1 id="project-title"></h1><p id="status-line"></p></div>
+      </div>
+      <section class="status-strip" id="status-strip" aria-label="Executive status"></section>
+      <div class="updated" id="last-updated"></div>
+    </header>
+    <section class="main">
+      <aside class="acceptance card" id="evidence-card">
+        <p class="eyebrow">Proof of readiness</p><h2>Acceptance evidence</h2>
+        <div class="acceptance-number"><strong id="mission-current"></strong><span>/ <span id="mission-target"></span></span></div>
+        <p class="acceptance-copy">Real-world missions passed</p><p class="future-label">Final acceptance — not current delivery progress</p>
+        <div class="bar" id="mission-bar" role="progressbar"><span id="mission-fill"></span></div><div class="progress-meta"><span id="mission-percent"></span><span id="mission-note"></span></div>
+        <div class="notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 10.5v6M12 7.2v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span id="mission-info"></span></div>
+      </aside>
+      <section class="route card" id="milestone-route">
+        <div class="route-head"><div><p class="eyebrow">The route to acceptance</p><h2>The route to acceptance</h2></div><div class="timeline-controls"><svg class="drag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11V6.5a1.5 1.5 0 0 1 3 0V10m0 0V4.5a1.5 1.5 0 0 1 3 0V10m0 0V6a1.5 1.5 0 0 1 3 0v6m0-2a1.5 1.5 0 0 1 3 0v4c0 4.3-2.7 7-7 7h-1.5c-2.2 0-4.2-1.1-5.4-2.9L3.8 14a1.5 1.5 0 0 1 2.4-1.8L8.5 14Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drag or scroll horizontally</span><button class="arrow" id="left-btn" type="button" aria-label="Scroll milestones left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button class="arrow" id="right-btn" type="button" aria-label="Scroll milestones right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div></div>
+        <div class="timeline-shell" id="timeline-shell"><div class="timeline" id="timeline" tabindex="0" aria-label="Milestone timeline"></div></div>
+        <article class="detail" id="detail" aria-live="polite"></article>
+      </section>
+      <section class="bottom">
+        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">This week</p></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4c3-1 5-1 6-1 0 1 0 3-1 6l-5 5-5-5 5-5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 9-4 1-2 4 6-1M14 14l-1 6-4 1 1-6M8 16l-3 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Next up</p></div><ul class="list" id="next-up"></ul><a class="mini-footer" id="milestones-link">View all milestones&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card decisions-card" id="decisions-card"><div class="mini-heading" style="color:#e39100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21v-2c0-4 3-6 8-6s8 2 8 6v2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><p class="mini-label">Decisions needed</p><span class="mini-count">3</span></div><ul class="list" id="decisions"></ul><a class="mini-footer" id="decisions-link">View all decisions&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Forge test runs (last 7 days)</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
+      </section>
+    </section>
+    <footer class="log" id="progress-log"><div class="log-title">Progress log</div><div class="log-entry" id="log-one"></div><div class="log-entry" id="log-two"></div><a class="log-link" id="log-link">View full log →</a></footer>
+  </main>
+  <script src="./data.js"></script>
+  <script>
+    (() => {
+      "use strict";
+      const d = window.DASHBOARD_DATA;
+      if (!d) return;
+      const $ = id => document.getElementById(id);
+      const esc = value => String(value ?? "").replace(/[&<>\"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[char]));
+      const text = (value, fallback = "To be defined at planning") => value == null || value === "" ? fallback : value;
+      const slug = value => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const statusIcons = {
+        phase: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M5 25V3m1 2h12l-2 4 4 4H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        current: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="14" cy="14" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="14" cy="14" r="1.8" fill="currentColor"/><path d="m18 10 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+        health: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 24 7v6c0 6-3.8 10.2-10 12-6.2-1.8-10-6-10-12V7l10-4Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m10 14 3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        blockers: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 26 24H2L14 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 10v7m0 3v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+        decisions: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="11" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 24v-2c0-4 3-7 8-7s8 3 8 7v2M20 7c3 1 4 3 4 6m-2 3c2 1 3 3 3 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+        finalAcceptance: `<svg class="status-icon" viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="5" width="22" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 2v6m12-6v6M3 10h22M8 14h2m4 0h2m4 0h1M8 19h2m4 0h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`
+      };
+      document.title = d.projectTitle;
+      $("project-title").textContent = d.projectTitle.replace(" - ", " – ");
+      $("status-line").textContent = d.statusLine;
+      $("last-updated").textContent = `Last updated ${d.lastUpdated}`;
+      $("status-strip").innerHTML = d.kpis.map(k => `<article class="status-item ${esc(k.key)}${k.detail ? " clickable" : ""}"${k.detail ? ` role="button" tabindex="0" data-detail="${esc(k.detail)}" data-detail-label="${esc(k.label)}"` : ""}>${statusIcons[k.key] || ""}<div><div class="status-label">${esc(k.label)}</div><div class="status-value">${esc(k.value)}</div>${k.subLabel ? `<div class="status-sub">${esc(k.subLabel)}</div>` : ""}</div></article>`).join("");
+      const progress = d.missionProgress;
+      const missionPercent = progress.target ? Math.round(progress.current / progress.target * 100) : 0;
+      $("mission-current").textContent = progress.current;
+      $("mission-target").textContent = progress.target;
+      $("mission-note").textContent = progress.note;
+      $("mission-percent").textContent = `${missionPercent}%`;
+      $("mission-info").textContent = progress.info;
+      $("mission-fill").style.width = `${missionPercent}%`;
+      $("mission-bar").setAttribute("aria-valuemin", "0");
+      $("mission-bar").setAttribute("aria-valuemax", String(progress.target));
+      $("mission-bar").setAttribute("aria-valuenow", String(progress.current));
+      const timeline = $("timeline");
+      const currentMilestone = d.milestones.find(m => m.status === "In progress") || d.milestones[0];
+      let selectedCode = currentMilestone ? currentMilestone.code : "";
+      timeline.innerHTML = d.milestones.map(m => `<button class="milestone ${m.code === selectedCode ? "selected" : ""} ${m.status === "In progress" ? "current" : ""}" data-code="${esc(m.code)}" type="button"><span class="node"></span><span class="milestone-code">${esc(m.code)}</span><span class="milestone-date">${esc(m.due)}</span><span class="milestone-summary" title="${esc(m.goal)}">${esc(m.goal)}</span><span class="chip ${slug(m.status)}">${esc(m.status)}</span></button>`).join("");
+      function renderDetail(code) {
+        const milestone = d.milestones.find(m => m.code === code) || {};
+        const source = d.milestoneDetails[code] || {};
+        const x = {
+          code: text(source.code, text(milestone.code)), due: text(source.due, text(milestone.due)), title: text(source.title, text(milestone.goal)), description: text(source.description), acceptanceTest: text(source.acceptanceTest), status: text(source.status, text(milestone.status)), type: text(source.type), owner: text(source.owner), dependencies: text(source.dependencies), risks: text(source.risks), conditionsSatisfied: source.conditionsSatisfied, conditionsTotal: source.conditionsTotal, evidenceCurrent: source.evidenceCurrent, evidenceTotal: source.evidenceTotal
+        };
+        const conditionsDefined = x.conditionsSatisfied != null && x.conditionsTotal != null;
+        const conditionPercent = conditionsDefined && x.conditionsTotal ? Math.round(x.conditionsSatisfied / x.conditionsTotal * 100) : 0;
+        const conditionCopy = conditionsDefined ? `${x.conditionsSatisfied} / ${x.conditionsTotal} satisfied` : "To be defined at planning";
+        const evidenceDefined = x.evidenceCurrent != null && x.evidenceTotal != null;
+        const evidenceCopy = evidenceDefined ? `${x.evidenceCurrent} / ${x.evidenceTotal}` : "— / —";
+        const detailDue = /\b20\d{2}\b/.test(x.due) ? x.due : `${x.due} 2026`;
+        document.querySelectorAll(".milestone").forEach(node => node.classList.toggle("selected", node.dataset.code === code));
+        $("detail").innerHTML = `<div class="detail-marker"><div class="detail-badge">${esc(x.code)}</div><div class="detail-date">${esc(detailDue)}</div></div><div class="detail-main"><p class="eyebrow">Milestone detail</p><div class="detail-title">${esc(x.title)}</div><p class="detail-desc">${esc(x.description)}</p><p class="acceptance-test"><strong>Acceptance test:</strong> ${esc(x.acceptanceTest)}</p><div class="condition-line"><span>Acceptance conditions</span><span>${esc(conditionCopy)}</span></div><div class="bar" role="progressbar" aria-valuemin="0" ${conditionsDefined ? `aria-valuemax="${esc(x.conditionsTotal)}" aria-valuenow="${esc(x.conditionsSatisfied)}"` : `aria-label="${esc(conditionCopy)}"`}><span style="width:${conditionPercent}%"></span></div></div><dl class="detail-meta"><dt>Status</dt><dd><span class="chip ${slug(x.status)}">${esc(x.status)}</span></dd><dt>Type</dt><dd title="${esc(x.type)}">${esc(x.type)}</dd><dt>Owner</dt><dd title="${esc(x.owner)}">${esc(x.owner)}</dd><dt>Dependencies</dt><dd title="${esc(x.dependencies)}">${esc(x.dependencies)}</dd><dt>Risks</dt><dd title="${esc(x.risks)}">${esc(x.risks)}</dd></dl><div class="evidence-box"><strong>Evidence ${esc(evidenceCopy)}</strong><small>${evidenceDefined ? (x.evidenceCurrent === 0 ? "No evidence recorded yet" : `${esc(x.evidenceCurrent)} recorded`) : "To be defined at planning"}</small><a class="link" href="${esc(d.links.evidence)}">View evidence&nbsp;&nbsp; →</a></div>`;
+      }
+      renderDetail(selectedCode);
+      timeline.addEventListener("click", event => {
+        const item = event.target.closest(".milestone");
+        if (!item) return;
+        selectedCode = item.dataset.code;
+        renderDetail(selectedCode);
+        item.scrollIntoView({behavior: "smooth", inline: "center", block: "nearest"});
+      });
+      const check = `<span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
+      $("this-week").innerHTML = d.thisWeek.map(item => `<li class="list-item done">${check}<span>${esc(item)}</span></li>`).join("");
+      $("next-up").innerHTML = `<li class="list-item next-current"><strong>${esc(d.nextUp.current.code)}</strong><span>${esc(d.nextUp.current.text)}</span></li>${d.nextUp.upcoming.map(item => `<li class="list-item"><span class="next-code">${esc(item.code)}</span>${esc(item.goal)}</li>`).join("")}`;
+      const decisionIcons = [
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>`,
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3m1 2h11l-2 4 4 4H6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+      ];
+      $("decisions").innerHTML = d.decisions.map((item,index) => `<li class="list-item decision"><span class="decision-icon">${decisionIcons[index] || decisionIcons[0]}</span><div><div class="decision-title">${esc(item.text)}</div><div class="impact">Impact: ${esc(item.impact)}</div></div><div class="decision-side"><span class="priority ${slug(item.priority)}">${esc(item.priority)}</span><span class="decision-due">${esc(item.due)}</span></div></li>`).join("");
+      const forge = d.forge;
+      $("forge-total").textContent = forge.runsTotal;
+      $("forge-total-copy").textContent = forge.runsTotal;
+      $("forge-metrics").innerHTML = [["Passed", forge.passed, "passed"], ["Failed", forge.failed, "failed"], ["Skipped", forge.skipped, "skipped"]].map(item => `<span class="metric-dot ${item[2]}"></span><strong>${esc(item[1])}</strong><span>${item[0]}</span>`).join("");
+      $("forge-signals").innerHTML = forge.signals.map(item => `<div class="signal"><span>${esc(item.label)}</span><strong>${item.value == null ? "—" : esc(item.value)}</strong></div>`).join("");
+      const logs = d.progressLog.slice(0, 2);
+      const logMarkup = item => item ? `<strong>${esc(item.date)}</strong>${esc(item.text)}` : "";
+      $("log-one").innerHTML = logMarkup(logs[0]);
+      $("log-two").innerHTML = logMarkup(logs[1]);
+      [["brief-link", d.links.fullBrief], ["milestones-link", d.links.milestones], ["decisions-link", d.links.decisions], ["forge-link", d.links.forge], ["log-link", d.links.fullBrief]].forEach(([id, href]) => $(id).setAttribute("href", href));
+      const shell = $("timeline-shell");
+      const left = $("left-btn");
+      const right = $("right-btn");
+      function updateEdges() {
+        const max = Math.max(0, timeline.scrollWidth - timeline.clientWidth);
+        shell.classList.toggle("fade-left", timeline.scrollLeft > 2);
+        shell.classList.toggle("fade-right", timeline.scrollLeft < max - 2);
+        left.disabled = timeline.scrollLeft <= 2;
+        right.disabled = timeline.scrollLeft >= max - 2;
+      }
+      left.addEventListener("click", () => timeline.scrollBy({left: -420, behavior: "smooth"}));
+      right.addEventListener("click", () => timeline.scrollBy({left: 420, behavior: "smooth"}));
+      timeline.addEventListener("wheel", event => {
+        if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) { event.preventDefault(); timeline.scrollLeft += event.deltaY; }
+      }, {passive: false});
+      let dragging = false, startX = 0, startScroll = 0;
+      timeline.addEventListener("pointerdown", event => {
+        if (event.button !== 0) return;
+        dragging = true; startX = event.clientX; startScroll = timeline.scrollLeft; timeline.classList.add("dragging"); timeline.setPointerCapture(event.pointerId);
+      });
+      timeline.addEventListener("pointermove", event => { if (dragging) timeline.scrollLeft = startScroll - (event.clientX - startX); });
+      ["pointerup", "pointercancel"].forEach(type => timeline.addEventListener(type, () => { dragging = false; timeline.classList.remove("dragging"); }));
+      timeline.addEventListener("scroll", updateEdges);
+      window.addEventListener("resize", updateEdges);
+      requestAnimationFrame(() => {
+        const current = document.querySelector(".milestone.current");
+        if (current) timeline.scrollLeft = Math.max(0, current.offsetLeft - 30);
+        updateEdges();
+      });
+    })();
+  </script>
+  <div class="kpi-modal-backdrop" id="kpi-modal" role="dialog" aria-modal="true" aria-labelledby="kpi-modal-title">
+    <div class="kpi-modal">
+      <p class="modal-eyebrow">Status detail</p>
+      <h3 id="kpi-modal-title"></h3>
+      <p class="modal-body" id="kpi-modal-body"></p>
+      <button type="button" id="kpi-modal-close">Close</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var modal = document.getElementById("kpi-modal"),
+          strip = document.getElementById("status-strip");
+      if(!modal || !strip) return;
+      function open(label, detail){
+        document.getElementById("kpi-modal-title").textContent = label;
+        document.getElementById("kpi-modal-body").textContent = detail;
+        modal.classList.add("open");
+      }
+      function close(){ modal.classList.remove("open"); }
+      function handle(e){
+        var item = e.target.closest(".status-item.clickable");
+        if(!item) return;
+        if(e.type === "keydown"){ if(e.key !== "Enter" && e.key !== " ") return; e.preventDefault(); }
+        open(item.getAttribute("data-detail-label") || "Details", item.getAttribute("data-detail") || "");
+      }
+      strip.addEventListener("click", handle);
+      strip.addEventListener("keydown", handle);
+      document.getElementById("kpi-modal-close").addEventListener("click", close);
+      modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+      document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+  </script>
+</body>
+</html>
