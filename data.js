@@ -65,13 +65,12 @@ window.DASHBOARD_DATA = {
     "Locked the model that gives the most dependable results.",
     "Shipped document-accuracy and reliability improvements to the app."
   ],
-  nextUp: {
-    current: { code: "M0", text: "Lock the mission blueprint and stand up the build accelerator. Waiting on tooling activation to begin." },
-    upcoming: [
-      { code: "M1", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status." },
-      { code: "M2", goal: "Speak to Gideon in plain English and it opens the right matter every time." }
-    ]
-  },
+  remarks: [
+    { date: "18 Aug 2026", text: "Build moved to the company's own GitHub; latest version published there with automatic updates." },
+    { date: "17 Aug 2026", text: "Locked a dependable hosted model as the baseline; offline model kept as a fallback, off the critical path." },
+    { date: "17 Aug 2026", text: "Forge scoped as a validation-first foundation (about two weeks), sequenced ahead of the build-assistant phase." },
+    { date: "16 Aug 2026", text: "Adopted the 18 December acceptance target, with progress governed by each gate passing rather than the calendar." }
+  ],
   decisions: [
     { text: "Define the accepted scope of matters Gideon must handle for acceptance.", impact: "Determines the validation plan", priority: "High", due: "Due soon", owner: "Elie" },
     { text: "Confirm technical access to LEAP and InfoTrack.", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering" },
