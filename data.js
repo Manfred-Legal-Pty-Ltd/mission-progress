@@ -22,7 +22,7 @@ window.DASHBOARD_DATA = {
     { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "Upcoming" },
     { code: "M3", due: "2 Oct", goal: "Every matter file impeccable, and your decisions turn straight into completed work.", status: "Upcoming" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
-    { code: "M5", due: "30 Oct", goal: "Works across LEAP, InfoTrack and your connected systems without you operating them.", status: "Upcoming" },
+    { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
     { code: "M6", due: "13 Nov", goal: "500+ real-world missions passed, scored against a legal benchmark.", status: "Upcoming" },
     { code: "M7", due: "27 Nov", goal: "Security hardened: no critical weakness, proven on the real device at scale.", status: "Upcoming" },
     { code: "M8", due: "30 Nov", goal: "Feature freeze: only acceptance repairs from here.", status: "Upcoming" },
@@ -51,7 +51,7 @@ window.DASHBOARD_DATA = {
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M5: { code: "M5", due: "30 Oct", title: "Works across LEAP, InfoTrack and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ real-world missions passed, scored against a legal benchmark.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M7: { code: "M7", due: "27 Nov", title: "Security hardened: no critical weakness, proven on the real device at scale.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -66,6 +66,7 @@ window.DASHBOARD_DATA = {
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
+    { date: "18 Aug 2026", text: "Legal-stack integration approach set: API-first where a platform offers one, with the approve-before-submit step kept." },
     { date: "18 Aug 2026", text: "Build moved to the company's own GitHub; latest version published there with automatic updates." },
     { date: "17 Aug 2026", text: "Locked a dependable hosted model as the baseline; offline model kept as a fallback, off the critical path." },
     { date: "17 Aug 2026", text: "Forge scoped as a validation-first foundation (about two weeks), sequenced ahead of the build-assistant phase." },
@@ -79,11 +80,11 @@ window.DASHBOARD_DATA = {
         need: "A list of the matter types or practice areas in scope. For any borderline ones, a quick call on each: core-for-December, or a later enhancement.",
         waits: "Validation planning and the mission benchmark stay frozen until scope is set, so this gates M1 to M6 planning."
       } },
-    { text: "Confirm technical access to LEAP and InfoTrack.", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering",
+    { text: "Confirm technical access to your legal stack (Leap, InfoTrack, Lexa, PEXA).", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering",
       detail: {
-        what: "How Gideon gets authorised access to LEAP and InfoTrack, the systems it must operate across at the M5 milestone (30 October).",
-        why: "The integration build cannot begin until the access route is settled. This is a hard dependency on the critical path, so starting it late compresses everything after it.",
-        need: "Three things: (1) confirmation Gideon may integrate with these systems, (2) the access method each requires (API or accounts), and (3) who owns and provides the credentials or licensing on Manfred's side.",
+        what: "How Gideon connects to Leap, InfoTrack, Lexa and PEXA to create matters, retrieve information and prepare document orders.",
+        why: "The M5 integration build cannot begin until the access route is settled per system. This is a hard dependency on the critical path, so starting it late compresses everything after it.",
+        need: "You have set the direction already: API-first where a platform offers one, with the approve-before-submit step kept. Thank you. To start, I need the account ownership and credentials or licensing for each platform, and which ones the firm holds active subscriptions to, so I know where an API route exists versus where Gideon drives the browser instead.",
         waits: "M5, the integrations milestone, slips, and it sits directly on the path to December."
       } },
     { text: "Confirm the target mission count for the 30 October checkpoint.", impact: "Affects milestone M5 planning", priority: "Medium", due: "Due 24 Aug", owner: "Elie",
