@@ -60,10 +60,10 @@ window.DASHBOARD_DATA = {
     FINAL: { code: "FINAL", due: "18 Dec", title: "Mission acceptance.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null }
   },
   thisWeek: [
-    "Shipped document-accuracy and reliability improvements to the app.",
-    "Locked the model that gives the most dependable results.",
     "Set up the project's own GitHub home and published the latest build there, with automatic updates wired in.",
-    "Set up the development tooling, awaiting billing activation."
+    "Set up the development tooling, awaiting billing activation.",
+    "Locked the model that gives the most dependable results.",
+    "Shipped document-accuracy and reliability improvements to the app."
   ],
   nextUp: {
     current: { code: "M0", text: "Lock the mission blueprint and stand up the build accelerator. Waiting on tooling activation to begin." },
