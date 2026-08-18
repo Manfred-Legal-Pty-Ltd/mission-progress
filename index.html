@@ -185,6 +185,7 @@
     .kpi-modal button { padding:8px 18px; border:0; border-radius:7px; background:var(--navy); color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
     .kpi-modal button:hover { background:var(--navy-2); }
     #log-link { cursor:pointer; }
+    .list-item .remark-date { display:block; color:#0f3567; font-weight:800; margin-bottom:2px; }
     .log-modal-list { max-height:52vh; overflow-y:auto; margin:0 0 18px; }
     .log-modal-entry { padding:9px 0; border-top:1px solid var(--line); color:var(--text); font-size:13px; line-height:1.5; }
     .log-modal-entry:first-child { border-top:0; }
@@ -220,7 +221,7 @@
       </section>
       <section class="bottom">
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">This week</p></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
-        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4c3-1 5-1 6-1 0 1 0 3-1 6l-5 5-5-5 5-5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 9-4 1-2 4 6-1M14 14l-1 6-4 1 1-6M8 16l-3 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Next up</p></div><ul class="list" id="next-up"></ul><a class="mini-footer" id="milestones-link">View all milestones&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-4 4V16H4V5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Remarks &amp; decisions</p></div><ul class="list" id="remarks-list"></ul></article>
         <article class="mini-card card decisions-card" id="decisions-card"><div class="mini-heading" style="color:#e39100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21v-2c0-4 3-6 8-6s8 2 8 6v2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><p class="mini-label">Decisions needed</p><span class="mini-count">3</span></div><ul class="list" id="decisions"></ul><a class="mini-footer" id="decisions-link">View all decisions&nbsp;&nbsp; →</a></article>
         <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Forge test runs (last 7 days)</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
       </section>
@@ -290,7 +291,7 @@
       });
       const check = `<span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
       $("this-week").innerHTML = d.thisWeek.map(item => `<li class="list-item done">${check}<span>${esc(item)}</span></li>`).join("");
-      $("next-up").innerHTML = `<li class="list-item next-current"><strong>${esc(d.nextUp.current.code)}</strong><span>${esc(d.nextUp.current.text)}</span></li>${d.nextUp.upcoming.map(item => `<li class="list-item"><span class="next-code">${esc(item.code)}</span>${esc(item.goal)}</li>`).join("")}`;
+      $("remarks-list").innerHTML = d.remarks.map(item => `<li class="list-item"><strong class="remark-date">${esc(item.date)}</strong>${esc(item.text)}</li>`).join("");
       const decisionIcons = [
         `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>`,
         `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
@@ -306,7 +307,7 @@
       const logMarkup = item => item ? `<strong>${esc(item.date)}</strong>${esc(item.text)}` : "";
       $("log-one").innerHTML = logMarkup(logs[0]);
       $("log-two").innerHTML = logMarkup(logs[1]);
-      [["brief-link", d.links.fullBrief], ["milestones-link", d.links.milestones], ["decisions-link", d.links.decisions], ["forge-link", d.links.forge]].forEach(([id, href]) => $(id).setAttribute("href", href));
+      [["brief-link", d.links.fullBrief], ["decisions-link", d.links.decisions], ["forge-link", d.links.forge]].forEach(([id, href]) => $(id).setAttribute("href", href));
       const shell = $("timeline-shell");
       const left = $("left-btn");
       const right = $("right-btn");
