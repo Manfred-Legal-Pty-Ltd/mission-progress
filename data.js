@@ -72,9 +72,27 @@ window.DASHBOARD_DATA = {
     { date: "16 Aug 2026", text: "Adopted the 18 December acceptance target, with progress governed by each gate passing rather than the calendar." }
   ],
   decisions: [
-    { text: "Define the accepted scope of matters Gideon must handle for acceptance.", impact: "Determines the validation plan", priority: "High", due: "Due soon", owner: "Elie" },
-    { text: "Confirm technical access to LEAP and InfoTrack.", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering" },
-    { text: "Confirm the target mission count for the 30 October checkpoint.", impact: "Affects milestone M5 planning", priority: "Medium", due: "Due 24 Aug", owner: "Elie" }
+    { text: "Define the accepted scope of matters Gideon must handle for acceptance.", impact: "Determines the validation plan", priority: "High", due: "Due soon", owner: "Elie",
+      detail: {
+        what: "The set of legal matter types Gideon must handle competently to pass December acceptance.",
+        why: "This is the most upstream decision. It defines what counts as done: the 500-mission benchmark, every acceptance gate, and the integration work are all measured against this scope. Broad scope means more to prove by December; a tight, well-chosen scope means faster, cleaner acceptance, with room to add more later.",
+        need: "A list of the matter types or practice areas in scope. For any borderline ones, a quick call on each: core-for-December, or a later enhancement.",
+        waits: "Validation planning and the mission benchmark stay frozen until scope is set, so this gates M1 to M6 planning."
+      } },
+    { text: "Confirm technical access to LEAP and InfoTrack.", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering",
+      detail: {
+        what: "How Gideon gets authorised access to LEAP and InfoTrack, the systems it must operate across at the M5 milestone (30 October).",
+        why: "The integration build cannot begin until the access route is settled. This is a hard dependency on the critical path, so starting it late compresses everything after it.",
+        need: "Three things: (1) confirmation Gideon may integrate with these systems, (2) the access method each requires (API or accounts), and (3) who owns and provides the credentials or licensing on Manfred's side.",
+        waits: "M5, the integrations milestone, slips, and it sits directly on the path to December."
+      } },
+    { text: "Confirm the target mission count for the 30 October checkpoint.", impact: "Affects milestone M5 planning", priority: "Medium", due: "Due 24 Aug", owner: "Elie",
+      detail: {
+        what: "The number of real-world missions Gideon must pass at the 30 October checkpoint, currently targeted at 500.",
+        why: "It sets the bar for the validation phase and drives how much test evidence we gather and how it is scored against a legal standard.",
+        need: "Confirm the target: hold at 500, or set an interim number for 30 October with the full count later. Either works; I just need the number to plan against.",
+        waits: "M5 and M6 validation planning stays provisional until the target is fixed."
+      } }
   ],
   forge: {
     runsTotal: 0,
