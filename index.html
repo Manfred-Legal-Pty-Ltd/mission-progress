@@ -184,6 +184,11 @@
     .kpi-modal p.modal-body { margin:0 0 18px; color:var(--text); font-size:13px; line-height:1.55; }
     .kpi-modal button { padding:8px 18px; border:0; border-radius:7px; background:var(--navy); color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
     .kpi-modal button:hover { background:var(--navy-2); }
+    #log-link { cursor:pointer; }
+    .log-modal-list { max-height:52vh; overflow-y:auto; margin:0 0 18px; }
+    .log-modal-entry { padding:9px 0; border-top:1px solid var(--line); color:var(--text); font-size:13px; line-height:1.5; }
+    .log-modal-entry:first-child { border-top:0; }
+    .log-modal-entry strong { display:block; color:#0f3567; font-weight:800; margin-bottom:2px; }
   </style>
 </head>
 <body>
@@ -301,7 +306,7 @@
       const logMarkup = item => item ? `<strong>${esc(item.date)}</strong>${esc(item.text)}` : "";
       $("log-one").innerHTML = logMarkup(logs[0]);
       $("log-two").innerHTML = logMarkup(logs[1]);
-      [["brief-link", d.links.fullBrief], ["milestones-link", d.links.milestones], ["decisions-link", d.links.decisions], ["forge-link", d.links.forge], ["log-link", d.links.fullBrief]].forEach(([id, href]) => $(id).setAttribute("href", href));
+      [["brief-link", d.links.fullBrief], ["milestones-link", d.links.milestones], ["decisions-link", d.links.decisions], ["forge-link", d.links.forge]].forEach(([id, href]) => $(id).setAttribute("href", href));
       const shell = $("timeline-shell");
       const left = $("left-btn");
       const right = $("right-btn");
@@ -341,6 +346,14 @@
       <button type="button" id="kpi-modal-close">Close</button>
     </div>
   </div>
+  <div class="kpi-modal-backdrop" id="log-modal" role="dialog" aria-modal="true" aria-labelledby="log-modal-title">
+    <div class="kpi-modal">
+      <p class="modal-eyebrow">Full history</p>
+      <h3 id="log-modal-title">Progress log</h3>
+      <div class="log-modal-list" id="log-modal-list"></div>
+      <button type="button" id="log-modal-close">Close</button>
+    </div>
+  </div>
   <script>
     (function(){
       var modal = document.getElementById("kpi-modal"),
@@ -361,6 +374,25 @@
       strip.addEventListener("click", handle);
       strip.addEventListener("keydown", handle);
       document.getElementById("kpi-modal-close").addEventListener("click", close);
+      modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+      document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      var d = window.DASHBOARD_DATA,
+          modal = document.getElementById("log-modal"),
+          link = document.getElementById("log-link");
+      if(!d || !modal || !link) return;
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      document.getElementById("log-modal-list").innerHTML = d.progressLog.map(function(item){
+        return '<div class="log-modal-entry"><strong>' + esc(item.date) + '</strong>' + esc(item.text) + '</div>';
+      }).join("");
+      function open(){ modal.classList.add("open"); }
+      function close(){ modal.classList.remove("open"); }
+      link.setAttribute("role", "button");
+      link.setAttribute("tabindex", "0");
+      link.addEventListener("click", function(e){ e.preventDefault(); open(); });
+      link.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); } });
+      document.getElementById("log-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
     })();
