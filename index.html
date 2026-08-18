@@ -186,6 +186,18 @@
     .kpi-modal button:hover { background:var(--navy-2); }
     #log-link { cursor:pointer; }
     .list-item .remark-date { display:block; color:#0f3567; font-weight:800; margin-bottom:2px; }
+    .decision.clickable { cursor:pointer; }
+    .decision.clickable:hover .decision-title { text-decoration:underline; }
+    .decision-modal-body { margin:0 0 18px; }
+    .decision-modal-body section { margin:0 0 12px; }
+    .decision-modal-body section:last-child { margin-bottom:0; }
+    .decision-modal-body h4 { margin:0 0 3px; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .decision-modal-body p { margin:0; color:var(--text); font-size:13px; line-height:1.55; }
+    .decision-modal-actions { display:flex; gap:10px; align-items:center; }
+    .decision-respond { padding:8px 18px; border-radius:7px; background:var(--navy); color:#fff; font-size:12px; font-weight:700; text-decoration:none; }
+    .decision-respond:hover { background:var(--navy-2); }
+    .decision-modal-actions button { background:transparent; color:#536278; border:1px solid var(--line); }
+    .decision-modal-actions button:hover { background:rgba(15,53,103,.05); }
     .log-modal-list { max-height:52vh; overflow-y:auto; margin:0 0 18px; }
     .log-modal-entry { padding:9px 0; border-top:1px solid var(--line); color:var(--text); font-size:13px; line-height:1.5; }
     .log-modal-entry:first-child { border-top:0; }
@@ -297,7 +309,7 @@
         `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
         `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3m1 2h11l-2 4 4 4H6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`
       ];
-      $("decisions").innerHTML = d.decisions.map((item,index) => `<li class="list-item decision"><span class="decision-icon">${decisionIcons[index] || decisionIcons[0]}</span><div><div class="decision-title">${esc(item.text)}</div><div class="impact">Impact: ${esc(item.impact)}</div></div><div class="decision-side"><span class="priority ${slug(item.priority)}">${esc(item.priority)}</span><span class="decision-due">${esc(item.due)}</span></div></li>`).join("");
+      $("decisions").innerHTML = d.decisions.map((item,index) => `<li class="list-item decision${item.detail ? " clickable" : ""}"${item.detail ? ` role="button" tabindex="0" data-decision="${index}"` : ""}><span class="decision-icon">${decisionIcons[index] || decisionIcons[0]}</span><div><div class="decision-title">${esc(item.text)}</div><div class="impact">Impact: ${esc(item.impact)}</div></div><div class="decision-side"><span class="priority ${slug(item.priority)}">${esc(item.priority)}</span><span class="decision-due">${esc(item.due)}</span></div></li>`).join("");
       const forge = d.forge;
       $("forge-total").textContent = forge.runsTotal;
       $("forge-total-copy").textContent = forge.runsTotal;
@@ -355,6 +367,17 @@
       <button type="button" id="log-modal-close">Close</button>
     </div>
   </div>
+  <div class="kpi-modal-backdrop" id="decision-modal" role="dialog" aria-modal="true" aria-labelledby="decision-modal-title">
+    <div class="kpi-modal">
+      <p class="modal-eyebrow">Decision needed</p>
+      <h3 id="decision-modal-title"></h3>
+      <div class="decision-modal-body" id="decision-modal-body"></div>
+      <div class="decision-modal-actions">
+        <a class="decision-respond" id="decision-respond" href="https://chat.google.com/app/chat/vgm32KAAAAE" target="_blank" rel="noopener">Respond &rarr;</a>
+        <button type="button" id="decision-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
   <script>
     (function(){
       var modal = document.getElementById("kpi-modal"),
@@ -394,6 +417,35 @@
       link.addEventListener("click", function(e){ e.preventDefault(); open(); });
       link.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); } });
       document.getElementById("log-modal-close").addEventListener("click", close);
+      modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+      document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      var d = window.DASHBOARD_DATA,
+          modal = document.getElementById("decision-modal"),
+          list = document.getElementById("decisions");
+      if(!d || !modal || !list) return;
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      function open(dec){
+        document.getElementById("decision-modal-title").textContent = dec.text;
+        var det = dec.detail || {};
+        var rows = [["What this is", det.what], ["Why it matters", det.why], ["What I need from you", det.need], ["If it waits", det.waits]];
+        document.getElementById("decision-modal-body").innerHTML = rows.filter(function(r){ return r[1]; }).map(function(r){
+          return "<section><h4>" + esc(r[0]) + "</h4><p>" + esc(r[1]) + "</p></section>";
+        }).join("");
+        modal.classList.add("open");
+      }
+      function close(){ modal.classList.remove("open"); }
+      function handle(e){
+        var item = e.target.closest(".decision.clickable");
+        if(!item) return;
+        if(e.type === "keydown"){ if(e.key !== "Enter" && e.key !== " ") return; e.preventDefault(); }
+        var idx = parseInt(item.getAttribute("data-decision"), 10);
+        if(d.decisions[idx]) open(d.decisions[idx]);
+      }
+      list.addEventListener("click", handle);
+      list.addEventListener("keydown", handle);
+      document.getElementById("decision-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
     })();
