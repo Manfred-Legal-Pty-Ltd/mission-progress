@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation phase. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "17 August 2026",
+  lastUpdated: "18 August 2026",
   kpis: [
     { key: "phase", label: "Phase", value: "Foundation", subLabel: "" },
     { key: "current", label: "Current", value: "M0", subLabel: "Due 21 Aug" },
@@ -62,6 +62,7 @@ window.DASHBOARD_DATA = {
   thisWeek: [
     "Shipped document-accuracy and reliability improvements to the app.",
     "Locked the model that gives the most dependable results.",
+    "Set up the project's own GitHub home and published the latest build there, with automatic updates wired in.",
     "Set up the development tooling, awaiting billing activation."
   ],
   nextUp: {
@@ -88,6 +89,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "18 Aug 2026", text: "Set up the project's GitHub home under the company and published the latest build there, with automatic updates wired in." },
     { date: "17 Aug 2026", text: "Locked the dependable model and set up the development tooling (awaiting billing activation)." },
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
