@@ -116,6 +116,24 @@ window.DASHBOARD_DATA = {
     { date: "17 Aug 2026", text: "Locked the dependable model and set up the development tooling (awaiting billing activation)." },
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
+  dailyLog: [
+    { date: "19 August 2026", items: [
+      "Development tooling went live; the build is unblocked and underway.",
+      "Built and proved the core of the validation engine: it can tell a real action apart from routine background activity, and it refuses to pass anything on incomplete evidence.",
+      "Ran the first live validation passes against the app. The engine correctly flagged a reliability gap in how activity data was being read; we closed it and re-verified.",
+      "Updated this dashboard to keep the picture current."
+    ] },
+    { date: "18 August 2026", items: [
+      "Published the latest build to the project's own company GitHub, with automatic updates wired in.",
+      "Set the legal-stack integration approach: API-first where a platform offers one, keeping the approve-before-submit step.",
+      "Improved the dashboard's clarity and its detail views."
+    ] },
+    { date: "17 August 2026", items: [
+      "Locked a dependable model as the baseline; kept an offline option as a fallback, off the critical path.",
+      "Scoped the validation foundation as a two-week piece, sequenced ahead of the build-assistant phase.",
+      "Adopted the 18 December acceptance target, governed by each gate passing rather than the calendar."
+    ] }
+  ],
   links: {
     fullBrief: "#progress-log",
     milestones: "#milestone-route",

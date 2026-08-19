@@ -202,6 +202,15 @@
     .log-modal-entry { padding:9px 0; border-top:1px solid var(--line); color:var(--text); font-size:13px; line-height:1.5; }
     .log-modal-entry:first-child { border-top:0; }
     .log-modal-entry strong { display:block; color:#0f3567; font-weight:800; margin-bottom:2px; }
+    .daily-modal-box { position:relative; }
+    .daily-modal-nav { position:absolute; top:20px; right:20px; display:flex; gap:6px; }
+    .daily-modal-nav button { width:26px; height:26px; min-width:26px; padding:0; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px; background:transparent; color:#536278; font-size:14px; font-weight:800; line-height:1; cursor:pointer; }
+    .daily-modal-nav button:hover:not(:disabled) { background:rgba(15,53,103,.06); color:#0f3567; }
+    .daily-modal-nav button:disabled { opacity:.3; cursor:default; }
+    .daily-modal-items { margin:0 0 18px; padding:0; list-style:none; }
+    .daily-modal-items li { position:relative; padding:8px 0 8px 15px; color:var(--text); font-size:13px; line-height:1.55; border-top:1px solid var(--line); }
+    .daily-modal-items li:first-child { border-top:0; }
+    .daily-modal-items li::before { content:"\2013"; position:absolute; left:0; color:#536278; }
   </style>
 </head>
 <body>
@@ -238,7 +247,7 @@
         <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Forge test runs (last 7 days)</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
       </section>
     </section>
-    <footer class="log" id="progress-log"><div class="log-title">Progress log</div><div class="log-entry" id="log-one"></div><div class="log-entry" id="log-two"></div><a class="log-link" id="log-link">View full log →</a></footer>
+    <footer class="log" id="progress-log"><div class="log-title">Progress log</div><div class="log-entry" id="log-one"></div><div class="log-entry" id="log-two"></div><a class="log-link" id="daily-link">Daily log →</a><a class="log-link" id="log-link">View full log →</a></footer>
   </main>
   <script src="./data.js"></script>
   <script>
@@ -378,6 +387,18 @@
       </div>
     </div>
   </div>
+  <div class="kpi-modal-backdrop" id="daily-modal" role="dialog" aria-modal="true" aria-labelledby="daily-modal-title">
+    <div class="kpi-modal daily-modal-box">
+      <div class="daily-modal-nav">
+        <button type="button" id="daily-prev" aria-label="Older day">&larr;</button>
+        <button type="button" id="daily-next" aria-label="Newer day">&rarr;</button>
+      </div>
+      <p class="modal-eyebrow">Daily log</p>
+      <h3 id="daily-modal-title"></h3>
+      <ul class="daily-modal-items" id="daily-modal-items"></ul>
+      <button type="button" id="daily-modal-close">Close</button>
+    </div>
+  </div>
   <script>
     (function(){
       var modal = document.getElementById("kpi-modal"),
@@ -446,6 +467,34 @@
       list.addEventListener("click", handle);
       list.addEventListener("keydown", handle);
       document.getElementById("decision-modal-close").addEventListener("click", close);
+      modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+      document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      var d = window.DASHBOARD_DATA,
+          modal = document.getElementById("daily-modal"),
+          link = document.getElementById("daily-link");
+      if(!d || !modal || !link || !d.dailyLog || !d.dailyLog.length) return;
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      var idx = 0,
+          prevBtn = document.getElementById("daily-prev"),
+          nextBtn = document.getElementById("daily-next");
+      function render(){
+        var entry = d.dailyLog[idx] || {};
+        document.getElementById("daily-modal-title").textContent = entry.date || "";
+        document.getElementById("daily-modal-items").innerHTML = (entry.items || []).map(function(it){ return "<li>" + esc(it) + "</li>"; }).join("");
+        nextBtn.disabled = (idx <= 0);
+        prevBtn.disabled = (idx >= d.dailyLog.length - 1);
+      }
+      function open(){ idx = 0; render(); modal.classList.add("open"); }
+      function close(){ modal.classList.remove("open"); }
+      prevBtn.addEventListener("click", function(){ if(idx < d.dailyLog.length - 1){ idx++; render(); } });
+      nextBtn.addEventListener("click", function(){ if(idx > 0){ idx--; render(); } });
+      link.setAttribute("role", "button");
+      link.setAttribute("tabindex", "0");
+      link.addEventListener("click", function(e){ e.preventDefault(); open(); });
+      link.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); } });
+      document.getElementById("daily-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
     })();
