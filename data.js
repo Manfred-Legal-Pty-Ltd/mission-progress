@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation phase. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "18 August 2026",
+  lastUpdated: "19 August 2026",
   kpis: [
     { key: "phase", label: "Phase", value: "Foundation", subLabel: "" },
     { key: "current", label: "Current", value: "M0", subLabel: "Due 21 Aug" },
-    { key: "health", label: "Health", value: "On track", subLabel: "1 dependency" },
-    { key: "blockers", label: "Blockers", value: "1", subLabel: "See details", detail: "Funded development tooling is awaiting billing activation on the client side. This is the one dependency before the build can begin." },
+    { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
+    { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "3", subLabel: "Waiting on you" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 21 Aug, M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, M7 27 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -35,14 +35,14 @@ window.DASHBOARD_DATA = {
     code: "M0",
     due: "21 Aug",
     title: "Mission blueprint locked and the build accelerator switched on.",
-    description: "The mission blueprint is final and the engineering environment is ready. Tooling activation is the last dependency before the build begins.",
+    description: "The mission blueprint is final and the engineering environment is ready. Development tooling is now funded and active; the remaining step is blueprint sign-off by the principal.",
     acceptanceTest: "Blueprint signed off by the principal and the build accelerator active.",
     conditionsSatisfied: 2,
     conditionsTotal: 3,
     status: "In progress",
     type: "Foundation",
     owner: "Engineering",
-    dependencies: "Tooling activation",
+    dependencies: "None outstanding (tooling now active)",
     risks: "1 medium",
     evidenceCurrent: 0,
     evidenceTotal: 1
@@ -61,11 +61,14 @@ window.DASHBOARD_DATA = {
   },
   thisWeek: [
     "Set up the project's own GitHub home and published the latest build there, with automatic updates wired in.",
-    "Set up the development tooling, awaiting billing activation.",
+    "Development tooling now funded and active; the build is unblocked.",
+    "Began the Forge validation foundation: the core that independently checks Gideon's work against real results is built and proven.",
     "Locked the model that gives the most dependable results.",
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
+    { date: "19 Aug 2026", text: "Development tooling activated (funded on the client side); the build is unblocked and underway." },
+    { date: "19 Aug 2026", text: "Forge validation foundation underway: the verification core is built and proven to tell a real action apart from routine background activity, and to withhold a pass whenever the evidence is incomplete." },
     { date: "18 Aug 2026", text: "Legal-stack integration approach set: API-first where a platform offers one, with the approve-before-submit step kept." },
     { date: "18 Aug 2026", text: "Build moved to the company's own GitHub; latest version published there with automatic updates." },
     { date: "17 Aug 2026", text: "Locked a dependable hosted model as the baseline; offline model kept as a fallback, off the critical path." },
@@ -84,14 +87,14 @@ window.DASHBOARD_DATA = {
       detail: {
         what: "How Gideon connects to Leap, InfoTrack, Lexa and PEXA to create matters, retrieve information and prepare document orders.",
         why: "The M5 integration build cannot begin until the access route is settled per system. This is a hard dependency on the critical path, so starting it late compresses everything after it.",
-        need: "You have set the direction already: API-first where a platform offers one, with the approve-before-submit step kept. Thank you. To start, I need the account ownership and credentials or licensing for each platform, and which ones the firm holds active subscriptions to, so I know where an API route exists versus where Gideon drives the browser instead.",
+        need: "The direction is already set: API-first where a platform offers one, with the approve-before-submit step kept. To start, the AI Product Engineer needs the account ownership and credentials or licensing for each platform, and which ones the firm holds active subscriptions to, to establish where an API route exists versus where Gideon drives the browser instead.",
         waits: "M5, the integrations milestone, slips, and it sits directly on the path to December."
       } },
     { text: "Confirm the target mission count for the 30 October checkpoint.", impact: "Affects milestone M5 planning", priority: "Medium", due: "Due 24 Aug", owner: "Elie",
       detail: {
         what: "The number of real-world missions Gideon must pass at the 30 October checkpoint, currently targeted at 500.",
         why: "It sets the bar for the validation phase and drives how much test evidence we gather and how it is scored against a legal standard.",
-        need: "Confirm the target: hold at 500, or set an interim number for 30 October with the full count later. Either works; I just need the number to plan against.",
+        need: "Confirm the target: hold at 500, or set an interim number for 30 October with the full count later. Either works; the AI Product Engineer just needs the number to plan against.",
         waits: "M5 and M6 validation planning stays provisional until the target is fixed."
       } }
   ],
@@ -107,6 +110,8 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "19 Aug 2026", text: "Development tooling activated (funded on the client side); the build is unblocked." },
+    { date: "19 Aug 2026", text: "Forge validation foundation underway: built and proved the verification core that independently checks Gideon's work and withholds a pass on incomplete evidence." },
     { date: "18 Aug 2026", text: "Set up the project's GitHub home under the company and published the latest build there, with automatic updates wired in." },
     { date: "17 Aug 2026", text: "Locked the dependable model and set up the development tooling (awaiting billing activation)." },
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
