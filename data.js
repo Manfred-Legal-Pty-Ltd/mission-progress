@@ -118,10 +118,13 @@ window.DASHBOARD_DATA = {
   ],
   dailyLog: [
     { date: "19 August 2026", items: [
-      "Development tooling went live; the build is unblocked and underway.",
-      "Built and proved the core of the validation engine: it can tell a real action apart from routine background activity, and it refuses to pass anything on incomplete evidence.",
-      "Ran the first live validation passes against the app. The engine correctly flagged a reliability gap in how activity data was being read; we closed it and re-verified.",
-      "Updated this dashboard to keep the picture current."
+      "Development tooling went live and the build is running — the validation work is now unblocked.",
+      "Built the core of the validation engine and proved it: it can tell a real action apart from routine background activity, and it refuses to pass anything on incomplete evidence. It withholds judgement rather than guessing.",
+      "Ran the first live validation passes against the app — both plain conversation and reversible actions (create something, verify it, then fully reverse it and confirm the live workspace is back to its prior state, across repeated cycles).",
+      "Hit and fixed a real reliability gap: the engine was reading activity data from file-timestamp information, which isn't dependable and could produce a false reading. Reworked it to read the exact underlying content instead, and closed every other place with the same weakness.",
+      "The engine did its job on a reversible-action test — it withheld a pass rather than assume success. On investigation the app was behaving correctly; the check simply needed calibrating to the app's real response format. Tightened it so it accepts the app's genuine response while still failing on any incorrect value, then every cycle passed cleanly.",
+      "Made the validation resilient to a mid-run connection drop to the test machine — it now reconnects, cleans up, and safely retries without ever repeating an action.",
+      "Confirmed the latest build installs and auto-updates cleanly from the new company repo, and refreshed this dashboard so the picture stays current."
     ] },
     { date: "18 August 2026", items: [
       "Published the latest build to the project's own company GitHub, with automatic updates wired in.",
