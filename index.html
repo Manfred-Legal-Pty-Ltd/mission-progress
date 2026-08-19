@@ -152,13 +152,16 @@
     .signals-title { margin:9px 0 2px; color:#172a43; font-size:9.5px; font-weight:800; }
     .signal { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--line); color:#334359; font-size:8.5px; }
     .mini-footer { margin-top:auto; padding-top:6px; color:#0b3268; font-size:9px; font-weight:800; text-decoration:none; }
+    .gold-btn { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; margin:0 0 15px; padding:12px 16px; border:1px solid #7f591a; border-radius:11px; background:linear-gradient(180deg,#c99a41 0%,#a4741f 55%,#8f6318 100%); color:#fff; font-size:13.5px; font-weight:800; letter-spacing:.01em; text-decoration:none; cursor:pointer; box-shadow:0 1px 2px rgba(60,40,0,.28); }
+    .gold-btn:hover { background:linear-gradient(180deg,#d2a54b 0%,#9c6d1c 100%); }
+    .gold-btn svg { width:18px; height:18px; }
     .log { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 140px; grid-template-rows:20px 1fr 1fr; column-gap:16px; overflow:hidden; padding:8px 18px; border:1px solid var(--line); border-radius:10px; background:rgba(251,248,242,.72); font-size:9px; }
     .log-title { grid-column:1/-1; grid-row:1; color:#0f3567; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
     .log-entry { grid-column:1; min-width:0; overflow:hidden; border-top:1px solid #e6e0d6; color:#4c596a; line-height:21px; text-overflow:ellipsis; white-space:nowrap; }
     #log-one { grid-row:2; }
     #log-two { grid-row:3; }
     .log-entry strong { display:inline-block; width:145px; color:#12345e; }
-    .log-link { grid-column:2; grid-row:2/span 2; align-self:center; color:#0b3268; font-weight:800; text-align:right; text-decoration:none; }
+    .log-link { grid-column:2; grid-row:2/span 2; align-self:center; color:#0b3268; font-weight:800; text-align:right; text-decoration:none; cursor:pointer; }
     @media (max-width:1150px) {
       html,body { overflow:auto; }
       .dashboard { height:auto; grid-template-rows:auto auto auto; }
@@ -184,7 +187,6 @@
     .kpi-modal p.modal-body { margin:0 0 18px; color:var(--text); font-size:13px; line-height:1.55; }
     .kpi-modal button { padding:8px 18px; border:0; border-radius:7px; background:var(--navy); color:#fff; font-size:12px; font-weight:700; cursor:pointer; }
     .kpi-modal button:hover { background:var(--navy-2); }
-    #log-link { cursor:pointer; }
     .list-item .remark-date { display:block; color:#0f3567; font-weight:800; margin-bottom:2px; }
     .decision.clickable { cursor:pointer; }
     .decision.clickable:hover .decision-title { text-decoration:underline; }
@@ -229,6 +231,7 @@
     </header>
     <section class="main">
       <aside class="acceptance card" id="evidence-card">
+        <a class="gold-btn" id="daily-link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3.5 10h17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Daily log</a>
         <p class="eyebrow">Proof of readiness</p><h2>Acceptance evidence</h2>
         <div class="acceptance-number"><strong id="mission-current"></strong><span>/ <span id="mission-target"></span></span></div>
         <p class="acceptance-copy">Real-world missions passed</p><p class="future-label">Final acceptance — not current delivery progress</p>
@@ -247,7 +250,7 @@
         <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Forge test runs (last 7 days)</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
       </section>
     </section>
-    <footer class="log" id="progress-log"><div class="log-title">Progress log</div><div class="log-entry" id="log-one"></div><div class="log-entry" id="log-two"></div><a class="log-link" id="daily-link">Daily log →</a><a class="log-link" id="log-link">View full log →</a></footer>
+    <footer class="log" id="progress-log"><div class="log-title">Progress log</div><div class="log-entry" id="log-one"></div><div class="log-entry" id="log-two"></div><a class="log-link" id="log-link">View full log →</a></footer>
   </main>
   <script src="./data.js"></script>
   <script>
