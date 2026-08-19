@@ -67,13 +67,9 @@ window.DASHBOARD_DATA = {
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
-    { date: "19 Aug 2026", text: "Development tooling activated (funded on the client side); the build is unblocked and underway." },
-    { date: "19 Aug 2026", text: "Forge validation foundation underway: the verification core is built and proven to tell a real action apart from routine background activity, and to withhold a pass whenever the evidence is incomplete." },
-    { date: "18 Aug 2026", text: "Legal-stack integration approach set: API-first where a platform offers one, with the approve-before-submit step kept." },
-    { date: "18 Aug 2026", text: "Build moved to the company's own GitHub; latest version published there with automatic updates." },
-    { date: "17 Aug 2026", text: "Locked a dependable hosted model as the baseline; offline model kept as a fallback, off the critical path." },
-    { date: "17 Aug 2026", text: "Forge scoped as a validation-first foundation (about two weeks), sequenced ahead of the build-assistant phase." },
-    { date: "16 Aug 2026", text: "Adopted the 18 December acceptance target, with progress governed by each gate passing rather than the calendar." }
+    { date: "17 Aug 2026", text: "Model direction changed after testing: a dependable hosted model is now the baseline for stability, in place of the earlier Moonshot/Kimi lean — those and an offline model are kept as fallbacks, off the critical path." },
+    { date: "17 Aug 2026", text: "Forge sequenced validation-first: the validation foundation is being built before the build-assistant phase, so any change to Gideon can be independently verified before it ships." },
+    { date: "16 Aug 2026", text: "Acceptance timeline condition: the 18 December target stands, but completion is governed by each gate passing on its evidence rather than by the calendar date." }
   ],
   decisions: [
     { text: "Define the accepted scope of matters Gideon must handle for acceptance.", impact: "Determines the validation plan", priority: "High", due: "Due soon", owner: "Elie",
