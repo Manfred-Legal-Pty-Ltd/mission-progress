@@ -39,7 +39,7 @@
     .status-label { margin:0 0 7px; overflow:hidden; color:var(--text); font-size:8.3px; font-weight:800; letter-spacing:.1em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
     .status-value { overflow:hidden; color:var(--text); font-size:15px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
     .status-sub { margin-top:4px; overflow:hidden; color:#596474; font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
-    .main { min-height:0; display:grid; grid-template-columns:312px minmax(0,1fr); grid-template-rows:540px 340px; gap:12px 14px; }
+    .main { min-height:0; display:grid; grid-template-columns:312px minmax(0,1fr); grid-template-rows:540px auto 340px; gap:12px 14px; }
     .card { min-width:0; min-height:0; border:1px solid var(--line); border-radius:11px; background:rgba(251,248,242,.9); box-shadow:var(--shadow); }
     .eyebrow { margin:0 0 6px; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
     .acceptance { grid-column:1; grid-row:1; display:flex; flex-direction:column; padding:18px; }
@@ -109,7 +109,27 @@
     .evidence-box strong { color:#102a4b; font-size:14px; }
     .evidence-box small { margin:6px 0 15px; color:#667183; font-size:9.5px; }
     .link { width:max-content; padding:0; border:0; background:none; color:#0b3268; font-size:10px; font-weight:800; text-align:left; text-decoration:none; cursor:pointer; }
-    .bottom { grid-column:1/-1; grid-row:2; min-height:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .bottom { grid-column:1/-1; grid-row:3; min-height:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .phases { grid-column:1/-1; grid-row:2; padding:16px 18px 14px; }
+    .phases-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:10px; }
+    .phases-head h2 { font-size:17px; margin:2px 0 0; }
+    .phases-note { margin:0; color:#687384; font-size:11px; }
+    .gantt { position:relative; --label-w:236px; }
+    .gantt-months { position:relative; height:16px; margin-left:var(--label-w); border-bottom:1px solid var(--line); }
+    .gantt-months span { position:absolute; top:0; transform:translateX(-50%); color:#8a94a4; font-size:9px; font-weight:800; letter-spacing:.12em; }
+    .gantt-months span.first { transform:none; }
+    .gantt-row { display:grid; grid-template-columns:var(--label-w) minmax(0,1fr); align-items:center; height:24px; }
+    .gantt-label { display:flex; gap:8px; align-items:baseline; min-width:0; padding-right:14px; }
+    .gantt-code { color:var(--navy); font-size:10px; font-weight:800; }
+    .gantt-name { color:#536076; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .gantt-track { position:relative; height:100%; border-left:1px solid var(--line); }
+    .gantt-bar { position:absolute; top:6px; height:12px; border-radius:6px; background:#c8d3e2; min-width:8px; }
+    .gantt-row.active .gantt-bar { background:linear-gradient(90deg,#9c6f22,#d8ac53); }
+    .gantt-row.active .gantt-code, .gantt-row.active .gantt-name { color:#0f3567; font-weight:700; }
+    .gantt-row.done .gantt-bar { background:#3f5e85; }
+    .gantt-today { position:absolute; top:16px; bottom:0; width:0; border-left:1.5px dashed #b3872f; z-index:2; }
+    .gantt-today em { position:absolute; top:-14px; left:4px; color:#b3872f; font-size:8.5px; font-style:normal; font-weight:800; letter-spacing:.08em; }
+    @media (max-width:900px) { .gantt { --label-w:64px; } .gantt-name { display:none; } .gantt-today em { display:none; } }
     .mini-card { display:flex; flex-direction:column; overflow:hidden; padding:14px 16px 12px; }
     .mini-heading { height:29px; display:flex; align-items:flex-start; gap:11px; margin-bottom:4px; color:#0c326f; }
     .mini-heading svg { width:20px; height:20px; flex:0 0 auto; }
@@ -237,7 +257,7 @@
         <a class="gold-btn" id="daily-link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3.5 10h17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Daily log</a>
         <p class="eyebrow">Proof of readiness</p><h2>Acceptance evidence</h2>
         <div class="acceptance-number"><strong id="mission-current"></strong><span>/ <span id="mission-target"></span></span></div>
-        <p class="acceptance-copy">Real-world missions passed</p><p class="future-label">Final acceptance — not current delivery progress</p>
+        <p class="acceptance-copy">Benchmark missions validated</p><p class="future-label">Final acceptance — not current delivery progress</p>
         <div class="bar" id="mission-bar" role="progressbar"><span id="mission-fill"></span></div><div class="progress-meta"><span id="mission-percent"></span><span id="mission-note"></span></div>
         <div class="notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 10.5v6M12 7.2v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span id="mission-info"></span></div>
       </aside>
@@ -245,6 +265,10 @@
         <div class="route-head"><div><p class="eyebrow">The route to acceptance</p><h2>The route to acceptance</h2></div><div class="timeline-controls"><svg class="drag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11V6.5a1.5 1.5 0 0 1 3 0V10m0 0V4.5a1.5 1.5 0 0 1 3 0V10m0 0V6a1.5 1.5 0 0 1 3 0v6m0-2a1.5 1.5 0 0 1 3 0v4c0 4.3-2.7 7-7 7h-1.5c-2.2 0-4.2-1.1-5.4-2.9L3.8 14a1.5 1.5 0 0 1 2.4-1.8L8.5 14Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drag or scroll horizontally</span><button class="arrow" id="left-btn" type="button" aria-label="Scroll milestones left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button class="arrow" id="right-btn" type="button" aria-label="Scroll milestones right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div></div>
         <div class="timeline-shell" id="timeline-shell"><div class="timeline" id="timeline" tabindex="0" aria-label="Milestone timeline"></div></div>
         <article class="detail" id="detail" aria-live="polite"></article>
+      </section>
+      <section class="phases card" id="phases-card" aria-label="Programme phases">
+        <div class="phases-head"><div><p class="eyebrow">What is being built, in parallel</p><h2>Programme phases</h2></div><p class="phases-note">Gates above pass in sequence; the phases behind them overlap.</p></div>
+        <div class="gantt" id="gantt"></div>
       </section>
       <section class="bottom">
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">This week</p></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
@@ -281,7 +305,7 @@
       const progress = d.missionProgress;
       const missionPercent = progress.target ? Math.round(progress.current / progress.target * 100) : 0;
       $("mission-current").textContent = progress.current;
-      $("mission-target").textContent = progress.target;
+      $("mission-target").textContent = progress.targetLabel || progress.target;
       $("mission-note").textContent = progress.note;
       $("mission-percent").textContent = `${missionPercent}%`;
       $("mission-info").textContent = progress.info;
@@ -289,6 +313,38 @@
       $("mission-bar").setAttribute("aria-valuemin", "0");
       $("mission-bar").setAttribute("aria-valuemax", String(progress.target));
       $("mission-bar").setAttribute("aria-valuenow", String(progress.current));
+      (function renderPhases() {
+        const card = $("phases-card");
+        if (!card) return;
+        if (!Array.isArray(d.phases) || !d.phases.length) { card.style.display = "none"; return; }
+        const win = d.phasesWindow || {};
+        const start = new Date((win.start || "2026-08-17") + "T00:00:00");
+        const end = new Date((win.end || "2026-12-18") + "T23:59:59");
+        const span = end - start;
+        const frac = value => Math.min(1, Math.max(0, (new Date(value + "T00:00:00") - start) / span));
+        const today = new Date();
+        const todayFrac = Math.min(1, Math.max(0, (today - start) / span));
+        const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+        const shortNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const months = [];
+        const cursor = new Date(start.getFullYear(), start.getMonth(), 1);
+        while (cursor <= end) {
+          const f = Math.max(0, (cursor - start) / span);
+          if (f < 0.96) months.push({ name: monthNames[cursor.getMonth()], f });
+          cursor.setMonth(cursor.getMonth() + 1);
+        }
+        const fmt = value => { const dt = new Date(value + "T00:00:00"); return `${dt.getDate()} ${shortNames[dt.getMonth()]}`; };
+        const active = [];
+        const rows = d.phases.map(p => {
+          const left = frac(p.start), right = frac(p.end);
+          const state = today > new Date(p.end + "T23:59:59") ? "done" : today >= new Date(p.start + "T00:00:00") ? "active" : "";
+          if (state === "active") active.push(p.code);
+          return `<div class="gantt-row ${state}" title="${esc(p.code)} · ${esc(p.name)} · ${fmt(p.start)} to ${fmt(p.end)}"><div class="gantt-label"><span class="gantt-code">${esc(p.code)}</span><span class="gantt-name">${esc(p.name)}</span></div><div class="gantt-track"><span class="gantt-bar" style="left:${(left * 100).toFixed(2)}%;width:${Math.max(1.2, (right - left) * 100).toFixed(2)}%"></span></div></div>`;
+        }).join("");
+        $("gantt").innerHTML = `<div class="gantt-months">${months.map((m, i) => `<span${i === 0 ? ' class="first"' : ""} style="left:${(m.f * 100).toFixed(2)}%">${m.name}</span>`).join("")}</div>${rows}<div class="gantt-today" style="left:calc(var(--label-w) + (100% - var(--label-w)) * ${todayFrac.toFixed(4)})"><em>TODAY</em></div>`;
+        const phaseSub = document.querySelector(".status-item.phase .status-sub");
+        if (phaseSub && active.length) phaseSub.textContent = active.join(" · ") + " active";
+      })();
       const timeline = $("timeline");
       const currentMilestone = d.milestones.find(m => m.status === "In progress") || d.milestones[0];
       let selectedCode = currentMilestone ? currentMilestone.code : "";
