@@ -21,7 +21,7 @@ window.DASHBOARD_DATA = {
     { code: "M0", due: "21 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "In progress" },
     { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Upcoming" },
     { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "Upcoming" },
-    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable, and your decisions turn straight into completed work.", status: "Upcoming" },
+    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Upcoming" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
     { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
     { code: "M6", due: "13 Nov", goal: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", status: "Upcoming" },
