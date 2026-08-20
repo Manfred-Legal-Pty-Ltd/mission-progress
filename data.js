@@ -4,7 +4,7 @@ window.DASHBOARD_DATA = {
   lastUpdated: "20 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
-    { key: "current", label: "Current", value: "M0", subLabel: "Due 21 Aug" },
+    { key: "current", label: "Current", value: "M0", subLabel: "Due 28 Aug" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
     { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "3", subLabel: "Waiting on you" },
@@ -18,7 +18,7 @@ window.DASHBOARD_DATA = {
     info: "Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
   },
   milestones: [
-    { code: "M0", due: "21 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "In progress" },
+    { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "In progress" },
     { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Upcoming" },
     { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "Upcoming" },
     { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Upcoming" },
@@ -36,9 +36,9 @@ window.DASHBOARD_DATA = {
   milestoneDetails: {
     M0: {
     code: "M0",
-    due: "21 Aug",
+    due: "28 Aug",
     title: "Mission blueprint locked and the build accelerator switched on.",
-    description: "The mission blueprint is final and the engineering environment is ready. Development tooling is now funded and active; the remaining step is blueprint sign-off by the principal.",
+    description: "The mission blueprint is final and the engineering environment is ready. Development tooling is funded and active. The validation foundation (Forge v0) runs on the build window agreed 17 August: ten working days, finishing as fast as evidence allows, with Friday 28 August as the ceiling; the build is currently tracking ahead of that window. The remaining step is blueprint sign-off by the principal.",
     acceptanceTest: "Blueprint signed off by the principal and the build accelerator active.",
     conditionsSatisfied: 2,
     conditionsTotal: 3,
@@ -66,7 +66,7 @@ window.DASHBOARD_DATA = {
   },
   phasesWindow: { start: "2026-08-17", end: "2026-12-18" },
   phases: [
-    { code: "P0", name: "Mission contract + Forge v0", start: "2026-08-17", end: "2026-08-21" },
+    { code: "P0", name: "Mission contract + Forge v0", start: "2026-08-17", end: "2026-08-28" },
     { code: "P1", name: "Stabilise the existing core", start: "2026-08-17", end: "2026-09-04" },
     { code: "P2", name: "Conversational command layer", start: "2026-08-31", end: "2026-09-18" },
     { code: "P3", name: "Workspace, filing + decisions", start: "2026-09-07", end: "2026-10-02" },
@@ -85,6 +85,7 @@ window.DASHBOARD_DATA = {
   ],
   remarks: [
     { date: "20 Aug 2026", text: "December acceptance scope set: four capabilities confirmed in-scope and sequenced against the core — memory and state reliability first, then knowledge-base ingestion and recall, then an in-house agent-search reader and a licence-clean world-monitoring view. Memory and knowledge handling are prioritised; completion stays governed by each gate passing on its evidence, not the date." },
+    { date: "17 Aug 2026", text: "Forge v0 build window set: rescoped validation-first with a ten-working-day window in place of the roadmap's three-to-five-day target, prioritising a verification foundation that can be trusted over speed. Ceiling Friday 28 August, finishing as fast as evidence allows; M0 and Phase 0 dates on this board reflect that agreement." },
     { date: "17 Aug 2026", text: "Model direction changed after testing: a dependable hosted model is now the baseline for stability, in place of the earlier Moonshot/Kimi lean — those and an offline model are kept as fallbacks, off the critical path." },
     { date: "17 Aug 2026", text: "Forge sequenced validation-first: the validation foundation is being built before the build-assistant phase, so any change to Gideon can be independently verified before it ships." },
     { date: "16 Aug 2026", text: "Acceptance timeline condition: the 18 December target stands, but completion is governed by each gate passing on its evidence rather than by the calendar date." }
@@ -136,7 +137,8 @@ window.DASHBOARD_DATA = {
       "Ran in-depth validation of Gideon's memory and knowledge handling and set concrete reliability targets for December from what it surfaced, with evidence kept as the record.",
       "Confirmed the December acceptance scope: four capabilities are now in-scope and sequenced against the core — memory and state reliability, knowledge-base ingestion and recall, an in-house agent-search reader, and a licence-clean world-monitoring view.",
       "Reworked the timeline so each of the four shows as an in-scope gate, with memory and knowledge handling prioritised and completion still governed by each gate passing on its evidence.",
-      "Published the latest build's home handover to the company account and kept the picture on this dashboard current."
+      "Published the latest build's home handover to the company account and kept the picture on this dashboard current.",
+      "Corrected M0 and Phase 0 on the timeline to the Forge build window agreed on 17 August (ten working days, ceiling 28 August, finishing as fast as evidence allows), so the gate dates match the written agreement."
     ] },
     { date: "19 August 2026", items: [
       "Development tooling went live and the build is running — the validation work is now unblocked.",
