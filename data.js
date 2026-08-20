@@ -1,14 +1,14 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation phase. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "19 August 2026",
+  lastUpdated: "20 August 2026",
   kpis: [
     { key: "phase", label: "Phase", value: "Foundation", subLabel: "" },
     { key: "current", label: "Current", value: "M0", subLabel: "Due 21 Aug" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
     { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "3", subLabel: "Waiting on you" },
-    { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 21 Aug, M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, M7 27 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
+    { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 21 Aug, M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
   missionProgress: {
     current: 0,
@@ -24,7 +24,9 @@ window.DASHBOARD_DATA = {
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
     { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
     { code: "M6", due: "13 Nov", goal: "500+ real-world missions passed, scored against a legal benchmark.", status: "Upcoming" },
+    { code: "C1", due: "20 Nov", goal: "In-house agent-search reader live: pulls from public sources, kept current with its upstream project.", status: "Upcoming" },
     { code: "M7", due: "27 Nov", goal: "Security hardened: no critical weakness, proven on the real device at scale.", status: "Upcoming" },
+    { code: "C2", due: "28 Nov", goal: "In-house world-monitoring view live, built without third-party licensed code.", status: "Upcoming" },
     { code: "M8", due: "30 Nov", goal: "Feature freeze: only acceptance repairs from here.", status: "Upcoming" },
     { code: "M9", due: "11 Dec", goal: "Full system re-run and re-acceptance.", status: "Upcoming" },
     { code: "M10", due: "14-18 Dec", goal: "Chairman acceptance review: live, hands-on, pass or fail.", status: "Upcoming" },
@@ -47,9 +49,9 @@ window.DASHBOARD_DATA = {
     evidenceCurrent: 0,
     evidenceTotal: 1
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "Upcoming", type: "Core stability", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ real-world missions passed, scored against a legal benchmark.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -57,6 +59,8 @@ window.DASHBOARD_DATA = {
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M9: { code: "M9", due: "11 Dec", title: "Full system re-run and re-acceptance.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M10: { code: "M10", due: "14-18 Dec", title: "Chairman acceptance review: live, hands-on, pass or fail.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    C1: { code: "C1", due: "20 Nov", title: "In-house agent-search reader.", description: "A reader that pulls information from public sources, built in-house as our own implementation and kept current with its upstream open-source project — nothing added that ties the product to a third party's code or licence. In December scope, sequenced after core stability.", acceptanceTest: "Returns results from the target public sources on demand, running on our own maintained copy, with upkeep owned by the engineer.", status: "Upcoming", type: "Capability (in December scope)", owner: "Engineering", dependencies: "Core stability", risks: "Depends on public sources; upkeep owned", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    C2: { code: "C2", due: "28 Nov", title: "In-house world-monitoring view.", description: "A situational-awareness view built as our own clean implementation of the monitoring concept, without incorporating third-party licensed code, so the product carries no source-disclosure obligation. In December scope, sequenced after core stability.", acceptanceTest: "A working monitoring view built from our own code, with no third-party licensed source incorporated.", status: "Upcoming", type: "Capability (in December scope)", owner: "Engineering", dependencies: "Core stability", risks: "Sequenced after core", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     FINAL: { code: "FINAL", due: "18 Dec", title: "Mission acceptance.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null }
   },
   thisWeek: [
@@ -67,6 +71,7 @@ window.DASHBOARD_DATA = {
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
+    { date: "20 Aug 2026", text: "December acceptance scope set: four capabilities confirmed in-scope and sequenced against the core — memory and state reliability first, then knowledge-base ingestion and recall, then an in-house agent-search reader and a licence-clean world-monitoring view. Memory and knowledge handling are prioritised; completion stays governed by each gate passing on its evidence, not the date." },
     { date: "17 Aug 2026", text: "Model direction changed after testing: a dependable hosted model is now the baseline for stability, in place of the earlier Moonshot/Kimi lean — those and an offline model are kept as fallbacks, off the critical path." },
     { date: "17 Aug 2026", text: "Forge sequenced validation-first: the validation foundation is being built before the build-assistant phase, so any change to Gideon can be independently verified before it ships." },
     { date: "16 Aug 2026", text: "Acceptance timeline condition: the 18 December target stands, but completion is governed by each gate passing on its evidence rather than by the calendar date." }
@@ -76,7 +81,7 @@ window.DASHBOARD_DATA = {
       detail: {
         what: "The set of legal matter types Gideon must handle competently to pass December acceptance.",
         why: "This is the most upstream decision. It defines what counts as done: the 500-mission benchmark, every acceptance gate, and the integration work are all measured against this scope. Broad scope means more to prove by December; a tight, well-chosen scope means faster, cleaner acceptance, with room to add more later.",
-        need: "A list of the matter types or practice areas in scope. For any borderline ones, a quick call on each: core-for-December, or a later enhancement.",
+        need: "A list of the matter types or practice areas in scope. For any borderline ones, a quick call on each: core-for-December, or a later enhancement. (Capability scope is now settled as of 20 Aug — memory and state reliability, knowledge-base ingestion and recall, agent search and a world-monitoring view are confirmed in December scope; what remains here is the matter-types list.)",
         waits: "Validation planning and the mission benchmark stay frozen until scope is set, so this gates M1 to M6 planning."
       } },
     { text: "Confirm technical access to your legal stack (Leap, InfoTrack, Lexa, PEXA).", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering",
@@ -106,6 +111,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "20 Aug 2026", text: "Confirmed the December acceptance scope and reworked the timeline: four capabilities are now in-scope gates, sequenced against the core, with memory and knowledge handling prioritised." },
     { date: "19 Aug 2026", text: "Development tooling activated (funded on the client side); the build is unblocked." },
     { date: "19 Aug 2026", text: "Forge validation foundation underway: built and proved the verification core that independently checks Gideon's work and withholds a pass on incomplete evidence." },
     { date: "18 Aug 2026", text: "Set up the project's GitHub home under the company and published the latest build there, with automatic updates wired in." },
@@ -113,6 +119,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "20 August 2026", items: [
+      "Ran in-depth validation of Gideon's memory and knowledge handling and set concrete reliability targets for December from what it surfaced, with evidence kept as the record.",
+      "Confirmed the December acceptance scope: four capabilities are now in-scope and sequenced against the core — memory and state reliability, knowledge-base ingestion and recall, an in-house agent-search reader, and a licence-clean world-monitoring view.",
+      "Reworked the timeline so each of the four shows as an in-scope gate, with memory and knowledge handling prioritised and completion still governed by each gate passing on its evidence.",
+      "Published the latest build's home handover to the company account and kept the picture on this dashboard current."
+    ] },
     { date: "19 August 2026", items: [
       "Development tooling went live and the build is running — the validation work is now unblocked.",
       "Built the core of the validation engine and proved it: it can tell a real action apart from routine background activity, and it refuses to pass anything on incomplete evidence. It withholds judgement rather than guessing.",
@@ -131,7 +143,50 @@ window.DASHBOARD_DATA = {
       "Locked a dependable model as the baseline; kept an offline option as a fallback, off the critical path.",
       "Scoped the validation foundation as a two-week piece, sequenced ahead of the build-assistant phase.",
       "Adopted the 18 December acceptance target, governed by each gate passing rather than the calendar."
-    ] }
+    ] },
+    { date: "14 August 2026", items: [
+      "Enabled web research in the app and verified it live, with real results coming back.",
+      "Fixed the step limit that was cutting long, multi-step jobs short, so larger tasks now run to completion.",
+      "Assessed two open-source tools the principal suggested and set the direction: build our own clean versions rather than take on their licensing or reliability risk." ] },
+    { date: "13 August 2026", items: [
+      "Shipped a reliability update so the assistant only states what it can actually verify, and clearly says when something is unknown.",
+      "Delivered a findings summary and a phased roadmap toward the December target." ] },
+    { date: "12 August 2026", items: [
+      "Prepared a full walkthrough of the current build for review.",
+      "Confirmed the assistant can carry out tasks online: it fills a web form in a visible, governed browser and stops for approval rather than submitting on its own.",
+      "Found an end-to-end issue in the draft-and-approve flow during the walkthrough and scoped the fix.",
+      "Proposed a daily real-use feedback loop so issues surface in normal use, and agreed an API-first approach for the legal-software integrations." ] },
+    { date: "11 August 2026", items: [
+      "Released a new version: clearer first-time setup with knowledge-base loading progress, safer update handling, and more accurate self-reporting." ] },
+    { date: "7 August 2026", items: [
+      "Verified the latest releases live; the principal installed and tested the build.",
+      "Traced the root cause of a knowledge-base import slowdown on older hardware and scoped the fix." ] },
+    { date: "4 August 2026", items: [
+      "Delivered the product-direction map to the principal.",
+      "Proved Microsoft email and calendar working end-to-end in the app (sending, reading, and creating events), and fixed two related error-handling issues." ] },
+    { date: "31 July 2026", items: [
+      "Released updates delivering the first working Microsoft sign-in in a packaged build.",
+      "Made email access a separate, explicit permission, requesting read-only access rather than bundling in send rights." ] },
+    { date: "30 July 2026", items: [
+      "Built and hardware-tested a smoother, silent update flow, ready to publish.",
+      "Got Microsoft sign-in working in development." ] },
+    { date: "29 July 2026", items: [
+      "Shipped an update and proved automatic updates work end-to-end on a real Windows machine.",
+      "Confirmed the release passes its full test and acceptance suite, verified against the actual build." ] },
+    { date: "28 July 2026", items: [
+      "Delivered a capability report and a scenario-test of the product to the principal, surfacing concrete issues to fix.",
+      "Completed the Microsoft app registration for the firm's environment." ] },
+    { date: "27 July 2026", items: [
+      "Updated the build to the version carrying the knowledge-base import pipeline.",
+      "Unblocked the principal's access so he can sign in under his own account, and set up the knowledge-base ingestion work." ] },
+    { date: "24 July 2026", items: [
+      "Captured the full handover of the existing build from the outgoing engineer, on his last day.",
+      "Delivered a status walkthrough video and a documented handover report to the principal.",
+      "Received the sanitised knowledge-base files for ingestion." ] },
+    { date: "23 July 2026", items: [
+      "Secured access to the existing build and got the Windows-first app running on the engineer's machine.",
+      "Ran the full acceptance suite end-to-end: the app renders and the governed approve-before-acting flow passes across every screen.",
+      "Mapped the product's architecture to build from." ] }
   ],
   links: {
     fullBrief: "#progress-log",
