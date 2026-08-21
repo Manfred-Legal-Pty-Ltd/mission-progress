@@ -77,6 +77,8 @@ window.DASHBOARD_DATA = {
     { code: "P8", name: "Shadow pilot to controlled live use", start: "2026-09-07", end: "2026-12-11" }
   ],
   thisWeek: [
+    "Shipped two Gideon releases in one day, both fixing defects the Forge validation work caught: approval visibility restored (v0.1.22) and saved notes now findable in knowledge search (v0.1.23), each verified against a running backend before release.",
+    "Completed the GitHub account handover: full ownership and two-factor access now sit with the company.",
     "Set up the project's own GitHub home and published the latest build there, with automatic updates wired in.",
     "Development tooling now funded and active; the build is unblocked.",
     "Began the Forge validation foundation: the core that independently checks Gideon's work against real results is built and proven.",
@@ -84,6 +86,7 @@ window.DASHBOARD_DATA = {
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
+    { date: "21 Aug 2026", text: "Company GitHub account handed over: full ownership and two-factor access now with the client. Development continues from the AI Product Engineer's own account as a collaborator; releases publish to the company repository as before." },
     { date: "20 Aug 2026", text: "December acceptance scope set: four capabilities confirmed in-scope and sequenced against the core — memory and state reliability first, then knowledge-base ingestion and recall, then an in-house agent-search reader and a licence-clean world-monitoring view. Memory and knowledge handling are prioritised; completion stays governed by each gate passing on its evidence, not the date." },
     { date: "17 Aug 2026", text: "Forge v0 build window set: rescoped validation-first with a ten-working-day window in place of the roadmap's three-to-five-day target, prioritising a verification foundation that can be trusted over speed. Ceiling Friday 28 August, finishing as fast as evidence allows; M0 and Phase 0 dates on this board reflect that agreement." },
     { date: "17 Aug 2026", text: "Model direction changed after testing: a dependable hosted model is now the baseline for stability, in place of the earlier Moonshot/Kimi lean — those and an offline model are kept as fallbacks, off the critical path." },
@@ -125,6 +128,8 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "21 Aug 2026", text: "Shipped v0.1.22 and v0.1.23 in one day, both fixing defects the Forge validation foundation caught: Gideon's sight of approvals awaiting the user, and saved workspace notes now findable through knowledge search. Both fixes were verified against a running backend before release, with evidence retained." },
+    { date: "21 Aug 2026", text: "Completed the GitHub account handover: full ownership and two-factor access now sit with the company account." },
     { date: "20 Aug 2026", text: "Confirmed the December acceptance scope and reworked the timeline: four capabilities are now in-scope gates, sequenced against the core, with memory and knowledge handling prioritised." },
     { date: "19 Aug 2026", text: "Development tooling activated (funded on the client side); the build is unblocked." },
     { date: "19 Aug 2026", text: "Forge validation foundation underway: built and proved the verification core that independently checks Gideon's work and withholds a pass on incomplete evidence." },
