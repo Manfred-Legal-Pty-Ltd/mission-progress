@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "20 August 2026",
+  lastUpdated: "21 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
     { key: "current", label: "Current", value: "M0", subLabel: "Due 28 Aug" },
@@ -133,6 +133,13 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "21 August 2026", items: [
+      "Shipped two Gideon releases in one day, both fixing defects the validation work caught: v0.1.22 restores Gideon's sight of its own approvals awaiting the user (the source of the 'it says it didn't do that' behaviour), and v0.1.23 makes saved workspace notes findable by knowledge search, cited like any other source.",
+      "Verified the approval fix against the live test machine after release: the exact records that proved the defect are now visible to the app, with before-and-after evidence preserved.",
+      "Extended the validation harness so a candidate fix is checked against a real running backend on every affected read path before it ships, and proved it refuses to pass on tampered or incomplete evidence.",
+      "Completed the GitHub account handover: full ownership and two-factor access now sit with the company account, and development continues from the engineer's own account as a collaborator.",
+      "Added a README to this dashboard's repository describing the board."
+    ] },
     { date: "20 August 2026", items: [
       "Ran in-depth validation of Gideon's memory and knowledge handling and set concrete reliability targets for December from what it surfaced, with evidence kept as the record.",
       "Confirmed the December acceptance scope: four capabilities are now in-scope and sequenced against the core — memory and state reliability, knowledge-base ingestion and recall, an in-house agent-search reader, and a licence-clean world-monitoring view.",
