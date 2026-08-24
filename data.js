@@ -1,13 +1,13 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "21 August 2026",
+  lastUpdated: "24 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
     { key: "current", label: "Current", value: "M0", subLabel: "Due 28 Aug" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
     { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
-    { key: "decisions", label: "Decisions", value: "3", subLabel: "Waiting on you" },
+    { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 21 Aug, M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
   missionProgress: {
@@ -86,6 +86,9 @@ window.DASHBOARD_DATA = {
     "Shipped document-accuracy and reliability improvements to the app."
   ],
   remarks: [
+    { date: "24 Aug 2026", text: "December matter-type scope set: residential and commercial conveyancing, commercial leasing, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch is out. Matter types beyond this list are built toward for after December, and Gideon stays built so none is locked out." },
+    { date: "24 Aug 2026", text: "Legal-stack integration route mapped: InfoTrack, PEXA and LEAP confirmed as the active systems, with court access via JusticeLink added at the firm's request. Court filing is expected to route through InfoTrack, which the firm already uses and which connects to LEAP, rather than operating the court portal directly. Account access is left until each integration is ready to build." },
+    { date: "24 Aug 2026", text: "30 October benchmark set at 400 missions on the way to the full 500-plus by 13 November. If reaching 400 would risk the October timeline or mission quality, it will be raised before proceeding." },
     { date: "21 Aug 2026", text: "Company GitHub account handed over: full ownership and two-factor access now with the client. Development continues from the AI Product Engineer's own account as a collaborator; releases publish to the company repository as before." },
     { date: "20 Aug 2026", text: "December acceptance scope set: four capabilities confirmed in-scope and sequenced against the core — memory and state reliability first, then knowledge-base ingestion and recall, then an in-house agent-search reader and a licence-clean world-monitoring view. Memory and knowledge handling are prioritised; completion stays governed by each gate passing on its evidence, not the date." },
     { date: "17 Aug 2026", text: "Forge v0 build window set: rescoped validation-first with a ten-working-day window in place of the roadmap's three-to-five-day target, prioritising a verification foundation that can be trusted over speed. Ceiling Friday 28 August, finishing as fast as evidence allows; M0 and Phase 0 dates on this board reflect that agreement." },
@@ -93,29 +96,7 @@ window.DASHBOARD_DATA = {
     { date: "17 Aug 2026", text: "Forge sequenced validation-first: the validation foundation is being built before the build-assistant phase, so any change to Gideon can be independently verified before it ships." },
     { date: "16 Aug 2026", text: "Acceptance timeline condition: the 18 December target stands, but completion is governed by each gate passing on its evidence rather than by the calendar date." }
   ],
-  decisions: [
-    { text: "Define the accepted scope of matters Gideon must handle for acceptance.", impact: "Determines the validation plan", priority: "High", due: "Due soon", owner: "Elie",
-      detail: {
-        what: "The set of legal matter types Gideon must handle competently to pass December acceptance.",
-        why: "This is the most upstream decision. It defines what counts as done: the 500-mission benchmark, every acceptance gate, and the integration work are all measured against this scope. Broad scope means more to prove by December; a tight, well-chosen scope means faster, cleaner acceptance, with room to add more later.",
-        need: "A list of the matter types or practice areas in scope. For any borderline ones, a quick call on each: core-for-December, or a later enhancement. (Capability scope is now settled as of 20 Aug — memory and state reliability, knowledge-base ingestion and recall, agent search and a world-monitoring view are confirmed in December scope; what remains here is the matter-types list.)",
-        waits: "Validation planning and the mission benchmark stay frozen until scope is set, so this gates M1 to M6 planning."
-      } },
-    { text: "Confirm technical access to your legal stack (Leap, InfoTrack, Lexa, PEXA).", impact: "Enables the integration build", priority: "High", due: "Due soon", owner: "Engineering",
-      detail: {
-        what: "How Gideon connects to Leap, InfoTrack, Lexa and PEXA to create matters, retrieve information and prepare document orders.",
-        why: "The M5 integration build cannot begin until the access route is settled per system. This is a hard dependency on the critical path, so starting it late compresses everything after it.",
-        need: "The direction is already set: API-first where a platform offers one, with the approve-before-submit step kept. To start, the AI Product Engineer needs the account ownership and credentials or licensing for each platform, and which ones the firm holds active subscriptions to, to establish where an API route exists versus where Gideon drives the browser instead.",
-        waits: "M5, the integrations milestone, slips, and it sits directly on the path to December."
-      } },
-    { text: "Set the 30 October benchmark target: 300 or 400 missions.", impact: "Affects milestone M5 planning", priority: "Medium", due: "Due 24 Aug", owner: "Elie",
-      detail: {
-        what: "The number of benchmark missions the validation suite must reach at the 30 October checkpoint. The roadmap states this two ways: the milestone summary table says 300, while the detailed mission-laboratory checkpoint table and the week-by-week plan both say 400. The full 500+ corpus is dated 13 November either way.",
-        why: "It sets the pace of the validation ramp between 2 October (300 missions) and 13 November (500+), and drives how much test evidence is gathered and scored against the legal standard in that window.",
-        need: "A one-word call: 300 or 400 at 30 October. The two detailed sections support 400, so 400 is the working assumption unless you prefer the summary figure.",
-        waits: "M5 validation planning stays provisional until the number is fixed."
-      } }
-  ],
+  decisions: [],
   forge: {
     runsTotal: 0,
     passed: 0,
@@ -128,6 +109,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "24 Aug 2026", text: "Shipped v0.1.24, fixing a memory-honesty defect from the 14 August session: when a conversation grows past what Gideon holds in view, it now states plainly that earlier history exists out of view instead of describing messages that were never sent. Root-caused against the stored conversation record, fixed, and verified with new regression tests before release." },
     { date: "21 Aug 2026", text: "Shipped v0.1.22 and v0.1.23 in one day, both fixing defects the Forge validation foundation caught: Gideon's sight of approvals awaiting the user, and saved workspace notes now findable through knowledge search. Both fixes were verified against a running backend before release, with evidence retained." },
     { date: "21 Aug 2026", text: "Completed the GitHub account handover: full ownership and two-factor access now sit with the company account." },
     { date: "20 Aug 2026", text: "Confirmed the December acceptance scope and reworked the timeline: four capabilities are now in-scope gates, sequenced against the core, with memory and knowledge handling prioritised." },
@@ -138,6 +120,14 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "24 August 2026", items: [
+      "Set the December matter-type scope with the firm: the property and conveyancing core, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch stays out. Gideon is built so nothing is permanently locked out, with anything beyond the list built toward for after December.",
+      "Confirmed the legal-stack integration route: InfoTrack, PEXA and LEAP are the active systems, with court access via JusticeLink added at the firm's request and expected to route through InfoTrack, which the firm already uses, rather than the court portal directly.",
+      "Set the 30 October benchmark at 400 missions, with a check-in before proceeding if that pace would risk the October timeline or mission quality.",
+      "Put an automatic backup of the build repository to the firm's second GitHub in place, so every release now copies across on its own.",
+      "Verified the latest release on the test machine and locked the mission contract that defines how each matter is measured and what counts as a pass, so every matter in the validation suite is judged the same way.",
+      "Shipped v0.1.24 the same day: revisited the 14 August session where Gideon described conversation history that never existed, traced it against the full stored conversation record, and fixed it so Gideon now says plainly when earlier history is out of view rather than inventing it. New regression tests cover it in both directions."
+    ] },
     { date: "21 August 2026", items: [
       "Shipped two Gideon releases in one day, both fixing defects the validation work caught: v0.1.22 restores Gideon's sight of its own approvals awaiting the user (the source of the 'it says it didn't do that' behaviour), and v0.1.23 makes saved workspace notes findable by knowledge search, cited like any other source.",
       "Verified the approval fix against the live test machine after release: the exact records that proved the defect are now visible to the app, with before-and-after evidence preserved.",
