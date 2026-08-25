@@ -47,7 +47,8 @@
     .acceptance-number { display:flex; align-items:baseline; gap:7px; margin:27px 0 4px; color:var(--navy); font-variant-numeric:lining-nums; }
     .acceptance-number strong { font:500 52px/1 Georgia,"Times New Roman",serif; font-variant-numeric:lining-nums; }
     .acceptance-number span { color:#687384; font-size:19px; }
-    .acceptance-copy { margin:0 0 16px; color:#536076; font-size:12px; }
+    .acceptance-copy { margin:0 0 4px; color:#536076; font-size:12px; }
+    .acceptance-gate-note { margin:0 0 16px; color:#7a8698; font-size:10.5px; font-style:italic; line-height:1.45; }
     .future-label { display:none; }
     .bar { height:7px; margin-top:7px; overflow:hidden; border-radius:3px; background:#e5dfd4; }
     .bar>span { display:block; height:100%; background:var(--green); }
@@ -91,23 +92,26 @@
     .chip { display:inline-flex; margin-top:8px; padding:4px 9px; border:1px solid #d7dce2; border-radius:999px; background:#f1f3f6; color:#274166; font-size:9px; font-weight:800; line-height:1; white-space:nowrap; }
     .chip.in-progress { border-color:#ecd397; background:#fbf0d8; color:#9d6500; }
     .chip.passed { border-color:#bfe3cf; background:#e9f6ef; color:#19714a; }
-    .findings { margin-top:14px; padding-top:12px; border-top:1px solid #e3e7ec; display:flex; flex-direction:column; min-height:0; flex:1; }
+    .findings { display:flex; flex-direction:column; min-width:0; min-height:0; padding-right:28px; border-right:1px solid #e3e7ec; }
         .findings-title { margin:2px 0 4px; font-size:15px; color:#12345e; }
     .findings-count { display:inline-block; margin-left:6px; padding:2px 8px; border-radius:999px; background:#e9f6ef; color:#19714a; font-size:10px; font-weight:800; vertical-align:2px; }
     .findings-sub { margin:0 0 10px; font-size:11px; color:#5a6b80; line-height:1.5; }
-    .findings-list { list-style:none; margin:0; padding:0 4px 0 0; display:grid; gap:10px; overflow-y:auto; min-height:0; max-height:280px; }
+    .findings-list { list-style:none; margin:0; padding:0 10px 0 0; display:grid; gap:11px; overflow-y:auto; min-height:0; max-height:300px; scrollbar-width:thin; scrollbar-color:#c3ccd8 transparent; }
+    .findings-list::-webkit-scrollbar { width:8px; }
+    .findings-list::-webkit-scrollbar-thumb { background:#c3ccd8; border-radius:4px; }
+    .findings-list::-webkit-scrollbar-track { background:transparent; }
     .findings-list li { display:grid; grid-template-columns:14px 1fr; gap:8px; font-size:11.5px; line-height:1.5; color:#274166; }
     .findings-list .fdot { width:8px; height:8px; margin-top:5px; border-radius:50%; background:#19a15f; }
     .findings-list strong { color:#12345e; }
     .findings-list small { display:block; color:#5a6b80; }
-    .detail { min-width:0; overflow:hidden; display:grid; grid-template-columns:92px minmax(0,1fr) 220px 250px; gap:18px; padding:14px 16px; border-left:4px solid var(--gold); border-radius:0 0 8px 0; background:var(--panel-2); }
+    .detail { min-width:0; overflow:hidden; display:grid; grid-template-columns:92px minmax(0,1fr) 196px 224px; gap:18px; padding:14px 16px; border-left:4px solid var(--gold); border-radius:0 0 8px 0; background:var(--panel-2); }
     .detail-marker { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:2px; }
     .detail-badge { width:60px; height:60px; display:grid; place-items:center; border-radius:50%; background:var(--gold-soft); color:#ae7300; font-size:21px; font-weight:800; font-variant-numeric:lining-nums; }
     .detail-date { margin-top:10px; color:#3f4751; font-size:9.5px; white-space:nowrap; }
     .detail-main { min-width:0; }
-    .detail-title { overflow:hidden; color:#102a4b; font:600 15px/1.2 Georgia,"Times New Roman",serif; text-overflow:ellipsis; white-space:nowrap; }
-    .detail-desc { margin:8px 0 0; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; color:#536076; font-size:10px; line-height:1.4; }
-    .acceptance-test { margin:8px 0 0; overflow:hidden; color:#142a43; font-size:9.8px; text-overflow:ellipsis; white-space:nowrap; }
+    .detail-title { overflow:hidden; color:#102a4b; font:600 15px/1.25 Georgia,"Times New Roman",serif; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+    .detail-desc { margin:8px 0 0; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; color:#536076; font-size:10px; line-height:1.45; }
+    .acceptance-test { margin:8px 0 0; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; color:#142a43; font-size:9.8px; line-height:1.4; }
     .acceptance-test strong { color:#0c203a; }
     .condition-line { display:flex; justify-content:space-between; gap:8px; margin-top:10px; color:#111b2b; font-size:9.5px; font-weight:800; }
     .detail-meta { min-width:0; margin:0; padding:4px 0 0 20px; border-left:1px solid var(--line); display:grid; grid-template-columns:auto minmax(0,1fr); gap:8px 12px; align-content:start; font-size:9.5px; }
@@ -119,8 +123,11 @@
     .evidence-box strong { color:#102a4b; font-size:14px; }
     .evidence-box small { margin:6px 0 15px; color:#667183; font-size:9.5px; }
     .link { width:max-content; padding:0; border:0; background:none; color:#0b3268; font-size:10px; font-weight:800; text-align:left; text-decoration:none; cursor:pointer; }
+    @keyframes cardflash { 0%{ box-shadow:0 0 0 0 rgba(179,135,47,0); } 18%{ box-shadow:0 0 0 3px rgba(179,135,47,.5); } 100%{ box-shadow:0 0 0 0 rgba(179,135,47,0); } }
+    .flash { animation:cardflash 1.4s ease; }
     .bottom { grid-column:1/-1; grid-row:3; min-height:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
-    .phases { grid-column:1/-1; grid-row:2; padding:16px 18px 14px; }
+    .phases { grid-column:1/-1; grid-row:2; display:grid; grid-template-columns:336px minmax(0,1fr); gap:28px; align-items:start; padding:16px 18px 14px; }
+    .phases-main { min-width:0; }
     .phases-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:10px; }
     .phases-head h2 { font-size:17px; margin:2px 0 0; }
     .phases-note { margin:0; color:#687384; font-size:11px; }
@@ -128,23 +135,24 @@
     .gantt-months { position:relative; height:16px; margin-left:var(--label-w); border-bottom:1px solid var(--line); }
     .gantt-months span { position:absolute; top:0; transform:translateX(-50%); color:#8a94a4; font-size:9px; font-weight:800; letter-spacing:.12em; }
     .gantt-months span.first { transform:none; }
-    .gantt-row { display:grid; grid-template-columns:var(--label-w) minmax(0,1fr); align-items:center; height:24px; }
+    .gantt-row { display:grid; grid-template-columns:var(--label-w) minmax(0,1fr); align-items:center; height:34px; }
     .gantt-label { display:flex; gap:8px; align-items:baseline; min-width:0; padding-right:14px; }
     .gantt-code { color:var(--navy); font-size:10px; font-weight:800; }
     .gantt-name { color:#536076; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .gantt-track { position:relative; height:100%; border-left:1px solid var(--line); }
-    .gantt-bar { position:absolute; top:6px; height:12px; border-radius:6px; background:#c8d3e2; min-width:8px; }
+    .gantt-bar { position:absolute; top:11px; height:12px; border-radius:6px; background:#c8d3e2; min-width:8px; }
     .gantt-row.active .gantt-bar { background:linear-gradient(90deg,#9c6f22,#d8ac53); }
     .gantt-row.active .gantt-code, .gantt-row.active .gantt-name { color:#0f3567; font-weight:700; }
     .gantt-row.done .gantt-bar { background:#3f5e85; }
     .gantt-today { position:absolute; top:16px; bottom:0; width:0; border-left:1.5px dashed #b3872f; z-index:2; }
-    .gantt-today em { position:absolute; top:-14px; left:4px; color:#b3872f; font-size:8.5px; font-style:normal; font-weight:800; letter-spacing:.08em; }
+    .gantt-today em { position:absolute; top:-30px; left:50%; transform:translateX(-50%); white-space:nowrap; color:#b3872f; font-size:8.5px; font-style:normal; font-weight:800; letter-spacing:.08em; }
     @media (max-width:900px) { .gantt { --label-w:64px; } .gantt-name { display:none; } .gantt-today em { display:none; } }
     .mini-card { display:flex; flex-direction:column; overflow:hidden; padding:14px 16px 12px; }
     .mini-heading { height:29px; display:flex; align-items:flex-start; gap:11px; margin-bottom:4px; color:#0c326f; }
     .mini-heading svg { width:20px; height:20px; flex:0 0 auto; }
     .mini-label { margin:4px 0 0; color:#0f2d58; font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
     .mini-count { margin-left:auto; color:#cf241f; font-size:10px; font-weight:900; }
+    .decisions-empty { list-style:none; padding:8px 0 0; color:#6a7686; font-size:11px; font-style:italic; }
     .list { min-height:0; display:flex; flex-direction:column; margin:0; padding:0; list-style:none; }
     #remarks-list,#this-week { flex:1 1 auto; overflow-y:auto; overscroll-behavior:contain; padding-right:6px; }
     #remarks-list::-webkit-scrollbar,#this-week::-webkit-scrollbar { width:6px; }
@@ -267,29 +275,31 @@
         <a class="gold-btn" id="daily-link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3.5 10h17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Daily log</a>
         <p class="eyebrow">Proof of readiness</p><h2>Acceptance evidence</h2>
         <div class="acceptance-number"><strong id="mission-current"></strong><span>/ <span id="mission-target"></span></span></div>
-        <p class="acceptance-copy">Benchmark missions validated</p><p class="future-label">Final acceptance — not current delivery progress</p>
+        <p class="acceptance-copy">Benchmark missions validated</p><p class="acceptance-gate-note">Counts only missions independently validated against the pass standard the firm ratified 25 Aug — the counter is deliberately conservative.</p><p class="future-label">Final acceptance — not current delivery progress</p>
         <div class="bar" id="mission-bar" role="progressbar"><span id="mission-fill"></span></div><div class="progress-meta"><span id="mission-percent"></span><span id="mission-note"></span></div>
         <div class="notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 10.5v6M12 7.2v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span id="mission-info"></span></div>
-        <div class="findings" id="findings-block">
-          <p class="eyebrow">Validation findings</p>
-          <h3 class="findings-title">Found, fixed, verified <span class="findings-count" id="findings-count"></span></h3>
-          <p class="findings-sub">Found by the programme's own validation runs, fixed, and verified on the working device.</p>
-          <ul class="findings-list" id="findings-list"></ul>
-        </div>
       </aside>
       <section class="route card" id="milestone-route">
         <div class="route-head"><div><p class="eyebrow">The route to acceptance</p><h2>The route to acceptance</h2></div><div class="timeline-controls"><svg class="drag-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11V6.5a1.5 1.5 0 0 1 3 0V10m0 0V4.5a1.5 1.5 0 0 1 3 0V10m0 0V6a1.5 1.5 0 0 1 3 0v6m0-2a1.5 1.5 0 0 1 3 0v4c0 4.3-2.7 7-7 7h-1.5c-2.2 0-4.2-1.1-5.4-2.9L3.8 14a1.5 1.5 0 0 1 2.4-1.8L8.5 14Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drag or scroll horizontally</span><button class="arrow" id="left-btn" type="button" aria-label="Scroll milestones left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button class="arrow" id="right-btn" type="button" aria-label="Scroll milestones right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div></div>
         <div class="timeline-shell" id="timeline-shell"><div class="timeline" id="timeline" tabindex="0" aria-label="Milestone timeline"></div></div>
         <article class="detail" id="detail" aria-live="polite"></article>
       </section>
-      <section class="phases card" id="phases-card" aria-label="Programme phases">
-        <div class="phases-head"><div><p class="eyebrow">What is being built, in parallel</p><h2>Programme phases</h2></div><p class="phases-note">Gates above pass in sequence; the phases behind them overlap.</p></div>
-        <div class="gantt" id="gantt"></div>
+      <section class="phases card" id="phases-card" aria-label="Programme phases and validation findings">
+        <div class="findings" id="findings-block">
+          <p class="eyebrow">Validation findings</p>
+          <h3 class="findings-title">Found, fixed, verified <span class="findings-count" id="findings-count"></span></h3>
+          <p class="findings-sub">Found by the programme's own validation runs, fixed, and verified on the working device.</p>
+          <ul class="findings-list" id="findings-list"></ul>
+        </div>
+        <div class="phases-main">
+          <div class="phases-head"><div><p class="eyebrow">What is being built, in parallel</p><h2>Programme phases</h2></div><p class="phases-note">Gates above pass in sequence; the phases behind them overlap.</p></div>
+          <div class="gantt" id="gantt"></div>
+        </div>
       </section>
       <section class="bottom">
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">This week</p></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-4 4V16H4V5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Remarks &amp; decisions</p></div><ul class="list" id="remarks-list"></ul></article>
-        <article class="mini-card card decisions-card" id="decisions-card"><div class="mini-heading" style="color:#e39100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21v-2c0-4 3-6 8-6s8 2 8 6v2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><p class="mini-label">Decisions needed</p><span class="mini-count">3</span></div><ul class="list" id="decisions"></ul><a class="mini-footer" id="decisions-link">View all decisions&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card decisions-card" id="decisions-card"><div class="mini-heading" style="color:#e39100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21v-2c0-4 3-6 8-6s8 2 8 6v2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><p class="mini-label">Decisions needed</p><span class="mini-count" id="decisions-count"></span></div><ul class="list" id="decisions"></ul><a class="mini-footer" id="decisions-link">View all decisions&nbsp;&nbsp; →</a></article>
         <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Forge test runs (last 7 days)</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
       </section>
     </section>
@@ -386,7 +396,7 @@
         const evidenceCopy = evidenceDefined ? `${x.evidenceCurrent} / ${x.evidenceTotal}` : "— / —";
         const detailDue = /\b20\d{2}\b/.test(x.due) ? x.due : `${x.due} 2026`;
         document.querySelectorAll(".milestone").forEach(node => node.classList.toggle("selected", node.dataset.code === code));
-        $("detail").innerHTML = `<div class="detail-marker"><div class="detail-badge">${esc(x.code)}</div><div class="detail-date">${esc(detailDue)}</div></div><div class="detail-main"><p class="eyebrow">Milestone detail</p><div class="detail-title">${esc(x.title)}</div><p class="detail-desc">${esc(x.description)}</p><p class="acceptance-test"><strong>Acceptance test:</strong> ${esc(x.acceptanceTest)}</p><div class="condition-line"><span>Acceptance conditions</span><span>${esc(conditionCopy)}</span></div><div class="bar" role="progressbar" aria-valuemin="0" ${conditionsDefined ? `aria-valuemax="${esc(x.conditionsTotal)}" aria-valuenow="${esc(x.conditionsSatisfied)}"` : `aria-label="${esc(conditionCopy)}"`}><span style="width:${conditionPercent}%"></span></div></div><dl class="detail-meta"><dt>Status</dt><dd><span class="chip ${slug(x.status)}">${esc(x.status)}</span></dd><dt>Type</dt><dd title="${esc(x.type)}">${esc(x.type)}</dd><dt>Owner</dt><dd title="${esc(x.owner)}">${esc(x.owner)}</dd><dt>Dependencies</dt><dd title="${esc(x.dependencies)}">${esc(x.dependencies)}</dd><dt>Risks</dt><dd title="${esc(x.risks)}">${esc(x.risks)}</dd></dl><div class="evidence-box"><strong>Evidence ${esc(evidenceCopy)}</strong><small>${evidenceDefined ? (x.evidenceCurrent === 0 ? "No evidence recorded yet" : `${esc(x.evidenceCurrent)} recorded`) : "To be defined at planning"}</small><a class="link" href="${esc(d.links.evidence)}">View evidence&nbsp;&nbsp; →</a></div>`;
+        $("detail").innerHTML = `<div class="detail-marker"><div class="detail-badge">${esc(x.code)}</div><div class="detail-date">${esc(detailDue)}</div></div><div class="detail-main"><p class="eyebrow">Milestone detail</p><div class="detail-title">${esc(x.title)}</div><p class="detail-desc">${esc(x.description)}</p><p class="acceptance-test"><strong>Acceptance test:</strong> ${esc(x.acceptanceTest)}</p><div class="condition-line"><span>Acceptance conditions</span><span>${esc(conditionCopy)}</span></div><div class="bar" role="progressbar" aria-valuemin="0" ${conditionsDefined ? `aria-valuemax="${esc(x.conditionsTotal)}" aria-valuenow="${esc(x.conditionsSatisfied)}"` : `aria-label="${esc(conditionCopy)}"`}><span style="width:${conditionPercent}%"></span></div></div><dl class="detail-meta"><dt>Status</dt><dd><span class="chip ${slug(x.status)}">${esc(x.status)}</span></dd><dt>Type</dt><dd title="${esc(x.type)}">${esc(x.type)}</dd><dt>Owner</dt><dd title="${esc(x.owner)}">${esc(x.owner)}</dd><dt>Dependencies</dt><dd title="${esc(x.dependencies)}">${esc(x.dependencies)}</dd><dt>Risks</dt><dd title="${esc(x.risks)}">${esc(x.risks)}</dd></dl><div class="evidence-box"><strong>Milestone evidence ${esc(evidenceCopy)}</strong><small>${evidenceDefined ? (x.evidenceCurrent === 0 ? "No evidence recorded yet" : `${esc(x.evidenceCurrent)} recorded`) : "To be defined at planning"}</small><a class="link" href="${esc(d.links.evidence)}">View evidence&nbsp;&nbsp; →</a></div>`;
       }
       renderDetail(selectedCode);
       timeline.addEventListener("click", event => {
@@ -404,7 +414,12 @@
         `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
         `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3m1 2h11l-2 4 4 4H6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`
       ];
-      $("decisions").innerHTML = d.decisions.map((item,index) => `<li class="list-item decision${item.detail ? " clickable" : ""}"${item.detail ? ` role="button" tabindex="0" data-decision="${index}"` : ""}><span class="decision-icon">${decisionIcons[index] || decisionIcons[0]}</span><div><div class="decision-title">${esc(item.text)}</div><div class="impact">Impact: ${esc(item.impact)}</div></div><div class="decision-side"><span class="priority ${slug(item.priority)}">${esc(item.priority)}</span><span class="decision-due">${esc(item.due)}</span></div></li>`).join("");
+      const decisionsCount = d.decisions.length;
+      const decisionsBadge = $("decisions-count");
+      if (decisionsBadge) { decisionsBadge.textContent = decisionsCount ? String(decisionsCount) : ""; decisionsBadge.style.display = decisionsCount ? "" : "none"; }
+      $("decisions").innerHTML = decisionsCount
+        ? d.decisions.map((item,index) => `<li class="list-item decision${item.detail ? " clickable" : ""}"${item.detail ? ` role="button" tabindex="0" data-decision="${index}"` : ""}><span class="decision-icon">${decisionIcons[index] || decisionIcons[0]}</span><div><div class="decision-title">${esc(item.text)}</div><div class="impact">Impact: ${esc(item.impact)}</div></div><div class="decision-side"><span class="priority ${slug(item.priority)}">${esc(item.priority)}</span><span class="decision-due">${esc(item.due)}</span></div></li>`).join("")
+        : `<li class="decisions-empty">None open — nothing waiting on you right now.</li>`;
       const forge = d.forge;
       $("forge-total").textContent = forge.runsTotal;
       $("forge-total-copy").textContent = forge.runsTotal;
@@ -585,6 +600,19 @@
       document.getElementById("daily-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      // "View evidence" was a dead anchor to an already-visible card; make the click visibly respond.
+      document.addEventListener("click", function(e){
+        var a = e.target && e.target.closest && e.target.closest('a.link[href="#evidence-card"]');
+        if(!a) return;
+        e.preventDefault();
+        var t = document.getElementById("evidence-card");
+        if(!t) return;
+        t.scrollIntoView({ behavior:"smooth", block:"start" });
+        t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash");
+        setTimeout(function(){ t.classList.remove("flash"); }, 1400);
+      });
     })();
   </script>
 </body>
