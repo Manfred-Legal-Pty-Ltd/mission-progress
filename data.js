@@ -1,14 +1,14 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "24 August 2026",
+  lastUpdated: "25 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
-    { key: "current", label: "Current", value: "M0", subLabel: "Due 28 Aug" },
+    { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
     { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
-    { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 21 Aug, M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
+    { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
   missionProgress: {
     current: 0,
@@ -18,8 +18,8 @@ window.DASHBOARD_DATA = {
     info: "Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
   },
   milestones: [
-    { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "In progress" },
-    { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Upcoming" },
+    { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
+    { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "In progress" },
     { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "Upcoming" },
     { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Upcoming" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
@@ -38,19 +38,20 @@ window.DASHBOARD_DATA = {
     code: "M0",
     due: "28 Aug",
     title: "Mission blueprint locked and the build accelerator switched on.",
-    description: "The mission blueprint is final and the engineering environment is ready. Development tooling is funded and active. The validation foundation (Forge v0) runs on the build window agreed 17 August: ten working days, finishing as fast as evidence allows, with Friday 28 August as the ceiling; the build is currently tracking ahead of that window. The remaining step is blueprint sign-off by the principal.",
+    description: "Passed 25 August, inside the ten-working-day window agreed 17 August. The mission blueprint is final and signed off by the principal in writing: a mission is one full matter run measured against hidden facts, a pass requires every fact independently verified against evidence read back from the system, unreadable or untrusted evidence blocks rather than passes, and everything a run creates is cleaned up and verified gone or declared beforehand. The engineering environment is funded and active, and the validation foundation (Forge v0) runs on the build.",
     acceptanceTest: "Blueprint signed off by the principal and the build accelerator active.",
-    conditionsSatisfied: 2,
+    conditionsSatisfied: 3,
     conditionsTotal: 3,
-    status: "In progress",
+    status: "Passed",
     type: "Foundation",
     owner: "Engineering",
-    dependencies: "None outstanding (tooling now active)",
-    risks: "1 medium",
-    evidenceCurrent: 0,
-    evidenceTotal: 1
+    dependencies: "None outstanding",
+    risks: "None open",
+    evidenceCurrent: 1,
+    evidenceTotal: 1,
+    evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "Upcoming", type: "Core stability", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Defined: honesty-defect class under repair (fix released, device verification in progress)", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 1, evidenceTotal: 3 },
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -120,6 +121,11 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "25 August 2026", items: [
+      "M0 passed. The pass standard for validation missions was signed off in writing this morning: a mission is one full matter run measured against hidden facts, every pass independently verified against evidence read back from the system, unreadable evidence blocks rather than passes, and everything a run creates is verified cleaned up. Every validation result from here is scored against that agreed standard.",
+      "Released v0.1.25, closing the behaviour flagged in this morning's update where Gideon could state matter details and cite document references that are not in the matter file. Firm-wide reference material is now explicitly labelled as such in Gideon's working context on both answer paths, a matter with no documents on file now says so plainly, and answers that rely on general reference material can no longer present it as this matter's documents. Verified on the test machine after release, on the model where the behaviour appeared: with a matter that has no documents, Gideon now attributes general material to firm-wide reference and declines to confirm matter-specific facts it cannot find rather than stating them.",
+      "Core stability (the 4 September milestone) is now the active work: the same task run 50+ times with no lost file, missed approval or wrong status. The validation missions and harness built for the blueprint carry straight into it."
+    ] },
     { date: "24 August 2026", items: [
       "Set the December matter-type scope with the firm: the property and conveyancing core, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch stays out. Gideon is built so nothing is permanently locked out, with anything beyond the list built toward for after December.",
       "Confirmed the legal-stack integration route: InfoTrack, PEXA and LEAP are the active systems, with court access via JusticeLink added at the firm's request and expected to route through InfoTrack, which the firm already uses, rather than the court portal directly.",
@@ -204,6 +210,12 @@ window.DASHBOARD_DATA = {
       "Secured access to the existing build and got the Windows-first app running on the engineer's machine.",
       "Ran the full acceptance suite end-to-end: the app renders and the governed approve-before-acting flow passes across every screen.",
       "Mapped the product's architecture to build from." ] }
+  ],
+  validationFindings: [
+    { found: "25 Aug", fixed: "v0.1.25 (25 Aug)", title: "With no documents loaded to a matter, general reference material could be presented as confirmed facts about that matter.", proof: "Verified on the working device: general knowledge is now labelled as firm-wide reference, is not stated as matter fact, and missing matter documents are declared plainly." },
+    { found: "14 Aug", fixed: "v0.1.24 (24 Aug)", title: "Conversation history outside Gideon's view could be described as if remembered.", proof: "Verified: out-of-view history is now declared plainly instead of invented." },
+    { found: "21 Aug", fixed: "v0.1.23 (21 Aug)", title: "Saved workspace notes were not findable through knowledge search.", proof: "Verified on the working device: a seeded note is found through search." },
+    { found: "20 Aug", fixed: "v0.1.22 (21 Aug)", title: "Approvals awaiting the user could sit invisible to Gideon's own view.", proof: "Verified on the working device: previously hidden approvals now appear." }
   ],
   links: {
     fullBrief: "#progress-log",
