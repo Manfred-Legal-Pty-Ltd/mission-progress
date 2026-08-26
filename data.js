@@ -51,7 +51,7 @@ window.DASHBOARD_DATA = {
     evidenceTotal: 1,
     evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Defined: honesty-defect class under repair (fix released, device verification in progress)", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 1, evidenceTotal: 3 },
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Task-creation defect fixed in v0.1.26; device verification next", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 1, evidenceTotal: 3 },
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -98,14 +98,14 @@ window.DASHBOARD_DATA = {
   ],
   decisions: [],
   forge: {
-    runsTotal: 0,
-    passed: 0,
-    failed: 0,
+    runsTotal: 64,
+    passed: 62,
+    failed: 2,
     skipped: 0,
     signals: [
       { label: "Document accuracy", value: null },
       { label: "Approval integrity", value: null },
-      { label: "Mission pass rate", value: null }
+      { label: "Reliability cycle pass rate", value: "62/64" }
     ]
   },
   progressLog: [
