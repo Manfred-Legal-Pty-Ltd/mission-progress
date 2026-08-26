@@ -217,6 +217,25 @@
       .detail { grid-template-columns:80px minmax(0,1fr); overflow:visible; }
       .detail-meta,.evidence-box { border-left:0; }
     }
+    @media (max-width:700px) {
+      .updated { white-space:normal; font-size:9px; justify-self:start; text-align:left; }
+      .brand { grid-template-columns:52px minmax(0,1fr); gap:12px; }
+      .crest { width:52px; height:62px; }
+      .crest text { font:600 24px Georgia,"Times New Roman",serif; }
+      .brand-copy h1 { font-size:22px; white-space:normal; }
+      .brand-copy p { font-size:12px; }
+      .status-strip { grid-template-columns:repeat(2,1fr); }
+      .status-item:nth-child(even) { border-right:0; }
+      .phases { grid-template-columns:1fr; gap:14px; padding:14px 12px 12px; }
+      .bottom { grid-template-columns:1fr; }
+      .detail { grid-template-columns:1fr; gap:12px; padding:12px; }
+      .detail-badge { width:48px; height:48px; font-size:17px; }
+      .detail-meta { padding-left:0; grid-template-columns:auto minmax(0,1fr); }
+      .log { grid-template-columns:1fr; grid-template-rows:auto; row-gap:6px; height:auto; }
+      .log a { justify-self:start; }
+      .route { min-height:0; padding:12px 8px 10px; }
+      .acceptance { padding:14px 12px; }
+    }
     .status-item.clickable { cursor:pointer; transition:background .12s ease; }
     .status-item.clickable:hover, .status-item.clickable:focus-visible { background:var(--panel-2); }
     .status-item.clickable .status-sub { color:var(--navy); text-decoration:underline; text-underline-offset:2px; }

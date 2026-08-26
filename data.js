@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "25 August 2026",
+  lastUpdated: "26 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -78,13 +78,12 @@ window.DASHBOARD_DATA = {
     { code: "P8", name: "Shadow pilot to controlled live use", start: "2026-09-07", end: "2026-12-11" }
   ],
   thisWeek: [
-    "Shipped two Gideon releases in one day, both fixing defects the Forge validation work caught: approval visibility restored (v0.1.22) and saved notes now findable in knowledge search (v0.1.23), each verified against a running backend before release.",
-    "Completed the GitHub account handover: full ownership and two-factor access now sit with the company.",
-    "Set up the project's own GitHub home and published the latest build there, with automatic updates wired in.",
-    "Development tooling now funded and active; the build is unblocked.",
-    "Began the Forge validation foundation: the core that independently checks Gideon's work against real results is built and proven.",
-    "Locked the model that gives the most dependable results.",
-    "Shipped document-accuracy and reliability improvements to the app."
+    "Passed the mission blueprint gate (M0) with the pass standard ratified by the firm in writing; every validation result is now scored against that agreed standard.",
+    "Shipped v0.1.25, closing the grounding behaviour where general reference material could be presented as confirmed matter facts; verified on the test machine after release.",
+    "Ran 60-plus live reliability cycles against the packaged app, each one creating matter work, independently verifying what was saved, and verifying cleanup; 62 of 64 cycles fully clean.",
+    "Found, root-caused and shipped the fix for an intermittent task-creation failure in a single day (v0.1.26); Gideon reported the failure honestly in both occurrences.",
+    "Proved restart resilience on the test machine: the app force-closed mid-work came back with the matter record intact, with recovery in seconds and every step evidence-checked.",
+    "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source."
   ],
   remarks: [
     { date: "24 Aug 2026", text: "December matter-type scope set: residential and commercial conveyancing, commercial leasing, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch is out. Matter types beyond this list are built toward for after December, and Gideon stays built so none is locked out." },
@@ -110,6 +109,8 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "26 Aug 2026", text: "Shipped v0.1.26, fixing an intermittent task-creation failure the reliability cycles caught the same morning: roughly 3 percent of task requests failed on a mislabelled field and Gideon reported the failure honestly each time. The fix accepts the mislabelling while still rejecting genuinely invalid input, and the full test suite ran green before release. The same day, restart resilience was proven on the test machine: the app force-closed mid-work recovered with the matter record intact in seconds." },
+    { date: "25 Aug 2026", text: "Shipped v0.1.25, closing the grounding behaviour flagged that morning; M0 passed with the pass standard ratified by the firm in writing." },
     { date: "24 Aug 2026", text: "Shipped v0.1.24, fixing a memory-honesty defect from the 14 August session: when a conversation grows past what Gideon holds in view, it now states plainly that earlier history exists out of view instead of describing messages that were never sent. Root-caused against the stored conversation record, fixed, and verified with new regression tests before release." },
     { date: "21 Aug 2026", text: "Shipped v0.1.22 and v0.1.23 in one day, both fixing defects the Forge validation foundation caught: Gideon's sight of approvals awaiting the user, and saved workspace notes now findable through knowledge search. Both fixes were verified against a running backend before release, with evidence retained." },
     { date: "21 Aug 2026", text: "Completed the GitHub account handover: full ownership and two-factor access now sit with the company account." },
@@ -121,6 +122,13 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "26 August 2026", items: [
+      "Ran the first extended reliability campaign against the packaged app on the test machine: 60-plus full cycles, each creating matter work through chat, independently verifying what was actually saved, then verifying cleanup. 62 of 64 cycles were fully clean, and the honesty behaviour shipped in v0.1.25 held in every single cycle.",
+      "The two exceptions exposed an intermittent task-creation failure, roughly 3 percent of requests: the request failed on one mislabelled field, no task was saved, and Gideon told the user the truth both times. Root-caused the same day, down to the exact stored request, and released the fix as v0.1.26: the app now accepts field names that differ only by case while still rejecting genuinely invalid input, with the raw request preserved unchanged in the audit record. Full test suite green before release.",
+      "Proved restart resilience end to end: the app was force-closed mid-work on the test machine, verified fully down, relaunched, and came back healthy in seconds with the matter record intact, every step evidence-checked.",
+      "Found a continuity gap for the December memory work and confirmed it in the source: after any restart Gideon reopens the default matter rather than the matter that was in use. Logged with the fix shape identified.",
+      "The validation harness now grades an honest failure report separately from a false claim, so a cycle where Gideon truthfully reports a failed action is recorded as exactly that, and this progress board now reads properly on phones."
+    ] },
     { date: "25 August 2026", items: [
       "M0 passed. The pass standard for validation missions was signed off in writing this morning: a mission is one full matter run measured against hidden facts, every pass independently verified against evidence read back from the system, unreadable evidence blocks rather than passes, and everything a run creates is verified cleaned up. Every validation result from here is scored against that agreed standard.",
       "Released v0.1.25, closing the behaviour flagged in this morning's update where Gideon could state matter details and cite document references that are not in the matter file. Firm-wide reference material is now explicitly labelled as such in Gideon's working context on both answer paths, a matter with no documents on file now says so plainly, and answers that rely on general reference material can no longer present it as this matter's documents. Verified on the test machine after release, on the model where the behaviour appeared: with a matter that has no documents, Gideon now attributes general material to firm-wide reference and declines to confirm matter-specific facts it cannot find rather than stating them.",
