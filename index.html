@@ -39,12 +39,17 @@
     .status-label { margin:0 0 7px; overflow:hidden; color:var(--text); font-size:8.3px; font-weight:800; letter-spacing:.1em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
     .status-value { overflow:hidden; color:var(--text); font-size:15px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
     .status-sub { margin-top:4px; overflow:hidden; color:#596474; font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
-    /* Rows hug their content. Fixed heights (540px min + 340px bottom) were
-       sized for a fuller design and rendered as huge dead zones once real
-       content was shorter — half a screen of empty panel reads as broken
-       (James's catch, 26 Aug). If a row looks cramped later, fix the content,
-       not by re-reserving blank space. */
-    .main { min-height:0; display:grid; grid-template-columns:312px minmax(0,1fr); grid-template-rows:auto auto auto; gap:12px 14px; }
+    /* Row heights, learned the hard way on 26 Aug — BOTH failure directions:
+       (a) a 540px MINIMUM on the milestone row reserved blank space when the
+           content was shorter → half a screen of dead panel;
+       (b) making the bottom row `auto` let the tallest card (Remarks) set the
+           height, stretching the three short cards to ~1140px each → far worse.
+       Correct shape: the milestone row hugs its content; the bottom row stays
+       BOUNDED so long cards scroll inside themselves and all four stay level. */
+    .main { min-height:0; display:grid; grid-template-columns:312px minmax(0,1fr); grid-template-rows:auto auto 340px; gap:12px 14px; }
+    /* The left card must not stretch to match the taller route panel beside it.
+       A short card is fine; a stretched card with a void inside reads broken. */
+    .acceptance { align-self:start; }
     .card { min-width:0; min-height:0; border:1px solid var(--line); border-radius:11px; background:rgba(251,248,242,.9); box-shadow:var(--shadow); }
     .eyebrow { margin:0 0 6px; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
     .acceptance { grid-column:1; grid-row:1; display:flex; flex-direction:column; padding:18px; }
