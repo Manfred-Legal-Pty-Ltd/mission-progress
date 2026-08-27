@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "26 August 2026",
+  lastUpdated: "27 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -51,7 +51,7 @@ window.DASHBOARD_DATA = {
     evidenceTotal: 1,
     evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Task-creation defect fixed in v0.1.26; device verification next", conditions: [
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Final workspace-state correction in deployment; the formal reliability record runs once the validation path is verified clean on the device", conditions: [
       { text: "Reliability cycles run against the packaged app, each verified against the stored record", done: true },
       { text: "All five core failure classes exercised live: lost work, false status, invisible approvals, corrupted records, unrecoverable restarts", done: true },
       { text: "Forced restart recovers with the matter record intact", done: true },
@@ -89,9 +89,13 @@ window.DASHBOARD_DATA = {
     "Ran 60-plus live reliability cycles against the packaged app, each one creating matter work, independently verifying what was saved, and verifying cleanup; 62 of 64 cycles fully clean.",
     "Found, root-caused and shipped the fix for an intermittent task-creation failure in a single day (v0.1.26); Gideon reported the failure honestly in both occurrences.",
     "Proved restart resilience on the test machine: the app force-closed mid-work came back with the matter record intact, with recovery in seconds and every step evidence-checked.",
-    "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source."
+    "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source.",
+    "Deployed a selected-workspace signal to the test machine so the validation foundation reads the application's actual selected workspace instead of inferring it.",
+    "Corrected the automated workspace switch and verified against the running application that the workspace now changes as intended.",
+    "Confirmed the pass or fail check holds closed under live conditions: it caught and refused a false positive rather than record a pass that was not proven."
   ],
   remarks: [
+    { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
     { date: "24 Aug 2026", text: "December matter-type scope set: residential and commercial conveyancing, commercial leasing, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch is out. Matter types beyond this list are built toward for after December, and Gideon stays built so none is locked out." },
     { date: "24 Aug 2026", text: "Legal-stack integration route mapped: InfoTrack, PEXA and LEAP confirmed as the active systems, with court access via JusticeLink added at the firm's request. Court filing is expected to route through InfoTrack, which the firm already uses and which connects to LEAP, rather than operating the court portal directly. Account access is left until each integration is ready to build." },
     { date: "24 Aug 2026", text: "30 October benchmark set at 400 missions on the way to the full 500-plus by 13 November. If reaching 400 would risk the October timeline or mission quality, it will be raised before proceeding." },
@@ -115,6 +119,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "27 Aug 2026", text: "Hardened the validation path ahead of the formal core-stability record. Traced the wrong-workspace behaviour seen in testing to a chain of several issues, added a selected-workspace signal to the application and deployed it to the test machine, corrected the automated workspace switch and verified it against the running application, and confirmed the pass or fail check refuses a false positive rather than record an unproven pass. The formal 50-plus cycle record was deliberately held until the path is proven clean; the final correction is in deployment and the record runs next, with the 4 September milestone on track." },
     { date: "26 Aug 2026", text: "Shipped v0.1.26, fixing an intermittent task-creation failure the reliability cycles caught the same morning: roughly 3 percent of task requests failed on a mislabelled field and Gideon reported the failure honestly each time. The fix accepts the mislabelling while still rejecting genuinely invalid input, and the full test suite ran green before release. The same day, restart resilience was proven on the test machine: the app force-closed mid-work recovered with the matter record intact in seconds." },
     { date: "25 Aug 2026", text: "Shipped v0.1.25, closing the grounding behaviour flagged that morning; M0 passed with the pass standard ratified by the firm in writing." },
     { date: "24 Aug 2026", text: "Shipped v0.1.24, fixing a memory-honesty defect from the 14 August session: when a conversation grows past what Gideon holds in view, it now states plainly that earlier history exists out of view instead of describing messages that were never sent. Root-caused against the stored conversation record, fixed, and verified with new regression tests before release." },
@@ -128,6 +133,14 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "27 August 2026", items: [
+      "Held the planned formal reliability record rather than run it on a path that was not yet proven. The wrong-workspace behaviour seen in testing turned out to be a chain of several issues in the validation path, and running cycles before that path is clean would produce evidence that cannot be trusted.",
+      "Traced the wrong-workspace behaviour to its root: the validation foundation was treating a workspace that was merely running as the one selected, so it could send a mission to one workspace while checking another, which showed up as a timeout.",
+      "Added a selected-workspace signal inside the application and deployed it to the test machine, so the validation foundation reads the application's actual selected workspace instead of inferring it.",
+      "Corrected the automated workspace switch and verified against the running application that the workspace now changes as intended.",
+      "Confirmed the pass or fail check holds closed: today it caught and refused a false positive rather than record a pass that was not proven.",
+      "Confirmed the application, its backend and the model service all operating on the actual test machine. One final correction, a stale workspace identifier that did not refresh on switch, is in deployment; its on-device check and the formal record run are next, keeping the 4 September milestone on track."
+    ] },
     { date: "26 August 2026", items: [
       "Ran the first extended reliability campaign against the packaged app on the test machine: 60-plus full cycles, each creating matter work through chat, independently verifying what was actually saved, then verifying cleanup. 62 of 64 cycles were fully clean, and the honesty behaviour shipped in v0.1.25 held in every single cycle.",
       "The two exceptions exposed an intermittent task-creation failure, roughly 3 percent of requests: the request failed on one mislabelled field, no task was saved, and Gideon told the user the truth both times. Root-caused the same day, down to the exact stored request, and released the fix as v0.1.26: the app now accepts field names that differ only by case while still rejecting genuinely invalid input, with the raw request preserved unchanged in the audit record. Full test suite green before release.",

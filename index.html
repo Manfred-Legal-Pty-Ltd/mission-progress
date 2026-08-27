@@ -245,27 +245,57 @@
       .detail-meta,.evidence-box { border-left:0; }
     }
     @media (max-width:700px) {
+      body { padding:14px; }
+      .dashboard { gap:18px; }
+      .header { gap:16px; }
       .updated { white-space:normal; font-size:9px; justify-self:start; text-align:left; }
       .brand { grid-template-columns:52px minmax(0,1fr); gap:12px; }
       .crest { width:52px; height:62px; }
       .crest text { font:600 24px Georgia,"Times New Roman",serif; }
       .brand-copy h1 { font-size:22px; white-space:normal; }
       .brand-copy p { font-size:12px; }
-      .status-strip { grid-template-columns:repeat(2,1fr); }
+      .status-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .status-item { min-height:100px; grid-template-columns:24px minmax(0,1fr); gap:9px; align-content:start; padding:14px 12px; }
+      .status-icon { width:22px; height:22px; }
       .status-item:nth-child(even) { border-right:0; }
-      .phases { grid-template-columns:1fr; gap:14px; padding:14px 12px 12px; }
-      .bottom { grid-template-columns:1fr; }
+      .status-item:nth-last-child(-n+2) { border-bottom:0; }
+      .status-label,.status-value,.status-sub { overflow:visible; text-overflow:clip; white-space:normal; }
+      .status-label { margin-bottom:6px; line-height:1.3; }
+      .status-value { font-size:15px; line-height:1.25; }
+      .status-sub { margin-top:5px; line-height:1.4; }
+      .main { gap:18px; }
+      .phases { grid-template-columns:1fr; gap:22px; padding:18px 14px 16px; }
+      .findings { padding:0 0 18px; border-right:0; border-bottom:1px solid var(--line); }
+      .phases-head { flex-direction:column; align-items:flex-start; gap:6px; margin-bottom:14px; }
+      .phases-note { line-height:1.5; }
+      .gantt { --label-w:0px; }
+      .gantt-months { height:22px; margin-left:0; }
+      .gantt-months span { font-size:8.5px; letter-spacing:.08em; }
+      .gantt-row { grid-template-columns:1fr; height:auto; min-height:61px; gap:4px; padding:8px 0 9px; border-bottom:1px solid var(--line); }
+      .gantt-label { align-items:flex-start; padding-right:0; }
+      .gantt-code { flex:0 0 24px; font-size:11px; }
+      .gantt-name { display:block; overflow:visible; color:#536076; font-size:11px; line-height:1.35; text-overflow:clip; white-space:normal; }
+      .gantt-track { height:24px; border-left:0; }
+      .gantt-bar { top:6px; }
+      .gantt-today { top:22px; opacity:.5; }
+      .bottom { grid-template-columns:1fr; gap:18px; }
+      .mini-card { padding:18px 16px 16px; }
       /* The detail panel is the active gate's own words. Its desktop
          line-clamps cut the title and description at phone width (caught by
          check_truncation.js, 26 Aug). Stacked layout has the vertical room. */
       .detail-title, .detail-desc, .acceptance-test { -webkit-line-clamp:unset; display:block; overflow:visible; }
-      .detail { grid-template-columns:1fr; gap:12px; padding:12px; }
+      .detail { grid-template-columns:1fr; gap:16px; padding:16px 14px; }
       .detail-badge { width:48px; height:48px; font-size:17px; }
       .detail-meta { padding-left:0; grid-template-columns:auto minmax(0,1fr); }
-      .log { grid-template-columns:1fr; grid-template-rows:auto; row-gap:6px; height:auto; }
+      .log { grid-template-columns:1fr; grid-template-rows:auto; row-gap:8px; height:auto; padding:12px 14px; }
       .log a { justify-self:start; }
-      .route { min-height:0; padding:12px 8px 10px; }
-      .acceptance { padding:14px 12px; }
+      .route { min-height:0; padding:16px 10px 14px; }
+      .acceptance { padding:18px 14px; }
+    }
+    @media (max-width:430px) {
+      body { padding:12px; }
+      .dashboard,.main,.bottom { gap:20px; }
+      .status-item { min-height:104px; padding:15px 10px; }
     }
     .status-item.clickable { cursor:pointer; transition:background .12s ease; }
     .status-item.clickable:hover, .status-item.clickable:focus-visible { background:var(--panel-2); }
@@ -300,7 +330,7 @@
     .daily-modal-nav button { width:26px; height:26px; min-width:26px; padding:0; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px; background:transparent; color:#536278; font-size:14px; font-weight:800; line-height:1; cursor:pointer; }
     .daily-modal-nav button:hover:not(:disabled) { background:rgba(15,53,103,.06); color:#0f3567; }
     .daily-modal-nav button:disabled { opacity:.3; cursor:default; }
-    .daily-modal-items { margin:0 0 18px; padding:0; list-style:none; }
+    .daily-modal-items { margin:0 0 18px; padding:0; list-style:none; max-height:52vh; overflow-y:auto; overscroll-behavior:contain; }
     .daily-modal-items li { position:relative; padding:8px 0 8px 15px; color:var(--text); font-size:13px; line-height:1.55; border-top:1px solid var(--line); }
     .daily-modal-items li:first-child { border-top:0; }
     .daily-modal-items li::before { content:"\2013"; position:absolute; left:0; color:#536278; }
