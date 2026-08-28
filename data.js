@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "27 August 2026",
+  lastUpdated: "28 August 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -14,8 +14,8 @@ window.DASHBOARD_DATA = {
     current: 0,
     target: 500,
     targetLabel: "500+",
-    note: "Builds to 500+ by 13 Nov",
-    info: "Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
+    note: "100 of 500+ missions built",
+    info: "100 of the 500+ benchmark missions are now built, ahead of the ramp target; the count above tracks only missions independently validated end to end against the ratified pass standard, which is a separate measure and stands at zero so far. Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
   },
   milestones: [
     { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
@@ -51,13 +51,13 @@ window.DASHBOARD_DATA = {
     evidenceTotal: 1,
     evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Final workspace-state correction in deployment; the formal reliability record runs once the validation path is verified clean on the device", conditions: [
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Core-stability conditions met ahead of schedule; reliability coverage is being extended to approvals and documents before the 4 September gate so the record is comprehensive, not only strong", conditions: [
       { text: "Reliability cycles run against the packaged app, each verified against the stored record", done: true },
       { text: "All five core failure classes exercised live: lost work, false status, invisible approvals, corrupted records, unrecoverable restarts", done: true },
       { text: "Forced restart recovers with the matter record intact", done: true },
-      { text: "50 or more repeated cycles recorded with zero failures", done: false },
-      { text: "Defects found during the gate fixed and verified on the device", done: false }
-    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 1, evidenceTotal: 3 },
+      { text: "50 or more repeated cycles recorded with zero failures", done: true },
+      { text: "Defects found during the gate fixed and verified on the device", done: true }
+    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 3, evidenceTotal: 3 },
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -92,7 +92,11 @@ window.DASHBOARD_DATA = {
     "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source.",
     "Deployed a selected-workspace signal to the test machine so the validation foundation reads the application's actual selected workspace instead of inferring it.",
     "Corrected the automated workspace switch and verified against the running application that the workspace now changes as intended.",
-    "Confirmed the pass or fail check holds closed under live conditions: it caught and refused a false positive rather than record a pass that was not proven."
+    "Confirmed the pass or fail check holds closed under live conditions: it caught and refused a false positive rather than record a pass that was not proven.",
+    "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero, meeting the 4 September core-stability conditions ahead of schedule.",
+    "Confirmed on the test machine that the wrong-matter behaviour is resolved and the intermittent task-creation issue is fixed, both proven during the record.",
+    "Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; confirmed the automatic update path delivers the release cleanly to the installed device.",
+    "Reached 100 benchmark missions built, ahead of the ramp target; end-to-end validation against the ratified pass standard is tracked separately."
   ],
   remarks: [
     { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
@@ -108,17 +112,18 @@ window.DASHBOARD_DATA = {
   ],
   decisions: [],
   forge: {
-    runsTotal: 64,
-    passed: 62,
-    failed: 2,
+    runsTotal: 54,
+    passed: 54,
+    failed: 0,
     skipped: 0,
     signals: [
       { label: "Document accuracy", value: null },
       { label: "Approval integrity", value: null },
-      { label: "Reliability cycle pass rate", value: "62/64" }
+      { label: "Reliability cycle pass rate", value: "54/54" }
     ]
   },
   progressLog: [
+    { date: "28 Aug 2026", text: "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero. That meets the 4 September core-stability conditions ahead of schedule. The wrong-matter behaviour flagged earlier in the week is resolved and proven on the device, and the intermittent task-creation issue from last week is confirmed fixed, having occurred once naturally during the record and been handled cleanly with the task saved. Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; the automatic update path was confirmed to deliver the release cleanly to the installed device. The benchmark mission set reached 100 built, ahead of the ramp target. Reliability coverage is being extended to approvals and documents before 4 September so the record is comprehensive rather than only strong." },
     { date: "27 Aug 2026", text: "Hardened the validation path ahead of the formal core-stability record. Traced the wrong-workspace behaviour seen in testing to a chain of several issues, added a selected-workspace signal to the application and deployed it to the test machine, corrected the automated workspace switch and verified it against the running application, and confirmed the pass or fail check refuses a false positive rather than record an unproven pass. The formal 50-plus cycle record was deliberately held until the path is proven clean; the final correction is in deployment and the record runs next, with the 4 September milestone on track." },
     { date: "26 Aug 2026", text: "Shipped v0.1.26, fixing an intermittent task-creation failure the reliability cycles caught the same morning: roughly 3 percent of task requests failed on a mislabelled field and Gideon reported the failure honestly each time. The fix accepts the mislabelling while still rejecting genuinely invalid input, and the full test suite ran green before release. The same day, restart resilience was proven on the test machine: the app force-closed mid-work recovered with the matter record intact in seconds." },
     { date: "25 Aug 2026", text: "Shipped v0.1.25, closing the grounding behaviour flagged that morning; M0 passed with the pass standard ratified by the firm in writing." },
@@ -133,6 +138,14 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "28 August 2026", items: [
+      "Banked the formal core-stability reliability record on the test machine: every cycle clean, zero failures, with all five core failure classes at zero. This meets the fifty-plus-cycle and gate-defect conditions for the 4 September milestone, ahead of schedule.",
+      "Confirmed the wrong-matter behaviour is resolved and proven on the device: the app reliably locks onto the correct matter before it acts, verified during the record.",
+      "Confirmed the intermittent task-creation issue from last week is fixed on this build: it occurred once naturally during the record and the app handled it cleanly and created the task, with the task verified saved.",
+      "Shipped v0.1.29, folding in the matter-binding reliability fix, verified on the test machine.",
+      "Shipped v0.1.30, so the app is ready to use immediately after an update with no manual setup step on relaunch; the automatic update path was confirmed to deliver the release cleanly to the installed device.",
+      "The benchmark mission set reached 100 missions built, ahead of the ramp target; end-to-end validation against the ratified pass standard is a separate measure and is tracked on its own."
+    ] },
     { date: "27 August 2026", items: [
       "Held the planned formal reliability record rather than run it on a path that was not yet proven. The wrong-workspace behaviour seen in testing turned out to be a chain of several issues in the validation path, and running cycles before that path is clean would produce evidence that cannot be trusted.",
       "Traced the wrong-workspace behaviour to its root: the validation foundation was treating a workspace that was merely running as the one selected, so it could send a mission to one workspace while checking another, which showed up as a timeout.",
