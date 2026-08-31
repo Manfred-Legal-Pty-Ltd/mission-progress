@@ -173,6 +173,10 @@
     .mini-heading { height:29px; display:flex; align-items:flex-start; gap:11px; margin-bottom:4px; color:#0c326f; }
     .mini-heading svg { width:20px; height:20px; flex:0 0 auto; }
     .mini-label { margin:4px 0 0; color:#0f2d58; font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+    .week-nav { margin-left:auto; display:flex; gap:5px; }
+    .week-nav button { width:22px; height:22px; min-width:22px; padding:0; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px; background:transparent; color:#536278; font-size:13px; font-weight:800; line-height:1; cursor:pointer; }
+    .week-nav button:hover:not(:disabled) { background:rgba(15,53,103,.06); color:#0f3567; }
+    .week-nav button:disabled { opacity:.3; cursor:default; }
     .mini-count { margin-left:auto; color:#cf241f; font-size:10px; font-weight:900; }
     .decisions-empty { list-style:none; padding:8px 0 0; color:#6a7686; font-size:11px; font-style:italic; }
     .list { min-height:0; display:flex; flex-direction:column; margin:0; padding:0; list-style:none; }
@@ -377,7 +381,7 @@
         </div>
       </section>
       <section class="bottom">
-        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">This week</p></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
+        <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label" id="week-label">This week</p><span class="week-nav"><button type="button" id="week-prev" aria-label="Earlier week">&larr;</button><button type="button" id="week-next" aria-label="Later week">&rarr;</button></span></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-4 4V16H4V5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Remarks &amp; decisions</p></div><ul class="list" id="remarks-list"></ul></article>
         <article class="mini-card card decisions-card" id="decisions-card"><div class="mini-heading" style="color:#e39100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21v-2c0-4 3-6 8-6s8 2 8 6v2Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><p class="mini-label">Decisions needed</p><span class="mini-count" id="decisions-count"></span></div><ul class="list" id="decisions"></ul><a class="mini-footer" id="decisions-link">View all decisions&nbsp;&nbsp; →</a></article>
         <article class="mini-card card forge-card" id="forge-card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label">Evidence &amp; Forge</p></div><div class="forge-frame"><p class="forge-title">Core-stability reliability record</p><div class="forge-zero"><div class="donut" id="forge-total"></div><div class="forge-metrics" id="forge-metrics"></div><div class="forge-total-label">Total runs<strong id="forge-total-copy"></strong></div></div></div><p class="signals-title">Quality signals</p><div id="forge-signals"></div><a class="mini-footer" id="forge-link">Open Forge dashboard&nbsp;&nbsp; →</a></article>
@@ -494,7 +498,7 @@
         item.scrollIntoView({behavior: "smooth", inline: "center", block: "nearest"});
       });
       const check = `<span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
-      $("this-week").innerHTML = d.thisWeek.map(item => `<li class="list-item done">${check}<span>${esc(item)}</span></li>`).join("");
+      /* This-week card renders via the dedicated week-nav block below (buckets by week, back/forward arrows). */
       $("remarks-list").innerHTML = d.remarks.map(item => `<li class="list-item"><strong class="remark-date">${esc(item.date)}</strong>${esc(item.text)}</li>`).join("");
       const decisionIcons = [
         `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>`,
@@ -700,6 +704,28 @@
       document.getElementById("daily-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      // Dedicated week navigation for the This Week card: buckets by week, back/forward arrows.
+      var d = window.DASHBOARD_DATA;
+      var list = document.getElementById("this-week"),
+          label = document.getElementById("week-label"),
+          prevBtn = document.getElementById("week-prev"),
+          nextBtn = document.getElementById("week-next");
+      if(!d || !list || !Array.isArray(d.thisWeek) || !d.thisWeek.length) return;
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      var check = '<span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      var idx = 0;
+      function render(){
+        var bucket = d.thisWeek[idx] || {};
+        if(label) label.textContent = bucket.week || "This week";
+        list.innerHTML = (bucket.items || []).map(function(it){ return '<li class="list-item done">' + check + '<span>' + esc(it) + '</span></li>'; }).join("");
+        if(nextBtn) nextBtn.disabled = (idx <= 0);
+        if(prevBtn) prevBtn.disabled = (idx >= d.thisWeek.length - 1);
+      }
+      if(prevBtn) prevBtn.addEventListener("click", function(){ if(idx < d.thisWeek.length - 1){ idx++; render(); } });
+      if(nextBtn) nextBtn.addEventListener("click", function(){ if(idx > 0){ idx--; render(); } });
+      render();
     })();
     (function(){
       // "View evidence" was a dead anchor to an already-visible card; make the click visibly respond.

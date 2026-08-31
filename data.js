@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "28 August 2026",
+  lastUpdated: "31 August 2026",
   kpis: [
-    { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P0 · P1 · P6 active" },
+    { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
-    { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is now active; billing was sorted on the client side this morning. There are no open blockers, and the build is underway." },
+    { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is active and billing sits on the client side. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -51,7 +51,7 @@ window.DASHBOARD_DATA = {
     evidenceTotal: 1,
     evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Core-stability conditions met ahead of schedule; reliability coverage is being extended to approvals and documents before the 4 September gate so the record is comprehensive, not only strong", conditions: [
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Core-stability conditions are met ahead of schedule. A live-matter demonstration surfaced a post-restart boundary the reliability record had not covered: the matter persists in the record but is not yet reliably rebuilt into the conversation. Root cause identified, fix in testing, on-device verification to follow.", conditions: [
       { text: "Reliability cycles run against the packaged app, each verified against the stored record", done: true },
       { text: "All five core failure classes exercised live: lost work, false status, invisible approvals, corrupted records, unrecoverable restarts", done: true },
       { text: "Forced restart recovers with the matter record intact", done: true },
@@ -84,19 +84,24 @@ window.DASHBOARD_DATA = {
     { code: "P8", name: "Shadow pilot to controlled live use", start: "2026-09-07", end: "2026-12-11" }
   ],
   thisWeek: [
-    "Passed the mission blueprint gate (M0) with the pass standard ratified by the firm in writing; every validation result is now scored against that agreed standard.",
-    "Shipped v0.1.25, closing the grounding behaviour where general reference material could be presented as confirmed matter facts; verified on the test machine after release.",
-    "Ran 60-plus live reliability cycles against the packaged app, each one creating matter work, independently verifying what was saved, and verifying cleanup; 62 of 64 cycles fully clean.",
-    "Found, root-caused and shipped the fix for an intermittent task-creation failure in a single day (v0.1.26); Gideon reported the failure honestly in both occurrences.",
-    "Proved restart resilience on the test machine: the app force-closed mid-work came back with the matter record intact, with recovery in seconds and every step evidence-checked.",
-    "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source.",
-    "Deployed a selected-workspace signal to the test machine so the validation foundation reads the application's actual selected workspace instead of inferring it.",
-    "Corrected the automated workspace switch and verified against the running application that the workspace now changes as intended.",
-    "Confirmed the pass or fail check holds closed under live conditions: it caught and refused a false positive rather than record a pass that was not proven.",
-    "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero, meeting the 4 September core-stability conditions ahead of schedule.",
-    "Confirmed on the test machine that the wrong-matter behaviour is resolved and the intermittent task-creation issue is fixed, both proven during the record.",
-    "Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; confirmed the automatic update path delivers the release cleanly to the installed device.",
-    "Reached 100 benchmark missions built, ahead of the ramp target; end-to-end validation against the ratified pass standard is tracked separately."
+    { week: "This week", items: [
+      "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date."
+    ] },
+    { week: "25 to 28 Aug", items: [
+      "Passed the mission blueprint gate (M0) with the pass standard ratified by the firm in writing; every validation result is now scored against that agreed standard.",
+      "Shipped v0.1.25, closing the grounding behaviour where general reference material could be presented as confirmed matter facts; verified on the test machine after release.",
+      "Ran 60-plus live reliability cycles against the packaged app, each one creating matter work, independently verifying what was saved, and verifying cleanup; 62 of 64 cycles fully clean.",
+      "Found, root-caused and shipped the fix for an intermittent task-creation failure in a single day (v0.1.26); Gideon reported the failure honestly in both occurrences.",
+      "Proved restart resilience on the test machine: the app force-closed mid-work came back with the matter record intact, with recovery in seconds and every step evidence-checked.",
+      "Identified a continuity gap for the December memory work: after a restart Gideon reopens the default matter rather than the one in use, confirmed in the source.",
+      "Deployed a selected-workspace signal to the test machine so the validation foundation reads the application's actual selected workspace instead of inferring it.",
+      "Corrected the automated workspace switch and verified against the running application that the workspace now changes as intended.",
+      "Confirmed the pass or fail check holds closed under live conditions: it caught and refused a false positive rather than record a pass that was not proven.",
+      "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero, meeting the 4 September core-stability conditions ahead of schedule.",
+      "Confirmed on the test machine that the wrong-matter behaviour is resolved and the intermittent task-creation issue is fixed, both proven during the record.",
+      "Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; confirmed the automatic update path delivers the release cleanly to the installed device.",
+      "Reached 100 benchmark missions built, ahead of the ramp target; end-to-end validation against the ratified pass standard is tracked separately."
+    ] }
   ],
   remarks: [
     { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
@@ -123,6 +128,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "31 Aug 2026", text: "Delivered the recorded demonstration of Gideon working a live matter end to end, together with a written explanation and a monthly progress report covering the engagement to date. The run was left honest by design, with two real behaviours kept in rather than edited out. After a full restart Gideon did not fully rebuild the matter back into the conversation, though the underlying record had persisted every task, note, approval and document, so this is a reconstruction gap rather than data loss; it has been traced to its root cause and a fix is in testing, with verification on the test machine to follow. On the email step the connector showed connected while an independent send-verification came back inconsistent, and the exact cause is still being pinned down. In both cases Gideon declined to claim a result it could not verify, which is the intended behaviour on real legal work. None of this walks back the core-stability milestone: its conditions are met and the matter record persists where tested, and what the run surfaced is a retrieval boundary the reliability record had not yet covered, now being closed before the 4 September gate." },
     { date: "28 Aug 2026", text: "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero. That meets the 4 September core-stability conditions ahead of schedule. The wrong-matter behaviour flagged earlier in the week is resolved and proven on the device, and the intermittent task-creation issue from last week is confirmed fixed, having occurred once naturally during the record and been handled cleanly with the task saved. Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; the automatic update path was confirmed to deliver the release cleanly to the installed device. The benchmark mission set reached 100 built, ahead of the ramp target. Reliability coverage is being extended to approvals and documents before 4 September so the record is comprehensive rather than only strong." },
     { date: "27 Aug 2026", text: "Hardened the validation path ahead of the formal core-stability record. Traced the wrong-workspace behaviour seen in testing to a chain of several issues, added a selected-workspace signal to the application and deployed it to the test machine, corrected the automated workspace switch and verified it against the running application, and confirmed the pass or fail check refuses a false positive rather than record an unproven pass. The formal 50-plus cycle record was deliberately held until the path is proven clean; the final correction is in deployment and the record runs next, with the 4 September milestone on track." },
     { date: "26 Aug 2026", text: "Shipped v0.1.26, fixing an intermittent task-creation failure the reliability cycles caught the same morning: roughly 3 percent of task requests failed on a mislabelled field and Gideon reported the failure honestly each time. The fix accepts the mislabelling while still rejecting genuinely invalid input, and the full test suite ran green before release. The same day, restart resilience was proven on the test machine: the app force-closed mid-work recovered with the matter record intact in seconds." },
@@ -138,6 +144,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "31 August 2026", items: [
+      "Delivered a recorded demonstration of Gideon working a live matter end to end: creating the matter, recording the facts, building tasks and a note, preparing a client email held for approval, and surviving a full application restart.",
+      "Left two real behaviours from the run in the recording rather than editing them out. After the restart Gideon did not fully rebuild the matter back into the conversation; the underlying record had persisted every task, the note, the approval and the document, so this is a reconstruction gap in the conversation, not data loss. Traced it to its root cause, with a fix now in testing and verification on the test machine to follow.",
+      "On the email step the connector showed connected but an independent send-verification came back inconsistent; the exact cause is still being pinned down before it is called. In both cases Gideon refused to claim a result it could not verify, which is the behaviour intended for real legal work.",
+      "Delivered a monthly progress report covering the work since the engagement began: what has been built, found, fixed and shipped, the releases to date, the M0 and M1 milestones, and a week-by-week timeline."
+    ] },
     { date: "28 August 2026", items: [
       "Banked the formal core-stability reliability record on the test machine: every cycle clean, zero failures, with all five core failure classes at zero. This meets the fifty-plus-cycle and gate-defect conditions for the 4 September milestone, ahead of schedule.",
       "Confirmed the wrong-matter behaviour is resolved and proven on the device: the app reliably locks onto the correct matter before it acts, verified during the record.",
