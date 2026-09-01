@@ -104,6 +104,7 @@ window.DASHBOARD_DATA = {
     ] }
   ],
   remarks: [
+    { date: "31 Aug 2026", text: "The firm began using Gideon on live matters ahead of the December acceptance date, moving into real-world testing. Day-to-day use of this kind surfaces issues that only appear in practice and feeds them straight back into the build; the document-import correction now in validation came directly from this early use." },
     { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
     { date: "24 Aug 2026", text: "December matter-type scope set: residential and commercial conveyancing, commercial leasing, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch is out. Matter types beyond this list are built toward for after December, and Gideon stays built so none is locked out." },
     { date: "24 Aug 2026", text: "Legal-stack integration route mapped: InfoTrack, PEXA and LEAP confirmed as the active systems, with court access via JusticeLink added at the firm's request. Court filing is expected to route through InfoTrack, which the firm already uses and which connects to LEAP, rather than operating the court portal directly. Account access is left until each integration is ready to build." },
@@ -144,6 +145,10 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "1 September 2026", items: [
+      "During pilot use a document would not import. Traced it the same day and found that document import was not working in the current packaged build, so it is being corrected before it can affect any live matter.",
+      "Reproduced the failure on the test machine and built the fix. Once the first cause was corrected a second, separate issue surfaced in the same path and was addressed as well. Both are in final validation on a rebuilt package, with release to follow once the test machine confirms them."
+    ] },
     { date: "31 August 2026", items: [
       "Delivered a recorded demonstration of Gideon working a live matter end to end: creating the matter, recording the facts, building tasks and a note, preparing a client email held for approval, and surviving a full application restart.",
       "Left two real behaviours from the run in the recording rather than editing them out. After the restart Gideon did not fully rebuild the matter back into the conversation; the underlying record had persisted every task, the note, the approval and the document, so this is a reconstruction gap in the conversation, not data loss. Traced it to its root cause, with a fix now in testing and verification on the test machine to follow.",
