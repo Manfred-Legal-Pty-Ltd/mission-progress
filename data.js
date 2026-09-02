@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "31 August 2026",
+  lastUpdated: "2 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -85,7 +85,8 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
-      "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date."
+      "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date.",
+      "Corrected a document-import defect that live-matter pilot use surfaced, and delivered the fixed build (v0.1.31) the same day; documents again import into a matter, confirmed on the installed build."
     ] },
     { week: "25 to 28 Aug", items: [
       "Passed the mission blueprint gate (M0) with the pass standard ratified by the firm in writing; every validation result is now scored against that agreed standard.",
@@ -104,6 +105,7 @@ window.DASHBOARD_DATA = {
     ] }
   ],
   remarks: [
+    { date: "2 Sep 2026", text: "The early-use pilot is doing what it is meant to. Real-world matter use surfaced a genuine defect in document import, which was corrected and delivered the same day. Day-to-day use on live matters keeps feeding issues straight back into the build before they settle in." },
     { date: "31 Aug 2026", text: "The firm began using Gideon on live matters ahead of the December acceptance date, moving into real-world testing. Day-to-day use of this kind surfaces issues that only appear in practice and feeds them straight back into the build; the document-import correction now in validation came directly from this early use." },
     { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
     { date: "24 Aug 2026", text: "December matter-type scope set: residential and commercial conveyancing, commercial leasing, general property, wills estates and probate, commercial contract review and advice, and small commercial disputes. Contract review is in scope; drafting contracts from scratch is out. Matter types beyond this list are built toward for after December, and Gideon stays built so none is locked out." },
@@ -129,6 +131,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "2 Sep 2026", text: "Shipped v0.1.31, correcting a document-import defect that live-matter pilot use surfaced: documents had stopped importing into a matter in the installed build. Reproduced it on the test machine, corrected it, and confirmed the fix on the published build, where a document imported and its text read back correctly with a clean result. Delivered the fixed build to the firm the same day, so the correction reached the live pilot immediately." },
     { date: "31 Aug 2026", text: "Delivered the recorded demonstration of Gideon working a live matter end to end, together with a written explanation and a monthly progress report covering the engagement to date. The run was left honest by design, with two real behaviours kept in rather than edited out. After a full restart Gideon did not fully rebuild the matter back into the conversation, though the underlying record had persisted every task, note, approval and document, so this is a reconstruction gap rather than data loss; it has been traced to its root cause and a fix is in testing, with verification on the test machine to follow. On the email step the connector showed connected while an independent send-verification came back inconsistent, and the exact cause is still being pinned down. In both cases Gideon declined to claim a result it could not verify, which is the intended behaviour on real legal work. None of this walks back the core-stability milestone: its conditions are met and the matter record persists where tested, and what the run surfaced is a retrieval boundary the reliability record had not yet covered, now being closed before the 4 September gate." },
     { date: "28 Aug 2026", text: "Banked the formal core-stability reliability record against the fixed build on the test machine: every cycle clean, zero failures, and all five core failure classes at zero. That meets the 4 September core-stability conditions ahead of schedule. The wrong-matter behaviour flagged earlier in the week is resolved and proven on the device, and the intermittent task-creation issue from last week is confirmed fixed, having occurred once naturally during the record and been handled cleanly with the task saved. Shipped v0.1.29, folding in the matter-binding reliability fix, and v0.1.30, so the app is ready to use immediately after an update with no manual setup step; the automatic update path was confirmed to deliver the release cleanly to the installed device. The benchmark mission set reached 100 built, ahead of the ramp target. Reliability coverage is being extended to approvals and documents before 4 September so the record is comprehensive rather than only strong." },
     { date: "27 Aug 2026", text: "Hardened the validation path ahead of the formal core-stability record. Traced the wrong-workspace behaviour seen in testing to a chain of several issues, added a selected-workspace signal to the application and deployed it to the test machine, corrected the automated workspace switch and verified it against the running application, and confirmed the pass or fail check refuses a false positive rather than record an unproven pass. The formal 50-plus cycle record was deliberately held until the path is proven clean; the final correction is in deployment and the record runs next, with the 4 September milestone on track." },
@@ -145,6 +148,11 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "2 September 2026", items: [
+      "Released v0.1.31, correcting the document-import defect that pilot use surfaced on 1 September. Documents now import into a matter on the installed build, restoring a function that had stopped working in the packaged app.",
+      "Confirmed the fix on the published build on the test machine, where a document imported and its text read back correctly, then delivered the build to the firm the same day so the fix reached the live pilot without waiting.",
+      "Began building the capability to read scanned documents (OCR), which pilot use flagged as needed. The approach keeps the original document as the source of truth and holds any text that cannot be read cleanly for review rather than guessing it, so nothing uncertain becomes a matter fact on its own. The groundwork is built and checks out internally; it has not yet been proven reading a real scanned document on the installed build, which is the next step before it is ready to use."
+    ] },
     { date: "1 September 2026", items: [
       "During pilot use a document would not import. Traced it the same day and found that document import was not working in the current packaged build, so it is being corrected before it can affect any live matter.",
       "Reproduced the failure on the test machine and built the fix. Once the first cause was corrected a second, separate issue surfaced in the same path and was addressed as well. Both are in final validation on a rebuilt package, with release to follow once the test machine confirms them."
@@ -269,6 +277,7 @@ window.DASHBOARD_DATA = {
       "Mapped the product's architecture to build from." ] }
   ],
   validationFindings: [
+    { found: "1 Sep", fixed: "v0.1.31 (2 Sep)", title: "Documents would not import into a matter in the installed build.", proof: "Confirmed on the published build: a document imports into a matter and its text reads back correctly." },
     { found: "25 Aug", fixed: "v0.1.25 (25 Aug)", title: "With no documents loaded to a matter, general reference material could be presented as confirmed facts about that matter.", proof: "Verified on the working device: general knowledge is now labelled as firm-wide reference, is not stated as matter fact, and missing matter documents are declared plainly." },
     { found: "14 Aug", fixed: "v0.1.24 (24 Aug)", title: "Conversation history outside Gideon's view could be described as if remembered.", proof: "Verified: out-of-view history is now declared plainly instead of invented." },
     { found: "21 Aug", fixed: "v0.1.23 (21 Aug)", title: "Saved workspace notes were not findable through knowledge search.", proof: "Verified on the working device: a seeded note is found through search." },
