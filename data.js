@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "2 September 2026",
+  lastUpdated: "3 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -148,6 +148,11 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "3 September 2026", items: [
+      "Proved scanned-document reading (OCR) working end to end on the installed build, with a scanned PDF read back correctly, the original document kept as the source of truth, and any text that could not be read cleanly held for review rather than guessed. Real-world testing then surfaced an edge case where scans that arrive wrapped in a thin hidden text layer, such as browser or email prints and header or stamp marked documents, could be skipped and the document missed. Built the correction, which checks out internally, and it is now being re-proven end to end on the build. The scanned-document reading release is being held until that is confirmed, rather than shipped before it is proven.",
+      "Shared a simulated commercial-dispute matter, worked end to end, with the firm to review from a practitioner's standpoint, with feedback awaited.",
+      "Began mapping the firm's requests to extend Gideon with plugins and further skills against the connector and skill foundations already in place, as the basis for a roadmap for that work."
+    ] },
     { date: "2 September 2026", items: [
       "Released v0.1.31, correcting the document-import defect that pilot use surfaced on 1 September. Documents now import into a matter on the installed build, restoring a function that had stopped working in the packaged app.",
       "Confirmed the fix on the published build on the test machine, where a document imported and its text read back correctly, then delivered the build to the firm the same day so the fix reached the live pilot without waiting.",
