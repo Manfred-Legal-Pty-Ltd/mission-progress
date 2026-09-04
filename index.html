@@ -338,6 +338,42 @@
     .daily-modal-items li { position:relative; padding:8px 0 8px 15px; color:var(--text); font-size:13px; line-height:1.55; border-top:1px solid var(--line); }
     .daily-modal-items li:first-child { border-top:0; }
     .daily-modal-items li::before { content:"\2013"; position:absolute; left:0; color:#536278; }
+    /* Delivered-capabilities register (added 4 Sep 2026, structural go). A current-state
+       register of what the firm can use now, not a release log. Rows, their order and the
+       count badge all derive from deliveredCapabilities[] at render time; nothing about the
+       register is typed into markup (UPDATE_GUIDE §8 laws 6/7, fill rule §9). Values WRAP,
+       never truncate. The card takes grid row 3 and the four bottom cards move to row 4. */
+    .main { grid-template-rows:auto auto auto 340px; }
+    .bottom { grid-row:4; }
+    .delivered { grid-column:1/-1; grid-row:3; padding:16px 18px 14px; }
+    .delivered-head { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:10px; }
+    .delivered-head h2 { font-size:17px; margin:2px 0 0; }
+    .delivered-count { display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; background:#e9f6ef; color:#19714a; font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:10px; font-weight:800; vertical-align:3px; }
+    .delivered-sub { margin:4px 0 0; color:#687384; font-size:11px; line-height:1.5; }
+    .delivered-list { list-style:none; margin:0; padding:0; }
+    .dc-row { display:grid; grid-template-columns:82px 56px minmax(0,1.2fr) minmax(0,1.6fr) 168px; gap:4px 18px; align-items:start; padding:9px 0; border-top:1px solid var(--line); color:#274166; font-size:11.5px; line-height:1.5; }
+    .dc-row.dc-head { padding:0 0 6px; border-top:0; color:#536278; font-size:9.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .dc-meta { display:contents; }
+    .dc-date { color:#0f3567; font-weight:800; white-space:nowrap; }
+    .dc-ver { color:#0f3567; font-weight:800; font-variant-numeric:lining-nums; white-space:nowrap; }
+    .dc-cap { color:#12345e; font-weight:700; overflow-wrap:anywhere; }
+    .dc-proof { color:#5a6b80; overflow-wrap:anywhere; }
+    .dc-serves { min-width:0; }
+    .serves-chip { margin:0; white-space:normal; text-align:left; line-height:1.3; }
+    .delivered-footer { display:flex; justify-content:flex-end; margin-top:6px; }
+    .delivered-footer .mini-footer { margin-top:0; padding-top:4px; }
+    .delivered-modal-box { max-width:640px; }
+    .dc-modal-proof { display:block; margin-top:2px; color:#5a6b80; font-size:12px; }
+    .log-modal-entry .serves-chip { margin-top:6px; }
+    @media (max-width:1150px) { .main { grid-template-rows:auto auto auto auto; } .delivered { grid-column:1; grid-row:3; } .bottom { grid-row:auto; } }
+    @media (max-width:900px) {
+      .dc-row.dc-head { display:none; }
+      .dc-row { grid-template-columns:1fr; gap:3px 0; padding:10px 0; }
+      .dc-meta { display:flex; gap:10px; align-items:baseline; }
+      .dc-cap { font-size:12px; }
+      .delivered-head { flex-direction:column; align-items:flex-start; gap:6px; }
+    }
+    @media (max-width:700px) { .delivered { padding:18px 14px 16px; } }
   </style>
 </head>
 <body>
@@ -379,6 +415,12 @@
           <div class="phases-head"><div><p class="eyebrow">What is being built, in parallel</p><h2>Programme phases</h2></div><p class="phases-note">Gates above pass in sequence; the phases behind them overlap.</p></div>
           <div class="gantt" id="gantt"></div>
         </div>
+      </section>
+      <section class="delivered card" id="delivered-card" aria-label="Delivered capabilities">
+        <div class="delivered-head"><div><h2>Delivered capabilities <span class="delivered-count" id="delivered-count"></span></h2><p class="delivered-sub">Shipped and proven on the installed build</p></div></div>
+        <ul class="delivered-list" id="delivered-list-wrap"><li class="dc-row dc-head" aria-hidden="true"><div class="dc-meta"><span>Date</span><span>Version</span></div><span>Capability</span><span>Proof</span><span>Serves</span></li></ul>
+        <ul class="delivered-list" id="delivered-list"></ul>
+        <div class="delivered-footer"><a class="mini-footer" id="delivered-link"></a></div>
       </section>
       <section class="bottom">
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label" id="week-label">This week</p><span class="week-nav"><button type="button" id="week-prev" aria-label="Earlier week">&larr;</button><button type="button" id="week-next" aria-label="Later week">&rarr;</button></span></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
@@ -549,13 +591,27 @@
       timeline.addEventListener("wheel", event => {
         if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) { event.preventDefault(); timeline.scrollLeft += event.deltaY; }
       }, {passive: false});
-      let dragging = false, startX = 0, startScroll = 0;
+      let pointerDown = false, dragging = false, startX = 0, startScroll = 0, dragPointerId = null;
       timeline.addEventListener("pointerdown", event => {
         if (event.button !== 0) return;
-        dragging = true; startX = event.clientX; startScroll = timeline.scrollLeft; timeline.classList.add("dragging"); timeline.setPointerCapture(event.pointerId);
+        pointerDown = true; dragging = false; startX = event.clientX; startScroll = timeline.scrollLeft; dragPointerId = event.pointerId;
       });
-      timeline.addEventListener("pointermove", event => { if (dragging) timeline.scrollLeft = startScroll - (event.clientX - startX); });
-      ["pointerup", "pointercancel"].forEach(type => timeline.addEventListener(type, () => { dragging = false; timeline.classList.remove("dragging"); }));
+      timeline.addEventListener("pointermove", event => {
+        if (!pointerDown) return;
+        if (!dragging) {
+          // Only engage drag (and capture the pointer) once movement passes a small
+          // threshold. Capturing on a plain click retargets the click to the container,
+          // which broke milestone selection (event.target.closest(".milestone") === null).
+          if (Math.abs(event.clientX - startX) < 5) return;
+          dragging = true; timeline.classList.add("dragging"); timeline.setPointerCapture(dragPointerId);
+        }
+        timeline.scrollLeft = startScroll - (event.clientX - startX);
+      });
+      ["pointerup", "pointercancel"].forEach(type => timeline.addEventListener(type, () => {
+        pointerDown = false; dragging = false; timeline.classList.remove("dragging");
+        try { if (dragPointerId != null) timeline.releasePointerCapture(dragPointerId); } catch (e) {}
+        dragPointerId = null;
+      }));
       timeline.addEventListener("scroll", updateEdges);
       window.addEventListener("resize", updateEdges);
       requestAnimationFrame(() => {
@@ -604,6 +660,14 @@
       <h3 id="daily-modal-title"></h3>
       <ul class="daily-modal-items" id="daily-modal-items"></ul>
       <button type="button" id="daily-modal-close">Close</button>
+    </div>
+  </div>
+  <div class="kpi-modal-backdrop" id="delivered-modal" role="dialog" aria-modal="true" aria-labelledby="delivered-modal-title">
+    <div class="kpi-modal delivered-modal-box">
+      <p class="modal-eyebrow">Full register</p>
+      <h3 id="delivered-modal-title">Delivered capabilities</h3>
+      <div class="log-modal-list" id="delivered-modal-list"></div>
+      <button type="button" id="delivered-modal-close">Close</button>
     </div>
   </div>
   <script>
@@ -739,6 +803,49 @@
         t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash");
         setTimeout(function(){ t.classList.remove("flash"); }, 1400);
       });
+    })();
+    (function(){
+      // Delivered-capabilities register: newest-first order, the visible five, the count badge
+      // and the full-register modal all derive from deliveredCapabilities[] at render time.
+      var d = window.DASHBOARD_DATA,
+          card = document.getElementById("delivered-card"),
+          modal = document.getElementById("delivered-modal");
+      if(!card) return;
+      var rows = (d && Array.isArray(d.deliveredCapabilities)) ? d.deliveredCapabilities.filter(function(r){ return r && r.capability; }) : [];
+      if(!rows.length){ card.style.display = "none"; if(modal) modal.style.display = "none"; return; }
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      var MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
+      function stamp(s){
+        var m = String(s || "").match(/(\d{1,2})\s+([A-Za-z]{3})[A-Za-z]*\s+(\d{4})/);
+        if(!m || MONTHS[m[2].toLowerCase()] == null) return NaN;
+        return Date.UTC(+m[3], MONTHS[m[2].toLowerCase()], +m[1]);
+      }
+      var ordered = rows.map(function(r, i){ return { r:r, i:i, t:stamp(r.date) }; }).sort(function(a, b){
+        var ta = isNaN(a.t) ? -Infinity : a.t, tb = isNaN(b.t) ? -Infinity : b.t;
+        return (tb - ta) || (a.i - b.i);
+      }).map(function(x){ return x.r; });
+      var VISIBLE = 5, total = ordered.length;
+      var chip = function(r){ return r.serves ? '<span class="chip serves-chip">' + esc(r.serves) + '</span>' : ""; };
+      document.getElementById("delivered-count").textContent = total + " delivered";
+      document.getElementById("delivered-list").innerHTML = ordered.slice(0, VISIBLE).map(function(r){
+        return '<li class="dc-row"><div class="dc-meta"><span class="dc-date">' + esc(r.date) + '</span><span class="dc-ver">' + esc(r.version) + '</span></div><span class="dc-cap">' + esc(r.capability) + '</span><span class="dc-proof">' + esc(r.proof) + '</span><span class="dc-serves">' + chip(r) + '</span></li>';
+      }).join("");
+      var link = document.getElementById("delivered-link");
+      link.innerHTML = "View all " + total + "&nbsp;&nbsp; →";
+      if(!modal) return;
+      document.getElementById("delivered-modal-list").innerHTML = ordered.map(function(r){
+        return '<div class="log-modal-entry"><strong>' + esc(r.date) + ' · ' + esc(r.version) + '</strong>' + esc(r.capability) + '<small class="dc-modal-proof">' + esc(r.proof) + '</small>' + chip(r) + '</div>';
+      }).join("");
+      function open(){ modal.classList.add("open"); }
+      function close(){ modal.classList.remove("open"); }
+      link.setAttribute("href", "#delivered-card");
+      link.setAttribute("role", "button");
+      link.setAttribute("tabindex", "0");
+      link.addEventListener("click", function(e){ e.preventDefault(); open(); });
+      link.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); } });
+      document.getElementById("delivered-modal-close").addEventListener("click", close);
+      modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+      document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
     })();
   </script>
 </body>

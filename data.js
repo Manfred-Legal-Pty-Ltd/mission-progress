@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "3 September 2026",
+  lastUpdated: "4 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -56,7 +56,8 @@ window.DASHBOARD_DATA = {
       { text: "All five core failure classes exercised live: lost work, false status, invisible approvals, corrupted records, unrecoverable restarts", done: true },
       { text: "Forced restart recovers with the matter record intact", done: true },
       { text: "50 or more repeated cycles recorded with zero failures", done: true },
-      { text: "Defects found during the gate fixed and verified on the device", done: true }
+      { text: "Defects found during the gate fixed and verified on the device", done: true },
+      { text: "After a restart, Gideon rebuilds the full matter back into the conversation — reading back every saved note, task and approval, not only the file on record. Corrected in development; verification on the installed device to follow.", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 3, evidenceTotal: 3 },
     M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -148,6 +149,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "4 September 2026", items: [
+      "Continued hardening scanned-document reading (OCR) toward release, validating it in development across several real scanned documents. A 15-page scanned file was read in full by continuing through the whole document rather than stopping partway, with any text that could not be read cleanly marked as uncertain and nothing guessed.",
+      "While verifying that read path, found and corrected a deeper reliability issue where a long document could be cut short and the unread part treated as absent. The read path now continues to the end of a document and marks any incomplete read plainly instead of presenting a partial read as complete. The correction checks out in development, with the full local test suite clean.",
+      "The scanned-document reading release is being held rather than shipped: it is going through the Windows release build, with final validation of the packaged build on the test machine as the remaining step before it is released. Work resumes Monday, and release follows only once the packaged build passes that check.",
+      "Logged a follow-up to make a long document import show its progress as it works, so importing a large scanned file clearly shows it is being read rather than appearing to pause."
+    ] },
     { date: "3 September 2026", items: [
       "Proved scanned-document reading (OCR) working end to end on the installed build, with a scanned PDF read back correctly, the original document kept as the source of truth, and any text that could not be read cleanly held for review rather than guessed. Real-world testing then surfaced an edge case where scans that arrive wrapped in a thin hidden text layer, such as browser or email prints and header or stamp marked documents, could be skipped and the document missed. Built the correction, which checks out internally, and it is now being re-proven end to end on the build. The scanned-document reading release is being held until that is confirmed, rather than shipped before it is proven.",
       "Shared a simulated commercial-dispute matter, worked end to end, with the firm to review from a practitioner's standpoint, with feedback awaited.",
@@ -287,6 +294,13 @@ window.DASHBOARD_DATA = {
     { found: "14 Aug", fixed: "v0.1.24 (24 Aug)", title: "Conversation history outside Gideon's view could be described as if remembered.", proof: "Verified: out-of-view history is now declared plainly instead of invented." },
     { found: "21 Aug", fixed: "v0.1.23 (21 Aug)", title: "Saved workspace notes were not findable through knowledge search.", proof: "Verified on the working device: a seeded note is found through search." },
     { found: "20 Aug", fixed: "v0.1.22 (21 Aug)", title: "Approvals awaiting the user could sit invisible to Gideon's own view.", proof: "Verified on the working device: previously hidden approvals now appear." }
+  ],
+  deliveredCapabilities: [
+    { date: "2 Sep 2026", capability: "Import a document into a matter and read its text back.", version: "v0.1.31", proof: "Confirmed on the published build installed on the test device.", serves: "Supports M3" },
+    { date: "28 Aug 2026", capability: "Open an updated app ready to use without revisiting provider setup.", version: "v0.1.30", proof: "Automatic update and post-update readiness confirmed on the installed device.", serves: "Supports M1" },
+    { date: "28 Aug 2026", capability: "Keep work bound to the intended matter.", version: "v0.1.29", proof: "Confirmed during the clean reliability record on the pre-release build that carried the fix; shipped in v0.1.29.", serves: "Supports M1" },
+    { date: "25 Aug 2026", capability: "Keep firm-wide reference material distinct from facts about the active matter.", version: "v0.1.25", proof: "Confirmed on the working device with no matter documents present.", serves: "Supports M3" },
+    { date: "21 Aug 2026", capability: "Find saved matter notes through knowledge search.", version: "v0.1.23", proof: "A seeded note found through search on the working device.", serves: "Supports M1" }
   ],
   links: {
     fullBrief: "#progress-log",
