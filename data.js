@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "4 September 2026",
+  lastUpdated: "7 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
@@ -86,6 +86,9 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
+      "Released scanned-document reading (OCR) as v0.1.32 after the packaged build passed its final validation on the test machine, and told the firm the same morning: scanned PDFs, scans that arrive wrapped in a print or email header, and document photos now import into a matter, with any page that cannot be read cleanly flagged for review rather than guessed."
+    ] },
+    { week: "31 Aug to 4 Sep", items: [
       "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date.",
       "Corrected a document-import defect that live-matter pilot use surfaced, and delivered the fixed build (v0.1.31) the same day; documents again import into a matter, confirmed on the installed build."
     ] },
@@ -149,6 +152,10 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "7 September 2026", items: [
+      "Released scanned-document reading (OCR) as v0.1.32 after the packaged build passed its final validation on the test machine: a 15-page scanned document was read through to its last page with the two pages that could not be read cleanly marked for review, and a scan wrapped in a print header, a photographed document and a clean scan each read back with their text, with anything uncertain flagged rather than guessed. The release was published and is installed on the test device, the automatic update carries it, and the firm was told the same morning.",
+      "Built the import-progress experience for the next update, so a large scanned file visibly shows it is being read rather than appearing to pause: a check-before-importing card showing the file, its pages and the matter it is going into, a live reading-progress list, and a clear needs-review result. It checks out in development with the full test suite clean; final polish and validation on the test machine are in progress before it is released."
+    ] },
     { date: "4 September 2026", items: [
       "Continued hardening scanned-document reading (OCR) toward release, validating it in development across several real scanned documents. A 15-page scanned file was read in full by continuing through the whole document rather than stopping partway, with any text that could not be read cleanly marked as uncertain and nothing guessed.",
       "While verifying that read path, found and corrected a deeper reliability issue where a long document could be cut short and the unread part treated as absent. The read path now continues to the end of a document and marks any incomplete read plainly instead of presenting a partial read as complete. The correction checks out in development, with the full local test suite clean.",
@@ -296,11 +303,15 @@ window.DASHBOARD_DATA = {
     { found: "20 Aug", fixed: "v0.1.22 (21 Aug)", title: "Approvals awaiting the user could sit invisible to Gideon's own view.", proof: "Verified on the working device: previously hidden approvals now appear." }
   ],
   deliveredCapabilities: [
+    { date: "7 Sep 2026", capability: "Read scanned and photographed documents into a matter, with pages that can't be read cleanly flagged for review rather than guessed.", version: "v0.1.32", proof: "Confirmed on the packaged build installed on the test device, identical in code to the published v0.1.32: a 15-page scan read to the last page with two pages held for review, a scan wrapped in a print header with all six clauses read, a document photo and a clean scan.", serves: "Additional firm request, not an acceptance-scope change" },
     { date: "2 Sep 2026", capability: "Import a document into a matter and read its text back.", version: "v0.1.31", proof: "Confirmed on the published build installed on the test device.", serves: "Supports M3" },
     { date: "28 Aug 2026", capability: "Open an updated app ready to use without revisiting provider setup.", version: "v0.1.30", proof: "Automatic update and post-update readiness confirmed on the installed device.", serves: "Supports M1" },
     { date: "28 Aug 2026", capability: "Keep work bound to the intended matter.", version: "v0.1.29", proof: "Confirmed during the clean reliability record on the pre-release build that carried the fix; shipped in v0.1.29.", serves: "Supports M1" },
+    { date: "26 Aug 2026", capability: "Create matter tasks by asking, with each task saved and verified.", version: "v0.1.26", proof: "Proven across the 54-cycle reliability record on the installed build, including the mislabelled-field case.", serves: "Supports M1" },
     { date: "25 Aug 2026", capability: "Keep firm-wide reference material distinct from facts about the active matter.", version: "v0.1.25", proof: "Confirmed on the working device with no matter documents present.", serves: "Supports M3" },
-    { date: "21 Aug 2026", capability: "Find saved matter notes through knowledge search.", version: "v0.1.23", proof: "A seeded note found through search on the working device.", serves: "Supports M1" }
+    { date: "21 Aug 2026", capability: "Find saved matter notes through knowledge search.", version: "v0.1.23", proof: "A seeded note found through search on the working device.", serves: "Supports M1" },
+    { date: "21 Aug 2026", capability: "See every approval awaiting you before Gideon acts.", version: "v0.1.22", proof: "Previously hidden approvals confirmed visible on the installed build.", serves: "Supports M1" },
+    { date: "31 Jul 2026", capability: "Sign in to Gideon with the firm's Microsoft account or a Google account from the installed app.", version: "v0.1.11", proof: "Microsoft and Google sign-in confirmed on the installed build on the test device, with disconnect and reconnect watched.", serves: "Supports M1" }
   ],
   links: {
     fullBrief: "#progress-log",
