@@ -1,10 +1,10 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "7 September 2026",
+  lastUpdated: "8 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
-    { key: "current", label: "Current", value: "M1", subLabel: "Due 4 Sep" },
+    { key: "current", label: "Current", value: "M2", subLabel: "Due 18 Sep" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
     { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is active and billing sits on the client side. There are no open blockers, and the build is underway." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
@@ -19,8 +19,8 @@ window.DASHBOARD_DATA = {
   },
   milestones: [
     { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
-    { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "In progress" },
-    { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "Upcoming" },
+    { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Passed" },
+    { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English and it opens the right matter every time.", status: "In progress" },
     { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Upcoming" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
     { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
@@ -51,15 +51,21 @@ window.DASHBOARD_DATA = {
     evidenceTotal: 1,
     evidenceNote: "Principal's written sign-off of the pass standard, 25 August. Mission contract and the 50-mission seed corpus validated against it; the validation foundation proven on the shipped build."
     },
-    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "In progress", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "Core-stability conditions are met ahead of schedule. A live-matter demonstration surfaced a post-restart boundary the reliability record had not covered: the matter persists in the record but is not yet reliably rebuilt into the conversation. Root cause identified, fix in testing, on-device verification to follow.", conditions: [
+    M1: { code: "M1", due: "4 Sep", title: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", description: "Core stability includes memory and state reliability: Gideon holds context across a working session, and every consequential action leaves a truthful, recoverable record — nothing reported as done that wasn't, and nothing lost after it was. A prioritised acceptance requirement.", acceptanceTest: "The same task run 50+ times with zero lost files, missed approvals, wrong statuses, or actions the record cannot account for.", status: "Passed", type: "Core stability", owner: "Engineering", dependencies: "None outstanding", risks: "None open", conditions: [
       { text: "Reliability cycles run against the packaged app, each verified against the stored record", done: true },
       { text: "All five core failure classes exercised live: lost work, false status, invisible approvals, corrupted records, unrecoverable restarts", done: true },
       { text: "Forced restart recovers with the matter record intact", done: true },
       { text: "50 or more repeated cycles recorded with zero failures", done: true },
       { text: "Defects found during the gate fixed and verified on the device", done: true },
-      { text: "After a restart, Gideon rebuilds the full matter back into the conversation — reading back every saved note, task and approval, not only the file on record. Corrected in development; verification on the installed device to follow.", done: false }
+      { text: "After a restart, Gideon rebuilds the full matter back into the conversation — reading back every saved note, task and approval, not only the file on record.", done: true }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 3, evidenceTotal: 3 },
-    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "Gideon understands which matter you mean from ordinary language, works only in that matter, and recognises when a matter doesn't exist or is ambiguous.", acceptanceTest: "Across varied phrasings Gideon identifies the matter you name and acts only there; it never writes to the wrong matter; instructions carry through to later steps in the same matter.", status: "In progress", type: "Conversational command layer", owner: "Engineering", dependencies: "M1 complete", risks: "Being validated against real-world use.", conditions: [
+      { text: "Opens the matter you name, from plain English", done: false },
+      { text: "Never acts in the wrong matter", done: false },
+      { text: "Recognises a non-existent or ambiguous matter and says so", done: false },
+      { text: "Instructions carry to later steps in the same matter", done: false },
+      { text: "\'Talk about [matter]\' moves there without manual navigation", done: false }
+    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -87,7 +93,8 @@ window.DASHBOARD_DATA = {
   thisWeek: [
     { week: "This week", items: [
       "Released scanned-document reading (OCR) as v0.1.32 after the packaged build passed its final validation on the test machine, and told the firm the same morning: scanned PDFs, scans that arrive wrapped in a print or email header, and document photos now import into a matter, with any page that cannot be read cleanly flagged for review rather than guessed.",
-      "Released the import-progress experience as v0.1.33 the same afternoon: a check-before-importing card, live reading progress while a scanned file is read, a clear needs-review result, and a pointer to the existing copy when the same file is imported again. The test device took the update automatically and the new import flow was confirmed on it."
+      "Released the import-progress experience as v0.1.33 the same afternoon: a check-before-importing card, live reading progress while a scanned file is read, a clear needs-review result, and a pointer to the existing copy when the same file is imported again. The test device took the update automatically and the new import flow was confirmed on it.",
+      "Passed the core-stability milestone (M1): the same task run repeatedly with no lost file, missed approval or wrong status, and after a restart the full matter rebuilt back into the conversation, all verified on the installed device."
     ] },
     { week: "31 Aug to 4 Sep", items: [
       "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date.",
@@ -110,6 +117,7 @@ window.DASHBOARD_DATA = {
     ] }
   ],
   remarks: [
+    { date: "8 September 2026", text: "Core stability (Milestone 1) is complete and verified on the device, including recovery of the full matter into the conversation after a restart. Focus moves to the conversational command layer (Milestone 2): understanding in plain English which matter is meant and acting only there. Early real-world validation is underway." },
     { date: "2 Sep 2026", text: "The early-use pilot is doing what it is meant to. Real-world matter use surfaced a genuine defect in document import, which was corrected and delivered the same day. Day-to-day use on live matters keeps feeding issues straight back into the build before they settle in." },
     { date: "31 Aug 2026", text: "The firm began using Gideon on live matters ahead of the December acceptance date, moving into real-world testing. Day-to-day use of this kind surfaces issues that only appear in practice and feeds them straight back into the build; the document-import correction now in validation came directly from this early use." },
     { date: "27 Aug 2026", text: "What first read as a single restart and workspace symptom resolved into a multi-layer correction in the validation path rather than a product fault. Each layer was found and fixed in turn, leaving the validation foundation materially stronger and the core-stability evidence more trustworthy." },
@@ -153,6 +161,9 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "8 September 2026", items: [
+      "Milestone 1, core stability, is complete. Its final acceptance condition is now verified on the installed device: after a restart Gideon rebuilds the full matter back into the conversation, reading back every saved note, task and approval, rather than only the file on record. All six conditions are met and the gate is passed. Work has moved to Milestone 2, the conversational command layer. The first M2 work now enables Gideon to recognise which matter a plain-English message refers to and act only there, and when a message names a different, non-existent or ambiguous matter it says so rather than acting in the wrong one. This is early progress against that gate, being validated against real-world use."
+    ] },
     { date: "7 September 2026", items: [
       "Released scanned-document reading (OCR) as v0.1.32 after the packaged build passed its final validation on the test machine: a 15-page scanned document was read through to its last page with the two pages that could not be read cleanly marked for review, and a scan wrapped in a print header, a photographed document and a clean scan each read back with their text, with anything uncertain flagged rather than guessed. The release was published and is installed on the test device, the automatic update carries it, and the firm was told the same morning.",
       "Released the import-progress experience the same afternoon as v0.1.33, so a large scanned file visibly shows it is being read rather than appearing to pause: a check-before-importing card showing the file, its pages and the matter it is going into, a live reading-progress list, a clear needs-review result, and a pointer to the copy already in the matter when the same file is imported again. The test device took the update automatically and the new import flow was confirmed on it; the needs-review result checks out in development and is still to be seen on the device."
