@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "8 September 2026",
+  lastUpdated: "9 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P1 · P2 · P6 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Due 18 Sep" },
-    { key: "health", label: "Health", value: "On track", subLabel: "No open dependencies" },
-    { key: "blockers", label: "Blockers", value: "0", subLabel: "None", detail: "Funded development tooling is active and billing sits on the client side. There are no open blockers, and the build is underway." },
+    { key: "health", label: "Health", value: "On track", subLabel: "External dependency" },
+    { key: "blockers", label: "Blockers", value: "1", subLabel: "Release dependency", detail: "Engineering work is continuing. One release dependency is open: v0.1.34 packaging and device validation are paused pending resolution of the Manfred Legal GitHub organisation billing issue, which has been escalated to the appropriate account holder. Work resumes from the packaging gate once GitHub Actions is available." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -117,6 +117,7 @@ window.DASHBOARD_DATA = {
     ] }
   ],
   remarks: [
+    { date: "9 September 2026", text: "A fix that makes one setting the single source of truth for whether Gideon runs on a local or a cloud model, and for how that is shown, is code-complete and passed every automated build and safety check on the build pipeline. The one remaining step, packaging the installer to validate on the device and release, is held by a company-side GitHub billing item that is now with the appropriate account holder; the release is packaged, validated on the device and delivered once that clears, and it is not yet released. Separately, the conversational command layer (Milestone 2) advanced: on the reviewed test set Gideon routes to the wrong matter zero times and fails safely when a name could mean more than one matter, and it recognises more everyday phrasings, with recognition still below its target and being raised further. Recognising the intended matter is kept deliberately separate from acting on it, so an instruction that would cross between matters still requires explicit confirmation before anything is written. Knowledge-base ingestion design for the 2 October gate also advanced and stays on track for its 14 September design note." },
     { date: "8 September 2026", text: "Core stability (Milestone 1) is complete and verified on the device, including recovery of the full matter into the conversation after a restart. Focus moves to the conversational command layer (Milestone 2): understanding in plain English which matter is meant and acting only there. Early real-world validation is underway." },
     { date: "2 Sep 2026", text: "The early-use pilot is doing what it is meant to. Real-world matter use surfaced a genuine defect in document import, which was corrected and delivered the same day. Day-to-day use on live matters keeps feeding issues straight back into the build before they settle in." },
     { date: "31 Aug 2026", text: "The firm began using Gideon on live matters ahead of the December acceptance date, moving into real-world testing. Day-to-day use of this kind surfaces issues that only appear in practice and feeds them straight back into the build; the document-import correction now in validation came directly from this early use." },
@@ -161,6 +162,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "9 September 2026", items: [
+      "Completed the fix that makes one setting the single source of truth for whether Gideon runs on a local or a cloud model, and for how that is shown, with the app set to fail safely if the two ever disagree. It passed every automated build and safety check on the build pipeline. The one remaining step, producing the packaged installer to validate on the device and then release, is held by a company-side GitHub billing item now with the appropriate account holder; the release will be packaged, validated on the device and delivered once that clears. It is not yet released or verified on the device.",
+      "Advanced the conversational command layer (Milestone 2). On the reviewed test set Gideon now routes to the wrong matter zero times and fails safely when a name could mean more than one matter, and it correctly recognises more everyday phrasings than before, with recognition still below its target and being raised further. Recognising the intended matter is kept deliberately separate from acting on it, so an instruction that would cross between matters still requires explicit confirmation before anything is written. This is committed progress being validated against real-world use, not a passed gate.",
+      "Advanced the knowledge-base ingestion design due 14 September, extending the model that keeps each matter's material separated so nothing crosses between matters, both when a document is taken in and when information is retrieved. On track for the design note on Monday.",
+      "Continued aligning the interface wording to the firm's own terminology, with a small number of diagnostic and error messages remaining."
+    ] },
     { date: "8 September 2026", items: [
       "Milestone 1, core stability, is complete. Its final acceptance condition is now verified on the installed device: after a restart Gideon rebuilds the full matter back into the conversation, reading back every saved note, task and approval, rather than only the file on record. All six conditions are met and the gate is passed. Work has moved to Milestone 2, the conversational command layer. The first M2 work now enables Gideon to recognise which matter a plain-English message refers to and act only there, and when a message names a different, non-existent or ambiguous matter it says so rather than acting in the wrong one. This is early progress against that gate, being validated against real-world use."
     ] },
