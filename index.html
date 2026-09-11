@@ -350,9 +350,10 @@
        count badge all derive from deliveredCapabilities[] at render time; nothing about the
        register is typed into markup (UPDATE_GUIDE §8 laws 6/7, fill rule §9). Values WRAP,
        never truncate. The card takes grid row 3 and the four bottom cards move to row 4. */
-    .main { grid-template-rows:auto auto auto 340px; }
-    .bottom { grid-row:4; }
+    .main { grid-template-rows:auto auto auto auto 340px; }
+    .bottom { grid-row:5; }
     .delivered { grid-column:1/-1; grid-row:3; padding:16px 18px 14px; }
+    .pilotfb { grid-column:1/-1; grid-row:4; padding:16px 18px 14px; }
     .delivered-head { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:10px; }
     .delivered-head h2 { font-size:17px; margin:2px 0 0; }
     .delivered-count { display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; background:#e9f6ef; color:#19714a; font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:10px; font-weight:800; vertical-align:3px; }
@@ -386,7 +387,7 @@
     .pf-chip.received { border-color:#d7dce2; background:#f1f3f6; color:#5a6b80; }
     .pf-ver { margin-left:4px; font-variant-numeric:lining-nums; opacity:.85; }
     .log-modal-entry .serves-chip { margin-top:6px; }
-    @media (max-width:1150px) { .main { grid-template-rows:auto auto auto auto; } .delivered { grid-column:1; grid-row:3; } .bottom { grid-row:auto; } }
+    @media (max-width:1150px) { .main { grid-template-rows:auto auto auto auto auto; } .delivered { grid-column:1; grid-row:3; } .pilotfb { grid-column:1; grid-row:4; } .bottom { grid-row:auto; } }
     @media (max-width:900px) {
       .dc-row.dc-head { display:none; }
       .dc-row { grid-template-columns:1fr; gap:3px 0; padding:10px 0; }
@@ -394,7 +395,7 @@
       .dc-cap { font-size:12px; }
       .delivered-head { flex-direction:column; align-items:flex-start; gap:6px; }
     }
-    @media (max-width:700px) { .delivered { padding:18px 14px 16px; } }
+    @media (max-width:700px) { .delivered, .pilotfb { padding:18px 14px 16px; } }
   </style>
 </head>
 <body>
@@ -443,7 +444,7 @@
         <ul class="delivered-list" id="delivered-list"></ul>
         <div class="delivered-footer"><a class="mini-footer" id="delivered-link"></a></div>
       </section>
-      <section class="delivered card" id="pilot-feedback-card" aria-label="Pilot feedback">
+      <section class="pilotfb card" id="pilot-feedback-card" aria-label="Pilot feedback">
         <div class="delivered-head"><div><h2>Pilot feedback <span class="delivered-count" id="pf-count"></span></h2><p class="delivered-sub">What you've raised while using Gideon, and where each item stands</p></div></div>
         <ul class="pf-list" id="pf-list"></ul>
       </section>
