@@ -348,6 +348,36 @@ window.DASHBOARD_DATA = {
     { date: "21 Aug 2026", capability: "See every approval awaiting you before Gideon acts.", version: "v0.1.22", proof: "Previously hidden approvals confirmed visible on the installed build.", serves: "Supports M1" },
     { date: "31 Jul 2026", capability: "Sign in to Gideon with the firm's Microsoft account or a Google account from the installed app.", version: "v0.1.11", proof: "Microsoft and Google sign-in confirmed on the installed build on the test device, with disconnect and reconnect watched.", serves: "Supports M1" }
   ],
+  //<PILOT_FEEDBACK_START> generated section — do not edit by hand
+  pilotFeedback: [
+    {
+      "summary": "Referencing an imported document by name and having Gideon find and use it.",
+      "status": "Being worked on",
+      "note": "Noted; an improvement to how referenced documents are found is coming in a future update."
+    },
+    {
+      "summary": "Building reusable, repeatable skills for each agent.",
+      "status": "Planned",
+      "note": "Understood; a roadmap for reusable skills is being prepared."
+    },
+    {
+      "summary": "Connecting Gideon into Outlook and other external tools.",
+      "status": "Planned",
+      "note": "Understood; a roadmap for connectors/plugins is being prepared."
+    },
+    {
+      "summary": "Dragging and dropping a file straight into the chat.",
+      "status": "Planned",
+      "note": "Noted; drag-and-drop into chat is planned for a future update."
+    },
+    {
+      "summary": "Reading scanned and photographed documents.",
+      "status": "Shipped",
+      "note": "Confirmed live in v0.1.32 (told 2026-09-07).",
+      "version": "v0.1.32"
+    }
+  ],
+  //<PILOT_FEEDBACK_END>
   links: {
     fullBrief: "#progress-log",
     milestones: "#milestone-route",

@@ -371,6 +371,20 @@
     .delivered-footer .mini-footer { margin-top:0; padding-top:4px; }
     .delivered-modal-box { max-width:640px; }
     .dc-modal-proof { display:block; margin-top:2px; color:#5a6b80; font-size:12px; }
+    /* Pilot feedback register (public view). */
+    .pf-list { list-style:none; margin:0; padding:0; }
+    .pf-row { display:grid; grid-template-columns:minmax(0,1fr) 138px; gap:6px 18px; align-items:start; padding:10px 0; border-top:1px solid var(--line); }
+    .pf-main { min-width:0; }
+    .pf-summary { color:#12345e; font-weight:700; font-size:12px; line-height:1.45; overflow-wrap:anywhere; }
+    .pf-note { display:block; margin-top:3px; color:#5a6b80; font-size:11px; line-height:1.45; overflow-wrap:anywhere; }
+    .pf-status { justify-self:end; }
+    .pf-chip { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border:1px solid #d7dce2; border-radius:999px; background:#f1f3f6; color:#274166; font-size:10px; font-weight:800; line-height:1; white-space:nowrap; }
+    .pf-chip::before { content:""; width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.9; }
+    .pf-chip.working { border-color:#ecd397; background:#fbf0d8; color:#9d6500; }
+    .pf-chip.planned { border-color:#cfd8e6; background:#eef2f8; color:#3a5580; }
+    .pf-chip.shipped { border-color:#bfe3cf; background:#e9f6ef; color:#19714a; }
+    .pf-chip.received { border-color:#d7dce2; background:#f1f3f6; color:#5a6b80; }
+    .pf-ver { margin-left:4px; font-variant-numeric:lining-nums; opacity:.85; }
     .log-modal-entry .serves-chip { margin-top:6px; }
     @media (max-width:1150px) { .main { grid-template-rows:auto auto auto auto; } .delivered { grid-column:1; grid-row:3; } .bottom { grid-row:auto; } }
     @media (max-width:900px) {
@@ -428,6 +442,10 @@
         <ul class="delivered-list" id="delivered-list-wrap"><li class="dc-row dc-head" aria-hidden="true"><div class="dc-meta"><span>Date</span><span>Version</span></div><span>Capability</span><span>Proof</span><span>Serves</span></li></ul>
         <ul class="delivered-list" id="delivered-list"></ul>
         <div class="delivered-footer"><a class="mini-footer" id="delivered-link"></a></div>
+      </section>
+      <section class="delivered card" id="pilot-feedback-card" aria-label="Pilot feedback">
+        <div class="delivered-head"><div><h2>Pilot feedback <span class="delivered-count" id="pf-count"></span></h2><p class="delivered-sub">What you've raised while using Gideon, and where each item stands</p></div></div>
+        <ul class="pf-list" id="pf-list"></ul>
       </section>
       <section class="bottom">
         <article class="mini-card card"><div class="mini-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 9h18M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p class="mini-label" id="week-label">This week</p><span class="week-nav"><button type="button" id="week-prev" aria-label="Earlier week">&larr;</button><button type="button" id="week-next" aria-label="Later week">&rarr;</button></span></div><ul class="list" id="this-week"></ul><a class="mini-footer" id="brief-link">View full brief&nbsp;&nbsp; →</a></article>
@@ -853,6 +871,22 @@
       document.getElementById("delivered-modal-close").addEventListener("click", close);
       modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+    })();
+    (function(){
+      // Pilot feedback (public view).
+      var d = window.DASHBOARD_DATA, card = document.getElementById("pilot-feedback-card");
+      if(!card) return;
+      var rows = (d && Array.isArray(d.pilotFeedback)) ? d.pilotFeedback.filter(function(r){ return r && r.summary; }) : [];
+      if(!rows.length){ card.style.display = "none"; return; }
+      var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>\"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+      var CLS = {"Being worked on":"working","Planned":"planned","Shipped":"shipped","Received":"received"};
+      document.getElementById("pf-count").textContent = rows.length + " items";
+      document.getElementById("pf-list").innerHTML = rows.map(function(r){
+        var cls = CLS[r.status] || "received";
+        var ver = (r.status === "Shipped" && r.version) ? '<span class="pf-ver">' + esc(r.version) + '</span>' : "";
+        var note = r.note ? '<span class="pf-note">' + esc(r.note) + '</span>' : "";
+        return '<li class="pf-row"><div class="pf-main"><span class="pf-summary">' + esc(r.summary) + '</span>' + note + '</div><div class="pf-status"><span class="pf-chip ' + cls + '">' + esc(r.status) + ver + '</span></div></li>';
+      }).join("");
     })();
   </script>
 </body>
