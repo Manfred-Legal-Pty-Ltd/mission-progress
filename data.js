@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "15 September 2026",
+  lastUpdated: "16 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P2 · P3 · P6 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Due 18 Sep" },
@@ -167,6 +167,9 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "16 September 2026", items: [
+      "Strengthened Gideon's validation process on the Windows test machine so interrupted or unconfirmed runs are rejected rather than counted as valid results. During testing, the validation process identified a real document-retrieval weakness where a natural multi-word request could fail to find an imported document that was already in the matter. A candidate correction has been built and passed the full backend test suite, with 1,782 tests passed, 1 skipped and 0 failed. Controlled testing has confirmed the correction at source level, with final packaged Windows confirmation still pending before it is treated as fixed or released. The wider benchmark validation remains deliberately held until the test scenarios themselves are proven reliable."
+    ] },
     { date: "15 September 2026", items: [
       "Released Gideon v0.1.35 and verified the published release independently, not just the build: the published installer, its version and update metadata, and an exact integrity match between the published installer and the update manifest all checked out. This release carries the reliability safeguards for running Gideon on a smaller local model, and packaged testing on Windows confirmed the core behaviours — Gideon declines to run when a local model does not have enough context for the work rather than failing silently, shows a clear working state during long local runs instead of appearing to stop, surfaces connection and timeout problems honestly, and never silently substitutes a cloud model, while the cloud path is unchanged. One check remains open: a full local-model answer has not yet completed on the current test machine, which has only two CPU cores and no graphics acceleration, within the time limit, so that specific confirmation waits for more capable hardware. Separately, the validation harness that will drive the larger benchmark run was substantially hardened through live testing on the test machine, and the larger benchmark sweep is deliberately held until every test scenario is fully self-contained, so its eventual results can be relied on."
     ] },
