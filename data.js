@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "16 September 2026",
+  lastUpdated: "17 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P2 · P3 · P6 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Due 18 Sep" },
     { key: "health", label: "Health", value: "On track", subLabel: "No open dependency" },
-    { key: "blockers", label: "Blockers", value: "0", subLabel: "None open", detail: "The release dependency that was open has cleared: the company-side GitHub billing item is resolved. v0.1.35 has been released and verified. It reaches the firm through the usual automatic update: Gideon detects it, downloads it in the background, and prompts a restart to move to the new version." },
+    { key: "blockers", label: "Blockers", value: "0", subLabel: "None open", detail: "The release dependency that was open has cleared: the company-side GitHub billing item is resolved. v0.1.36 is the current released version, verified as the published release. It reaches the firm through the usual automatic update: Gideon detects it, downloads it in the background, and prompts a restart to move to the new version." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -59,13 +59,13 @@ window.DASHBOARD_DATA = {
       { text: "Defects found during the gate fixed and verified on the device", done: true },
       { text: "After a restart, Gideon rebuilds the full matter back into the conversation — reading back every saved note, task and approval, not only the file on record.", done: true }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 3, evidenceTotal: 3 },
-    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "Gideon understands which matter you mean from ordinary language, works only in that matter, and recognises when a matter doesn't exist or is ambiguous.", acceptanceTest: "Across varied phrasings Gideon identifies the matter you name and acts only there; it never writes to the wrong matter; instructions carry through to later steps in the same matter.", status: "In progress", type: "Conversational command layer", owner: "Engineering", dependencies: "M1 complete", risks: "Being validated against real-world use.", conditions: [
+    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English and it opens the right matter every time.", description: "Gideon understands which matter you mean from ordinary language, works only in that matter, and asks rather than guessing when a reference is ambiguous. Carrying standing instructions forward automatically is separate follow-on work.", acceptanceTest: "Across varied phrasings Gideon identifies the matter you name and acts only there, and never writes to the wrong matter; standing instructions are separate follow-on work.", status: "In progress", type: "Conversational command layer", owner: "Engineering", dependencies: "M1 complete", risks: "Cross-matter action safety and asking rather than guessing on ambiguous references are verified. Correctly opening the matter named from plain English is demonstrated under the recognition approach shared with the firm on 11 September, and awaits the firm confirmation of that approach. Carrying standing instructions forward automatically is separate follow-on work, not yet built, with no date set.", conditions: [
       { text: "Opens the matter you name, from plain English", done: false },
-      { text: "Never acts in the wrong matter", done: false },
-      { text: "Recognises a non-existent or ambiguous matter and says so", done: false },
+      { text: "Never acts in the wrong matter", done: true },
+      { text: "Recognises a non-existent or ambiguous matter and says so", done: true },
       { text: "Instructions carry to later steps in the same matter", done: false },
       { text: "\'Talk about [matter]\' moves there without manual navigation", done: false }
-    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 2, evidenceTotal: 3, evidenceNote: "Two command-layer evidence items are in hand on the scope shared with the firm on 11 September: Gideon acts only in the matter named and does not write to the wrong matter, and it asks rather than guessing when a reference is genuinely ambiguous. The third, correctly opening the matter named from plain English, is demonstrated under the recognition approach shared with the firm and awaits the firm confirmation of that approach. Carrying standing instructions forward automatically is separate follow-on work on its own date. Verification artifacts are held in the engagement records." },
     M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -167,6 +167,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "17 September 2026", items: [
+      "A controlled comparison confirmed the document-retrieval correction works: on the same matter the corrected build returns the relevant matter documents where the current build returned none. The correction is held in testing, and the next combined update carrying it has passed its automated Windows build and checks but is not yet confirmed on the packaged build on the test machine, promoted or released, with that final packaged confirmation still pending — so it is not yet treated as fixed, and the firm stays on the current release.",
+      "Dropping a document straight into the matter conversation, still going through the existing check-before-importing step, is implemented and manually confirmed in the development build. It is not yet released.",
+      "Validation is deliberately behind this week's interim target: the week went into making the validation itself trustworthy and into the retrieval work rather than producing a fast number. Official validated missions remain at zero and are kept separate from diagnostic checks, which are not official validation.",
+      "The conversational command layer (Milestone 2) continues toward its 18 September gate. No blockers are open."
+    ] },
     { date: "16 September 2026", items: [
       "Strengthened Gideon's validation process on the Windows test machine so interrupted or unconfirmed runs are rejected rather than counted as valid results. During testing, the validation process identified a real document-retrieval weakness where a natural multi-word request could fail to find an imported document that was already in the matter. A candidate correction has been built and passed the full backend test suite, with 1,782 tests passed, 1 skipped and 0 failed. Controlled testing has confirmed the correction at source level, with final packaged Windows confirmation still pending before it is treated as fixed or released. The wider benchmark validation remains deliberately held until the test scenarios themselves are proven reliable."
     ] },
@@ -366,6 +372,11 @@ window.DASHBOARD_DATA = {
   //<PILOT_FEEDBACK_START> generated section — do not edit by hand
   pilotFeedback: [
     {
+      "summary": "Dragging and dropping a file straight into the chat.",
+      "status": "Being worked on",
+      "note": "Implemented in the development build and being checked before it is released."
+    },
+    {
       "summary": "Referencing an imported document by name and having Gideon find and use it.",
       "status": "Being worked on",
       "note": "Noted; an improvement to how referenced documents are found is coming in a future update."
@@ -379,11 +390,6 @@ window.DASHBOARD_DATA = {
       "summary": "Connecting Gideon into Outlook and other external tools.",
       "status": "Planned",
       "note": "Understood; a roadmap for connectors/plugins is being prepared."
-    },
-    {
-      "summary": "Dragging and dropping a file straight into the chat.",
-      "status": "Planned",
-      "note": "Noted; drag-and-drop into chat is planned for a future update."
     },
     {
       "summary": "Reading scanned and photographed documents.",
