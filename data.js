@@ -92,9 +92,15 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
+      "Released v0.1.37, correcting the document-search issue where relevant matter documents could be missed by natural-language search; the affected searches were re-checked on the released Windows build after the automatic update.",
+      "Added drag-and-drop into the matter conversation in v0.1.37 — drop a file and the existing check-before-importing review opens, bound to that matter, with nothing imported until you confirm; confirmed on the packaged build.",
+      "Released v0.1.35 with reliability safeguards for a smaller local model — it declines rather than failing silently when the model lacks context and never silently switches to a cloud model; one full-answer-within-time-limit check stays open pending more capable test hardware.",
+      "Made the validation process itself more reliable so correct behaviour is not misread as a failure, and resolved and release-verified the document-search issue it surfaced, before scaling volume — independently validated missions remain at zero and are tracked separately from the 100+ built.",
+      "Milestone 2 matter-recognition passed engineering validation; the remaining acceptance step is the firm's confirmation in practice, so Milestone 2 stays in progress."
+    ] },
+    { week: "7 to 11 Sep", items: [
       "Released scanned-document reading (OCR) as v0.1.32 after the packaged build passed its final validation on the test machine, and told the firm the same morning: scanned PDFs, scans that arrive wrapped in a print or email header, and document photos now import into a matter, with any page that cannot be read cleanly flagged for review rather than guessed.",
-      "Released the import-progress experience as v0.1.33 the same afternoon: a check-before-importing card, live reading progress while a scanned file is read, a clear needs-review result, and a pointer to the existing copy when the same file is imported again. The test device took the update automatically and the new import flow was confirmed on it.",
-      "Passed the core-stability milestone (M1): the same task run repeatedly with no lost file, missed approval or wrong status, and after a restart the full matter rebuilt back into the conversation, all verified on the installed device."
+      "Released the import-progress experience as v0.1.33 the same afternoon: a check-before-importing card, live reading progress while a scanned file is read, a clear needs-review result, and a pointer to the existing copy when the same file is imported again. The test device took the update automatically and the new import flow was confirmed on it."
     ] },
     { week: "31 Aug to 4 Sep", items: [
       "Delivered a recorded demonstration of Gideon working a live matter end to end, a written explanation of two behaviours surfaced in the run, and a monthly progress report covering the engagement to date.",
@@ -367,6 +373,9 @@ window.DASHBOARD_DATA = {
     { found: "20 Aug", fixed: "v0.1.22 (21 Aug)", title: "Approvals awaiting the user could sit invisible to Gideon's own view.", proof: "Verified on the working device: previously hidden approvals now appear." }
   ],
   deliveredCapabilities: [
+    { date: "18 Sep 2026", capability: "Find relevant matter documents from natural-language search where the earlier retrieval path could miss them.", version: "v0.1.37", proof: "Affected searches repeated successfully on the released Windows build after the automatic update; the previous build had missed the relevant document.", serves: "Supports M3" },
+    { date: "18 Sep 2026", capability: "Drag a file straight into the matter conversation to import it, through the existing check-before-importing review.", version: "v0.1.37", proof: "Confirmed on the packaged Windows build and again in a live end-to-end run: dropping a file opens the check-before-importing review bound to that matter, and nothing imports until you confirm.", serves: "Supports M3" },
+    { date: "15 Sep 2026", capability: "Run safely on a smaller local model: decline rather than fail silently when it lacks enough context, show a working state, surface connection and timeout issues honestly, and never silently switch to a cloud model.", version: "v0.1.35", proof: "Confirmed on the packaged Windows build; one check — a full local answer completing within the time limit on the current test machine — stays open pending more capable hardware. The hosted path is unchanged.", serves: "Supports M1" },
     { date: "7 Sep 2026", capability: "Import a document with a check-before-importing step, live reading progress while OCR runs, a clear needs-review result, and duplicate detection that points to the existing copy.", version: "v0.1.33", proof: "Installed on the test device through the automatic update, where the check-before-importing card, the reading progress and the completed import were confirmed on a digital document; the needs-review result and the duplicate pointer check out in development and are still to be seen on the device.", serves: "Supports M3" },
     { date: "7 Sep 2026", capability: "Read scanned and photographed documents into a matter, with pages that can't be read cleanly flagged for review rather than guessed.", version: "v0.1.32", proof: "Confirmed on the packaged build installed on the test device, identical in code to the published v0.1.32: a 15-page scan read to the last page with two pages held for review, a scan wrapped in a print header with all six clauses read, a document photo and a clean scan.", serves: "Additional firm request, not an acceptance-scope change" },
     { date: "2 Sep 2026", capability: "Import a document into a matter and read its text back.", version: "v0.1.31", proof: "Confirmed on the published build installed on the test device.", serves: "Supports M3" },
@@ -381,16 +390,6 @@ window.DASHBOARD_DATA = {
   //<PILOT_FEEDBACK_START> generated section — do not edit by hand
   pilotFeedback: [
     {
-      "summary": "Dragging and dropping a file straight into the chat.",
-      "status": "Being worked on",
-      "note": "Implemented in the development build and being checked before it is released."
-    },
-    {
-      "summary": "Referencing an imported document by name and having Gideon find and use it.",
-      "status": "Being worked on",
-      "note": "Noted; an improvement to how referenced documents are found is coming in a future update."
-    },
-    {
       "summary": "Building reusable, repeatable skills for each agent.",
       "status": "Planned",
       "note": "Understood; a roadmap for reusable skills is being prepared."
@@ -401,10 +400,22 @@ window.DASHBOARD_DATA = {
       "note": "Understood; a roadmap for connectors/plugins is being prepared."
     },
     {
+      "summary": "Dragging and dropping a file straight into the chat.",
+      "status": "Shipped",
+      "note": "Confirmed live in v0.1.37 (told 2026-09-18): drop a file into the matter conversation and the check-before-importing review opens.",
+      "version": "v0.1.37"
+    },
+    {
       "summary": "Reading scanned and photographed documents.",
       "status": "Shipped",
       "note": "Confirmed live in v0.1.32 (told 2026-09-07).",
       "version": "v0.1.32"
+    },
+    {
+      "summary": "Referencing an imported document by name and having Gideon find and use it.",
+      "status": "Shipped",
+      "note": "The affected natural-language document search was corrected and confirmed on the released v0.1.37 build.",
+      "version": "v0.1.37"
     }
   ],
   //<PILOT_FEEDBACK_END>
