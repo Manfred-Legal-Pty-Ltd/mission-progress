@@ -139,6 +139,12 @@
        (26 Aug: "Task-creation de…", and the day before "Defined: honesty…").
        A client-facing field that hides its own content is a defect. */
     .detail-meta dd { margin:0; min-width:0; color:#102a4b; font-weight:800; text-align:right; white-space:normal; overflow-wrap:anywhere; line-height:1.45; }
+    /* Risks carries a full sentence. Give the last row (Risks) the whole sidebar
+       width, left-aligned, with a capped scroll — so a long value reads as a
+       paragraph instead of a one-word-per-line ribbon that stretches the card.
+       Content stays fully visible via scroll (never truncated). */
+    .detail-meta dt:last-of-type { grid-column:1 / -1; margin-top:2px; }
+    .detail-meta dd:last-of-type { grid-column:1 / -1; text-align:left; max-height:112px; overflow-y:auto; overscroll-behavior:contain; padding-right:2px; }
     .detail-meta .chip { margin:0; padding:0; border:0; background:transparent; color:#111b2b; }
     .detail-meta .chip::before { content:""; width:8px; height:8px; margin:1px 8px 0 0; border-radius:50%; background:var(--gold); }
     .evidence-box { min-width:0; display:flex; flex-direction:column; justify-content:center; padding:14px 16px; border:1px solid var(--line); border-radius:6px; background:rgba(251,248,242,.78); }
