@@ -189,6 +189,17 @@ window.DASHBOARD_DATA = {
       "Completed further matter-isolation reliability work. A matter-isolation issue identified during our own testing was contained in v0.1.39 and verified end to end; the specific issue is resolved, while the broader Milestone 2 matter-isolation condition is kept open until the wider guarantee has been fully validated.",
       "Continued the knowledge-base architecture work, the matter-scope recall gate and fail-closed handling that prevent cross-matter knowledge bleed, and improved the internal project-reporting and evidence-reconciliation process so daily engineering activity, releases and validation evidence cannot silently fall out of the project record."
     ] },
+    { date: "23 September 2026", items: [
+      "Fixed an issue where reviewing a long generated document could stop short of the end. Gideon now reads the full document when reviewing it, directly addressing the concern about it appearing to have reviewed a document it had only partly read.",
+      "Strengthened a core safety control: the recipient of an email, and the attendees of a calendar event, are now tied to what you actually approve rather than inferred from the surrounding text. This reduces the chance of an action being prepared against the wrong person. Enforcing this consistently across every path remains in progress and is tracked under Milestone 2.",
+      "Added a full-text index of the conversation and a per-turn record of what Gideon was working from, so it can more reliably find and stay grounded in the correct earlier context.",
+      "These changes were completed on this day and were included in the v0.1.39 release on 24 September, which reaches the firm through the usual automatic update."
+    ] },
+    { date: "22 September 2026", items: [
+      "Started the groundwork for automatic email intake (part of the later Milestone 3 work): added a component that reliably determines which matter an incoming email belongs to, so any future automation begins from the correct matter rather than inferring it. This also reinforces correct-matter behaviour more generally.",
+      "Improved reliability in the document-to-email path: hardened the handling of generated-document attachments against malformed file references, and made any skipped or dropped processing step surface visibly instead of failing quietly.",
+      "These changes were completed on this day and were included in the v0.1.39 release on 24 September."
+    ] },
     { date: "21 September 2026", items: [
       "Traced last Friday's email continuation issue to the part of Gideon that recognises which matter a plain-English instruction refers to. Implemented a narrow fix and added regression tests. In today's follow-up run on the same test material, supplying a missing recipient address no longer caused Gideon to lose the matter it had open or fall back into matter lookup — the exact point that failed on Friday held.",
       "Fixed a separate email-delivery formatting issue, caused by how the outgoing message was assembled, and independently confirmed in the recipient mailbox that the delivered email body rendered correctly with its attachment.",
@@ -359,6 +370,11 @@ window.DASHBOARD_DATA = {
       "Proposed a daily real-use feedback loop so issues surface in normal use, and agreed an API-first approach for the legal-software integrations." ] },
     { date: "11 August 2026", items: [
       "Released a new version: clearer first-time setup with knowledge-base loading progress, safer update handling, and more accurate self-reporting." ] },
+    { date: "10 August 2026", items: [
+      "Released v0.1.15 and v0.1.16. These bundled the prepared knowledge base directly into the installer and hardened how it loads, so it is present and reliable from first run, and improved the accuracy of how Gideon reports what it actually did.",
+      "The releases also added a confirmation of the calendar time zone before an event is created and carried the relevant matter context through into outgoing messages, keeping scheduling and outbound communication tied to the correct matter.",
+      "Both reached the firm through the usual automatic update."
+    ] },
     { date: "7 August 2026", items: [
       "Verified the latest releases live; the principal installed and tested the build.",
       "Traced the root cause of a knowledge-base import slowdown on older hardware and scoped the fix." ] },
