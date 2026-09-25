@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "24 September 2026",
+  lastUpdated: "25 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Awaiting confirmation" },
@@ -184,6 +184,12 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "25 September 2026", items: [
+      "Released v0.1.41 with the knowledge-base foundation work and verified it on the packaged Windows build. The existing firm-wide knowledge base migrated cleanly and retrieval is working as expected. This release establishes and verifies the underlying knowledge-base controls for the existing firm-wide material; the workflow for adding and promoting new documents into firm-wide knowledge is the next stage and is not yet enabled for normal use.",
+      "Continued work on that next ingestion stage, which lets Gideon reliably distinguish matter-specific material from broader firm reference material. It is in testing and not released. Real documents the firm chooses to share will be used as test material before the workflow is enabled.",
+      "Reproduced the import error you reported today: the file was an Outlook .msg email, which Gideon does not yet support, and the error message was misleading because it is caught by the same check used for older Office formats. Logged as a file-format gap; for now, save the email as a PDF or add its attachments separately.",
+      "Investigating a request where Gideon's answer was noticeably weaker and less specific than expected, focusing on how Gideon read and used the two attached documents. An update will follow once the cause is verified."
+    ] },
     { date: "24 September 2026", items: [
       "Released v0.1.40, addressing the document amendment and versioning issue you raised: an amended document re-uploaded under the same filename is now handled through an explicit revision lifecycle rather than treated as an unrelated file. The released build keeps the current version unambiguous and preserves the earlier version, and it reaches the firm through the usual automatic update. Regression coverage was added around revision history, current-version retrieval, restore, delete and re-upload behaviour, and protection of historical versions; Release CI completed and the Windows package was built.",
       "Completed further matter-isolation reliability work. A matter-isolation issue identified during our own testing was contained in v0.1.39 and verified end to end; the specific issue is resolved, while the broader Milestone 2 matter-isolation condition is kept open until the wider guarantee has been fully validated.",
