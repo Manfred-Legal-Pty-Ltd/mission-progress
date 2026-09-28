@@ -39,6 +39,7 @@
     .status-label { margin:0 0 7px; overflow:hidden; color:var(--text); font-size:8.3px; font-weight:800; letter-spacing:.1em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
     .status-value { overflow:hidden; color:var(--text); font-size:15px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
     .status-sub { margin-top:4px; overflow:hidden; color:#596474; font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
+    .status-item.phase .status-sub { overflow:visible; text-overflow:clip; white-space:normal; line-height:1.35; }
     /* Row heights, learned the hard way on 26 Aug — BOTH failure directions:
        (a) a 540px MINIMUM on the milestone row reserved blank space when the
            content was shorter → half a screen of dead panel;
