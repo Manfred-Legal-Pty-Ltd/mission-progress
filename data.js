@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "28 September 2026",
+  lastUpdated: "29 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Awaiting confirmation" },
-    { key: "health", label: "Health", value: "On track", subLabel: "None blocking" },
-    { key: "blockers", label: "Client blockers", value: "0", subLabel: "None open", detail: "v0.1.41 is the current released version, verified on the packaged Windows build. It reaches the firm through the usual automatic update: Gideon detects it, downloads it in the background, and prompts a restart to move to the new version." },
+    { key: "health", label: "Health", value: "On track", subLabel: "1 approval pending" },
+    { key: "blockers", label: "Client blockers", value: "1", subLabel: "Approval pending", detail: "v0.1.44, the knowledge-base update, is built and has passed its automated checks. Publishing it is waiting on an approval to lift a limit on the Manfred Legal GitHub account. The firm remains on v0.1.41 until then." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -190,6 +190,13 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "29 September 2026", items: [
+      "No new release today; the firm remains on v0.1.41. The knowledge-base update (v0.1.44) is built and has passed its automated checks, including the Windows installer build. Publishing it is waiting on an approval to lift a limit on the Manfred Legal GitHub account; it will be published as soon as that limit is lifted and then checked on the test machine before it is confirmed ready.",
+      "Finished the knowledge-base import in the development build: added documents can be searched by file name or title, and older copies of the same document are grouped under the newest one and can be dismissed.",
+      "Closed the attachment-handling edge case noted yesterday, in the development build: when Gideon answers a follow-up without re-reading an earlier document, it now names every document it did not re-read.",
+      "Clarified the current email capabilities: Gideon's reading of the mailbox is deliberately switched off until each matter's email can be kept separate; drafting a new email and sending it after approval still works.",
+      "Still to finish before the knowledge-base work is complete: the fresh-install and packaged Windows checks once the update is published, and citation and retrieval checks on real firm material."
+    ] },
     { date: "28 September 2026", items: [
       "No new release today; the firm remains on v0.1.41. The work below is in the development build and is not yet available to the firm. It will be released together after the packaged Windows build and a full check on the test machine, and no release date is given before those checks are done.",
       "Confirmed the cause of last Friday's weaker drafting answer: Gideon was not reading the second attached document in full before answering. The attachment-reading fix is built and passing its tests in the development build: when asked to look at attached documents again, Gideon re-reads them within a defined limit before answering, and when it answers without re-reading a file it now says so. One gap is being closed before release: when a follow-up answer relies on an earlier summary, the note does not always name every file it did not re-read.",
