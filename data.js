@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "29 September 2026",
+  lastUpdated: "30 September 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Awaiting confirmation" },
@@ -190,6 +190,14 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "30 September 2026", items: [
+      "No new release today; the firm remains on v0.1.41. v0.1.44 is built and has passed its automated checks, including the Windows installer build and checks on the packaged app. The release step was checked again this morning and is still held by the GitHub Actions limit; this has been raised and acknowledged. Once it clears, v0.1.44 is published and checked on the test machine before it is confirmed ready.",
+      "You set the priority for the next capabilities: OneDrive, then browser, then email, then LEAP. They will be introduced one at a time, each validated before the next.",
+      "Rebuilt email inside a matter around matter separation, in the development build (not released): an email is linked to a matter from the Inbox, and the matter then works only with the email linked to it. Reply recipients come from the linked email, and the link is checked again when a reply is approved and again when it is sent. It goes out in the release after v0.1.44, and older search and memory data is cleaned and verified before it is switched on for normal use.",
+      "Also in the development build: the Inbox is back in the sidebar and opens even when the side panel is collapsed, and the matter list is split into Active, Closed and All, with search behind a small search icon.",
+      "Settled the OneDrive design: Gideon searches OneDrive for you and asks before a matter receives a file, a matter receives only the exact version you confirmed, and nothing is written back to OneDrive without your approval.",
+      "Delivered the September Engineering Progress Report: the month's releases, the defects found and fixed, the validation done, current limits, and what carries into October."
+    ] },
     { date: "29 September 2026", items: [
       "No new release today; the firm remains on v0.1.41. The knowledge-base update (v0.1.44) is built and has passed its automated checks, including the Windows installer build. Publishing it is waiting on an approval to lift a limit on the Manfred Legal GitHub account; it will be published as soon as that limit is lifted and then checked on the test machine before it is confirmed ready.",
       "Finished the knowledge-base import in the development build: added documents can be searched by file name or title, and older copies of the same document are grouped under the newest one and can be dismissed.",
