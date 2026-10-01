@@ -1,12 +1,12 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "30 September 2026",
+  lastUpdated: "1 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Awaiting confirmation" },
-    { key: "health", label: "Health", value: "On track", subLabel: "1 approval pending" },
-    { key: "blockers", label: "Client blockers", value: "1", subLabel: "Approval pending", detail: "v0.1.44, the knowledge-base update, is built and has passed its automated checks. Publishing it is waiting on an approval to lift a limit on the Manfred Legal GitHub account. The firm remains on v0.1.41 until then." },
+    { key: "health", label: "Health", value: "On track", subLabel: "v0.1.44 released" },
+    { key: "blockers", label: "Client blockers", value: "0", subLabel: "None open", detail: "No client blockers are open. The limit that held the v0.1.44 release was lifted on 1 October and the release was published that morning." },
     { key: "decisions", label: "Decisions", value: "0", subLabel: "None open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
   ],
@@ -92,7 +92,7 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
-      "No new release yet this week; the firm remains on v0.1.41. Work in the development build is reported in the daily log until it is released and verified."
+      "v0.1.44, the knowledge-base update, was released on 1 October. Work in the development build is reported in the daily log until it is released and verified."
     ] },
     { week: "21 to 25 Sep", items: [
       "Traced and fixed last Friday's email continuation issue in the matter-recognition layer and re-confirmed it in a follow-up run: supplying a missing recipient no longer makes Gideon lose the matter it has open or fall back into matter lookup. Fixed a separate email-delivery formatting issue and independently confirmed clean delivery in the recipient mailbox, attachment intact. Both released as v0.1.38, with the published release verified at the build and installer level; packaged confirmation on the released Windows build follows.",
@@ -168,6 +168,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "1 October 2026", text: "Released Gideon v0.1.44 with the knowledge-base workflow: documents are cleaned on the computer and must be reviewed and approved before Gideon can use them, and approved documents can be searched and cited in matter answers. Verified on the packaged Windows build through the normal update process using controlled test documents. Real-document use by the firm is the next validation stage." },
     { date: "25 September 2026", text: "Released Gideon v0.1.41 with the knowledge-base foundation work and completed verification on the packaged Windows build. The existing firm-wide knowledge base migrated cleanly and retrieval is working as expected. This release establishes and verifies the underlying knowledge-base controls for the existing firm-wide material; the workflow for adding and promoting new documents into firm-wide knowledge is the next stage and is not yet enabled for normal use." },
     { date: "24 September 2026", text: "Released Gideon v0.1.40 and the Windows build completed successfully. It addresses the amended-document issue the firm raised: an amended document uploaded again under the same filename is now handled through an explicit revision lifecycle, keeping the current version unambiguous and preserving the earlier version. Regression testing covered revision history, current-version retrieval, restore, delete and re-upload behaviour, and preservation of historical versions. Validation through normal pilot use follows." },
     { date: "24 September 2026", text: "Released Gideon v0.1.39 with the containment of a matter-isolation issue identified during testing; the issue was reproduced and the containment verified end to end, and that specific issue is resolved. The broader Milestone 2 matter-isolation condition is kept open until the remaining isolation scenarios have been fully validated." },
@@ -190,6 +191,14 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "1 October 2026", items: [
+      "Released v0.1.44, the knowledge-base update. The GitHub Actions limit cleared this morning and only the blocked publishing step was re-run. After publishing, the downloadable installer was checked against its update record. On the Windows test machine, Gideon found v0.1.44, downloaded it and updated itself through the normal update process, the same process the firm's installation uses.",
+      "Completed the knowledge-base acceptance on the updated test installation, using controlled test documents: documents are cleaned on the computer before review, documents made up mostly of matter references are marked not suitable, nothing becomes available to Gideon until it is approved, search by title works, Gideon answered a question inside a matter from an approved document and showed its source, and a re-imported copy was flagged as a possible duplicate. The next validation stage is use with the firm's real precedents. Also recorded: the \"All\" count includes an older duplicate copy, so it can show one more document than the list shows at the top level.",
+      "In the development build, not yet released: the knowledge-base page now displays correctly in dark mode, and creating a task from an email is now refused unless that email is linked to the exact matter, closing a gap where an unlinked email's subject and sender could be placed into a matter.",
+      "Also in the development build: matters now have tabs for Overview, Conversation, Communication, Documents, Tasks, Outstanding and Calendar, with the rest under More, and features that are not yet available are marked Coming soon. The matter header gains an Inbox button and shows whether the matter is Active or Closed, and sending before choosing a model now says 'Choose a model before sending' instead of a generic error. A further visual refinement of the matter view is still in progress.",
+      "Built and tested the first three OneDrive steps in development. They remain switched off and are not available to the firm. Gideon identifies the exact version of a OneDrive file, OneDrive search stays outside individual matters, and a file enters a matter only after you confirm the exact version and Gideon checks that the download matches it. An ownership issue found in review must be corrected and verified before the next OneDrive step.",
+      "Email inside a matter: on the released v0.1.44, Gideon should still be able to draft and send a new email through the approval flow when the email account is connected. Reading, searching and replying to existing email inside a matter stays switched off until the remaining separation work is complete and verified on the installed version. Also strengthened the milestone measurement tooling, which is not yet in use in live testing, and preparing the 2 October milestone review against the evidence."
+    ] },
     { date: "30 September 2026", items: [
       "No new release today; the firm remains on v0.1.41. v0.1.44 is built and has passed its automated checks, including the Windows installer build and checks on the packaged app. The release step was checked again this morning and is still held by the GitHub Actions limit; this has been raised and acknowledged. Once it clears, v0.1.44 is published and checked on the test machine before it is confirmed ready.",
       "You set the priority for the next capabilities: OneDrive, then browser, then email, then LEAP. They will be introduced one at a time, each validated before the next.",
