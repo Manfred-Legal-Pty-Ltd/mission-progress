@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "1 October 2026",
+  lastUpdated: "2 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M2", subLabel: "Awaiting confirmation" },
@@ -15,13 +15,13 @@ window.DASHBOARD_DATA = {
     target: 500,
     targetLabel: "500+",
     note: "100 of 500+ missions built",
-    info: "100 of the 500+ benchmark missions are now built, ahead of the ramp target; the count above tracks only missions independently validated end to end against the ratified pass standard, which is a separate measure and stands at zero so far. Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
+    info: "100 of the 500+ benchmark missions are built; the count above tracks only missions validated end to end, which stands at zero until the scoring checks are finished and the factory restarts. Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
   },
   milestones: [
     { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
     { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Passed" },
-    { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English within the matter you have open and it acts on the right thing, or asks rather than guessing.", status: "In progress" },
-    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Upcoming" },
+    { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English within the matter you have open and it acts on the right thing, or asks rather than guessing.", status: "Awaiting confirmation" },
+    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Awaiting confirmation" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "Upcoming" },
     { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
     { code: "M6", due: "13 Nov", goal: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", status: "Upcoming" },
@@ -59,14 +59,17 @@ window.DASHBOARD_DATA = {
       { text: "Defects found during the gate fixed and verified on the device", done: true },
       { text: "After a restart, Gideon rebuilds the full matter back into the conversation — reading back every saved note, task and approval, not only the file on record.", done: true }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 3, evidenceTotal: 3 },
-    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English within the matter you have open and it acts on the right thing, or asks rather than guessing.", description: "Gideon understands what you are referring to within the matter you have open from ordinary language, works only in that matter, and asks rather than guessing when a reference is ambiguous or cannot be safely identified. It never acts in the wrong matter. Carrying standing instructions forward automatically is separate follow-on work.", acceptanceTest: "Working inside a matter, Gideon correctly identifies what you reference from varied plain-English phrasings and acts only there, and where a reference is ambiguous or cannot be safely identified it asks you to clarify rather than guessing or acting in another matter; standing instructions are separate follow-on work.", status: "In progress", type: "Conversational command layer", owner: "Engineering", dependencies: "M1 complete", risks: "As of 24 September, Milestone 2 stays in progress. A matter-isolation issue identified during our own testing was contained in v0.1.39 and verified end to end; that specific issue is resolved, but the broader matter-isolation guarantee is being kept open until the remaining isolation scenarios are proven. Separately, recipient-resolution, meaning how Gideon settles who an email is addressed to, is not yet consistently enforced across every path and can in some cases proceed without sufficient matter-level confirmation; remediation is designed and in progress. Correctly identifying what you reference within the matter you have open, from plain English, passed engineering validation on the released build under the recognition approach shared with the firm on 11 September and awaits the firm confirmation that it meets expectations in practice. Carrying standing instructions forward automatically is separate follow-on work, not yet built, with no date set.", conditions: [
+    M2: { code: "M2", due: "18 Sep", title: "Speak to Gideon in plain English within the matter you have open and it acts on the right thing, or asks rather than guessing.", description: "Gideon understands what you are referring to within the matter you have open from ordinary language, works only in that matter, and asks rather than guessing when a reference is ambiguous or cannot be safely identified. It never acts in the wrong matter. Carrying standing instructions forward automatically is separate follow-on work.", acceptanceTest: "Working inside a matter, Gideon correctly identifies what you reference from varied plain-English phrasings and acts only there, and where a reference is ambiguous or cannot be safely identified it asks you to clarify rather than guessing or acting in another matter; standing instructions are separate follow-on work.", status: "Awaiting confirmation", type: "Conversational command layer", owner: "Engineering", dependencies: "M1 complete", risks: "As of 2 October, the engineering for Milestone 2 is complete and awaiting confirmation. Gideon works only in the matter you have open and asks rather than guessing. A check today confirmed Gideon keeps each matter's files, searches and reading tools to that matter. One gap was found: in the released version, a document approved into the shared knowledge base can be found from another matter. Part of that gap is closed in development and not yet released; the remaining part is addressed by a planned review-screen improvement. Carrying standing instructions forward is separate follow-on work.", conditions: [
       { text: "Correctly identifies what you reference in the open matter from plain English, or asks for clarification", done: false },
-      { text: "Never acts in the wrong matter", done: false },
+      { text: "Never acts in the wrong matter", done: true },
       { text: "Recognises a non-existent or ambiguous matter and says so", done: true },
-      { text: "Instructions carry to later steps in the same matter", done: false },
-      { text: "\'Talk about [matter]\' moves there without manual navigation", done: false }
+      { text: "Instructions carry to later steps in the same matter", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 2, evidenceTotal: 3, evidenceNote: "Two command-layer evidence items are in hand on the scope shared with the firm on 11 September: Gideon acts only in the matter named and does not write to the wrong matter, and it asks rather than guessing when a reference is genuinely ambiguous. The third, correctly identifying what you reference within the matter you have open from plain English, has passed engineering validation on the released build under the recognition approach shared with the firm and awaits the firm's confirmation that it meets expectations in practice. Carrying standing instructions forward automatically is separate follow-on work on its own date. Verification artifacts are held in the engagement records." },
-    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Upcoming", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Awaiting confirmation", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "As of 2 October, the knowledge base part is released in v0.1.44 and tested end to end. Filing, retrieval and decision accuracy measures move to Milestone 4, which needs the measurement system running first.", conditions: [
+      { text: "Knowledge base released and tested end to end", done: true },
+      { text: "No cross-matter results in testing", done: false },
+      { text: "Accuracy measures reported in Milestone 4", done: false }
+    ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -168,6 +171,7 @@ window.DASHBOARD_DATA = {
     ]
   },
   progressLog: [
+    { date: "2 October 2026", text: "Completed the 2 October milestone evidence review. Milestone 2: the engineering is complete and the firm's confirmation has been requested. Milestone 3: the knowledge-base part is released in v0.1.44 and tested end to end with test documents; a matter-isolation check found one knowledge-base gap, part of which is closed in development and not yet released. The accuracy measures move to Milestone 4. The 30 October benchmark of 400 missions is at risk: 100 are built and none are scored yet." },
     { date: "1 October 2026", text: "Released Gideon v0.1.44 with the knowledge-base workflow: documents are cleaned on the computer and must be reviewed and approved before Gideon can use them, and approved documents can be searched and cited in matter answers. Verified on the packaged Windows build through the normal update process using controlled test documents. Real-document use by the firm is the next validation stage." },
     { date: "25 September 2026", text: "Released Gideon v0.1.41 with the knowledge-base foundation work and completed verification on the packaged Windows build. The existing firm-wide knowledge base migrated cleanly and retrieval is working as expected. This release establishes and verifies the underlying knowledge-base controls for the existing firm-wide material; the workflow for adding and promoting new documents into firm-wide knowledge is the next stage and is not yet enabled for normal use." },
     { date: "24 September 2026", text: "Released Gideon v0.1.40 and the Windows build completed successfully. It addresses the amended-document issue the firm raised: an amended document uploaded again under the same filename is now handled through an explicit revision lifecycle, keeping the current version unambiguous and preserving the earlier version. Regression testing covered revision history, current-version retrieval, restore, delete and re-upload behaviour, and preservation of historical versions. Validation through normal pilot use follows." },
@@ -191,6 +195,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    { date: "2 October 2026", items: [
+      "Completed the 2 October milestone evidence review. Milestone 2, plain-English commands inside a matter: the engineering is complete. Gideon identifies what is meant or asks, and it does not act in the wrong matter. Instructions carrying over to later steps is a separate follow-on. The firm has been asked to confirm that Milestone 2 can be treated as complete on that basis.",
+      "Milestone 3: the knowledge-base part is released in v0.1.44 and tested end to end with test documents, including a check today that matters stay separate. It found one gap, described below. The filing, retrieval and decision accuracy measures move to Milestone 4, because they need the measurement system running first.",
+      "Ran further matter-isolation checks against v0.1.44 and found a knowledge-base path where matter-specific information could be approved into shared firm knowledge and then surface outside the originating matter. Closed part of that gap in development: the suitability check is now enforced within Gideon itself, not only on the review screen. The remaining part, where a document passes the check but still contains party names, is addressed by a planned review-screen improvement so detected names can be inspected where they appear. Not yet released.",
+      "In development, not yet released: knowledge-base import now gives a clear reason when a file is not imported, including when no readable text is found; the first part of the Obsidian wiki integration is built and tested, so approved documents are added to the wiki and withdrawn documents are removed; and the matter-view visual refresh is complete, with responsive tabs, clearer unavailable states and additional Overview components.",
+      "OneDrive: fixed the ownership issue identified yesterday, so independently uploaded files keep their own ownership even when an equivalent file also came through OneDrive. Defined the approval boundary for OneDrive-linked matters: OneDrive will start with the firm's own OneDrive only, and any change to a file there (rename, copy, move, replace, archive or delete) needs explicit approval in a confirmation window first, with deleted files going to the OneDrive recycle bin. OneDrive remains disabled.",
+      "Email: completed an independent review of the remaining email work. Additional isolation controls are still required before existing mailbox access can safely be restored, so email remains disabled.",
+      "Next capabilities, in the firm's order of priority: OneDrive, then browser, then email, then LEAP, once the current safety boundaries are verified. OneDrive and email share the same safety layer, which is being built first.",
+      "The 30 October benchmark of 400 missions is at risk: 100 are built and none are scored yet. Mission testing moved onto the development machine, where the tooling was verified to start the exact v0.1.44 build, add a controlled test document and confirm its cleanup afterwards. The scoring checks needed before benchmark validation restarts are being completed, and a realistic number will follow once it is running."
+    ] },
     { date: "1 October 2026", items: [
       "Released v0.1.44, the knowledge-base update. The GitHub Actions limit cleared this morning and only the blocked publishing step was re-run. After publishing, the downloadable installer was checked against its update record. On the Windows test machine, Gideon found v0.1.44, downloaded it and updated itself through the normal update process, the same process the firm's installation uses.",
       "Completed the knowledge-base acceptance on the updated test installation, using controlled test documents: documents are cleaned on the computer before review, documents made up mostly of matter references are marked not suitable, nothing becomes available to Gideon until it is approved, search by title works, Gideon answered a question inside a matter from an approved document and showed its source, and a re-imported copy was flagged as a possible duplicate. The next validation stage is use with the firm's real precedents. Also recorded: the \"All\" count includes an older duplicate copy, so it can show one more document than the list shows at the top level.",
@@ -475,6 +489,16 @@ window.DASHBOARD_DATA = {
   //<PILOT_FEEDBACK_START> generated section — do not edit by hand
   pilotFeedback: [
     {
+      "summary": "Seeing the knowledge base as a linked Obsidian wiki (the Karpathy approach).",
+      "status": "Being worked on",
+      "note": "Being connected to the new approve-and-add workflow so every approved document appears in the wiki."
+    },
+    {
+      "summary": "Your priority order after the knowledge base: OneDrive, Browser, Email, LEAP.",
+      "status": "Being worked on",
+      "note": "Being worked in your order; OneDrive is underway in development."
+    },
+    {
       "summary": "Building reusable, repeatable skills for each agent.",
       "status": "Planned",
       "note": "Understood; a roadmap for reusable skills is being prepared."
@@ -485,10 +509,27 @@ window.DASHBOARD_DATA = {
       "note": "Understood; a roadmap for connectors/plugins is being prepared."
     },
     {
+      "summary": "Knowledge-base updates arriving automatically, like app updates.",
+      "status": "Planned",
+      "note": "Understood; planned after the knowledge-base workflow is proven in real use."
+    },
+    {
+      "summary": "Adding documents to the knowledge base, cleaned automatically and approved by you before use.",
+      "status": "Shipped",
+      "note": "Released in v0.1.44: choose documents in Add documents; they are cleaned on your computer before you review them.",
+      "version": "v0.1.44"
+    },
+    {
       "summary": "Dragging and dropping a file straight into the chat.",
       "status": "Shipped",
       "note": "Confirmed live in v0.1.37 (told 2026-09-18): drop a file into the matter conversation and the check-before-importing review opens.",
       "version": "v0.1.37"
+    },
+    {
+      "summary": "Gideon using the knowledge base in its answers, with citations shown.",
+      "status": "Shipped",
+      "note": "Released in v0.1.44: approved documents are searched and cited in matter answers.",
+      "version": "v0.1.44"
     },
     {
       "summary": "Reading scanned and photographed documents.",
