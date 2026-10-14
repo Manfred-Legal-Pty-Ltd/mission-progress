@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "13 October 2026",
+  lastUpdated: "14 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M3", subLabel: "In progress · Open" },
@@ -200,6 +200,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "14 October 2026",
+      items: [
+        "Windows acceptance testing of the v0.1.46 release candidate: the candidate was installed on the Windows test machine as an upgrade from v0.1.45, and the database migration completed with existing records preserved. All 9 matter-isolation checks passed on the installed build, and all 60 isolation checks passed against the same release candidate. Database recovery was confirmed on an isolated copy of the data with simulated damage. Commitment reminders and escalations were verified, and background operation continued with the application window closed. Pause and resume, locking and unlocking the workstation, and start-up after signing out and back in were also tested.",
+        "Matter screens: hands-on testing of the updated screens identified usability issues affecting the visibility of the matter briefing, commitments, outstanding items and timeline information. The Outstanding count does not currently include commitments, and the timeline date presentation and the application's start-up behaviour need correction. Revised designs that bring the matter briefing into Overview and commitments into Outstanding were prepared and reviewed, preserving existing navigation and functionality. These findings will be addressed in an updated v0.1.46 release candidate before publication.",
+        "Autonomous matter execution, live test: a test was run on a NSW commercial lease matter on v0.1.45. Gideon searched the available knowledge, reviewed the matter context and created a structured checklist on its own. It then stopped when its per-instruction action limit was reached and did not continue the unfinished work automatically. This limitation was verified against the application's records and execution history, and regression tests reproducing it were created.",
+        "Autonomous matter execution, design: two independent architecture designs and a comparative review were completed for persistent matter execution. The proposed architecture keeps a stored matter plan, works through it in bounded cycles and continues automatically, while respecting approvals, required decisions and matter isolation. The implementation brief for the first stage has been prepared. Implementation remains pending the required approval and prerequisite verification.",
+        "Release: v0.1.46 completed its initial Windows acceptance testing, but publication is on hold pending the interface corrections above and further validation. The next release candidate is being prepared with the agreed Overview and Outstanding improvements, preserving the existing candidate and rollback path, and another Windows acceptance cycle is planned before publication."
+      ]
+    },
     {
       date: "13 October 2026",
       items: [
