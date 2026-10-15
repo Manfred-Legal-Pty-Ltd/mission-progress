@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "14 October 2026",
+  lastUpdated: "15 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M3", subLabel: "In progress · Open" },
@@ -200,6 +200,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "15 October 2026",
+      items: [
+        "v0.1.46: the updated version, with the Overview and Outstanding updates, improved timeline dates and side-panel behaviour, and a quiet start-up in the background, passed its automated checks on the Windows build, including the full test suites, the installer build and the packaged checks. Windows acceptance on the test machine follows before release, and v0.1.46 stays unreleased until then.",
+        "SOP Document Pack: all 54 documents were received and verified against the supplied index. What belongs in Gideon's knowledge base is being assessed document by document, and the proposed list will be presented before anything is loaded. No new materials were loaded into the knowledge base.",
+        "Discovery reports: both reports were received and reviewed, and they are being compared with the current roadmap and the functionality Gideon already has.",
+        "Milestone 4: the 16 October target remains at risk pending final verification and acceptance. The review on 16 October will distinguish verified functionality from the outstanding acceptance requirements.",
+        "Milestone 2: still awaiting the firm's formal confirmation."
+      ]
+    },
     {
       date: "14 October 2026",
       items: [
