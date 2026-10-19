@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "16 October 2026",
+  lastUpdated: "19 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -209,6 +209,17 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "19 October 2026",
+      items: [
+        "Benchmark run on the released v0.1.46: the published installer was run through the full action benchmark on the Windows test machine, 60 missions end to end through the application window, with the installed build's identity checked on every run. The application stayed up for the whole 2 hour 46 minute run without a restart.",
+        "Test credit: the model provider's test credit on the Gideon test account ran out partway through the run, and four missions near the end did not receive a model answer. All testing that needs the model to answer is paused until the account is topped up. Test harness work, the mission review and design work continue in the meantime.",
+        "Benchmark results: this run does not yet give a measured result. On the test machine, the test harness could not confirm clean-up for nine missions that raised approvals, so their outcomes could not be confirmed. This was a fault in the test harness, not in Gideon, and its fix has been confirmed on the test machine. A second gap, in how the harness records the application's state on some missions, is still to be examined. A further run follows once the credit is restored.",
+        "Test harness: four faults the run exposed were fixed and tested on the development machine first, covering communication with the test machine, clean-up verification, recording of a provider outage, and a check before each run. Scoring for closure and retrieval checks was added to the harness, with its own tests. These are changes to the testing tools, not to Gideon.",
+        "OneDrive limited beta: a trial merge of the beta work onto the released version showed no code conflicts, but the two sides carry separate database migration chains, so the database migration tests fail until the chains are reconciled. The migration chain will be reconciled on the beta work and the tests re-run before a merge is proposed. No merge has been made.",
+        "Design: two design proposals for the next steps in autonomous matter work were prepared, one for intake of incoming email and one for reading back from the provider what happened after an approval. Both are under review, and nothing has been built from them."
+      ]
+    },
     {
       date: "16 October 2026",
       items: [
