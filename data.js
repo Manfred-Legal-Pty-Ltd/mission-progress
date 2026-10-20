@@ -1,11 +1,11 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "19 October 2026",
+  lastUpdated: "20 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
-    { key: "health", label: "Health", value: "On track", subLabel: "v0.1.46 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.46 was released on 16 October after Windows acceptance testing on the test machine. Independent review of the benchmark missions has reached 100 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. No mission results are counted yet. The 18 December target is unchanged." },
+    { key: "health", label: "Health", value: "On track", subLabel: "v0.1.46 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.46 was released on 16 October after Windows acceptance testing on the test machine. Independent review of the benchmark missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on the released build is complete and its results are under review. No mission results are counted yet. The 18 December target is unchanged." },
     { key: "blockers", label: "Client blockers", value: "0", subLabel: "None open", detail: "No client blockers are open. The limit that held the v0.1.44 release was lifted on 1 October and the release was published that morning." },
     { key: "decisions", label: "Decisions", value: "1", subLabel: "1 open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
@@ -15,7 +15,7 @@ window.DASHBOARD_DATA = {
     target: 500,
     targetLabel: "500+",
     note: "113 of 500+ missions authored",
-    info: "113 of the 500+ benchmark missions are authored; the count above tracks only missions validated end to end, which stands at zero. Independent review of the authored missions has reached 100 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
+    info: "113 of the 500+ benchmark missions are authored; the count above tracks only missions validated end to end, which stands at zero. Independent review of the authored missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on the released build is complete, and its results are under review. Benchmark missions are validated by the mission laboratory, which runs in parallel with the build for the whole programme: synthetic, adversarial and legal-benchmark scenarios. Evidence from live pilot use on real matters is tracked separately."
   },
   milestones: [
     { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
@@ -70,7 +70,7 @@ window.DASHBOARD_DATA = {
       { text: "No cross-matter results in testing", done: false },
       { text: "Accuracy measures reported in Milestone 4", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "Continuity and authority: Gideon keeps commitments and open loops live, returns to you when attention is needed, never lets work disappear silently, and carries approved courses through under the agreed approvals.", acceptanceTest: "On a released build, benchmark missions meet the roadmap's targets for execution, blocking, closure and event detection, and incoming correspondence is classified, filed and acted on.", status: "In progress · Open", type: "Continuity & authority", owner: "Engineering", dependencies: "Benchmark instruments; validation programme", risks: "Not passed at its 16 October date: no qualifying benchmark result yet on a released build, and correspondence handling and event detection are not yet built as measures. Of 100 missions reviewed, eight passed; the rest need corrections.", conditions: [
+    M4: { code: "M4", due: "16 Oct", title: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", description: "Continuity and authority: Gideon keeps commitments and open loops live, returns to you when attention is needed, never lets work disappear silently, and carries approved courses through under the agreed approvals.", acceptanceTest: "On a released build, benchmark missions meet the roadmap's targets for execution, blocking, closure and event detection, and incoming correspondence is classified, filed and acted on.", status: "In progress · Open", type: "Continuity & authority", owner: "Engineering", dependencies: "Benchmark instruments; validation programme", risks: "Not passed at its 16 October date: no qualifying benchmark result yet on a released build, and correspondence handling and event detection are not yet built as measures. All 113 missions reviewed, eight passed; full run results under review.", conditions: [
       { text: "Approved courses carried through to completion at the roadmap's target rate (95%) on benchmark missions, on a released build.", done: false },
       { text: "Every critical, deliberately unauthorised consequential action blocked (100%) on the benchmark set.", done: false },
       { text: "Commitments reach a valid end state (completed, superseded, cancelled, monitored or escalated) at the target rate (98%).", done: false },
@@ -209,6 +209,19 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "20 October 2026",
+      items: [
+        "Test credit: the model provider's test credit was topped up, and a direct check against the provider confirmed it was working before any testing that needs the model resumed.",
+        "Test harness: before today's full run, the corrected test harness passed its three-mission readiness check on the released v0.1.46 build on the Windows test machine. This is the check the full run must clear before it can start. The fixes made on the way were to the testing tools; every run used the same released build of Gideon.",
+        "Today's full run: all 60 benchmark missions were run against the released v0.1.46 on the Windows test machine, taking about four hours. 16 passed, 20 failed, 20 uncertain (the result could not be settled either way), and 4 did not run cleanly (two incomplete runs, one brief provider error, and one that could not be measured on the test machine). The first run on 19 October had 5 passes.",
+        "Findings from the run: three of the failures were flagged on citation checks. Whether the fault is in Gideon or in the test checker is still being determined.",
+        "Independent measure: the independent decision-execution metric could not yet verify any execution, because the build does not yet produce the evidence that measure needs. No reliability percentage is given for this run, because the benchmark missions themselves are being corrected after review.",
+        "Benchmark validation: independent review of the authored benchmark missions is complete at 113 of 113. Eight passed review, all of them probe missions. None of the 100 ordinary missions passed as authored; they need corrections and a fresh review before any of them can count toward acceptance.",
+        "OneDrive limited beta: on a separate development branch, the beta work and the released version now share one database migration chain, joined by a single reconciling migration, and the database migration tests pass there. The indexing, source registration, drive discovery, and PDF and Word preview noted as missing on 12 October are built on that branch and pass their automated tests; they have not yet been tried against a live OneDrive, which is the next step. Nothing has been merged into the released version.",
+        "Schedule risk: agent search (due 20 November) had not started its core work by the 20 October checkpoint, so that date is at risk. No replacement date will be set until the dependencies have been checked."
+      ]
+    },
     {
       date: "19 October 2026",
       items: [
