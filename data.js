@@ -1,11 +1,11 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. On track to 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "22 October 2026",
+  lastUpdated: "23 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
-    { key: "health", label: "Health", value: "On track", subLabel: "v0.1.47 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.47 was released on 21 October and installed on the Windows test machine on 22 October. Independent review of the benchmark missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on v0.1.46 is complete and its results are under review. No mission results are counted yet. The 18 December target is unchanged." },
+    { key: "health", label: "Health", value: "On track", subLabel: "v0.1.48 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.48 was released on 22 October and installed on the Windows test machine. Independent review of the benchmark missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on v0.1.46 is complete and its results are under review. No mission results are counted yet. The 18 December target is unchanged." },
     { key: "blockers", label: "Client blockers", value: "0", subLabel: "None open", detail: "No client blockers are open. The limit that held the v0.1.44 release was lifted on 1 October and the release was published that morning." },
     { key: "decisions", label: "Decisions", value: "1", subLabel: "1 open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
@@ -79,7 +79,7 @@ window.DASHBOARD_DATA = {
       { text: "Filing accuracy at the target rate (98%), carried from Milestone 3.", done: false },
       { text: "Retrieval accuracy at the target rate (99%), carried from Milestone 3.", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "On current evidence, M5 cannot be completed as written by 30 October: the LEAP and InfoTrack priority paths and the 300 to 400 validated mission target are both at risk.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "On current evidence, M5 will not be met on 30 October as written: the LEAP and InfoTrack priority paths have not started, and the validated mission suite is far below the 300 to 400 target.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M7: { code: "M7", due: "27 Nov", title: "Security hardened: no critical weakness, proven on the real device at scale.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -209,6 +209,18 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "23 October 2026",
+      items: [
+        "Windows installation: v0.1.48, published on 22 October, is installed on the Windows test machine. The installer was verified against the published version, and the installed application's version was rechecked on 23 October.",
+        "Post-installation checks: the checks on v0.1.48 were completed on the third attempt. All three check missions ran: two passed, and the recurring connector mission still fails.",
+        "Matter handling: on the installed v0.1.48, Gideon recognised the open matter when it was referred to informally. This was seen in one follow-up run; it is an early sign and not yet sufficient for acceptance.",
+        "Matter-driven execution: the first stage is built, covering stored plans for each matter, controlled step-by-step execution with approvals, workflow connections and a matter checklist. Each piece was independently reviewed, and its findings were fixed and rechecked. It is switched off and is not included in any released build. End-to-end testing is the next step.",
+        "Solicitor simulation: all 22 findings from the simulation have been assessed. Five are confirmed as defect candidates.",
+        "Knowledge base: 29 of the firm's documents were test-loaded into an isolated test copy, and separation between matters and withdrawal of documents were checked. Two documents are held for further review. Nothing has been added to the firm's installed Gideon.",
+        "Milestone 5 checkpoint: on current evidence, Milestone 5 will not be met on 30 October as written. The immediate priorities are establishing the official LEAP integration route and measuring validated mission throughput on v0.1.48; a revised milestone schedule will be prepared from those results."
+      ]
+    },
     {
       date: "22 October 2026",
       items: [
