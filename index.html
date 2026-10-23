@@ -33,6 +33,7 @@
     .status-icon { width:24px; height:24px; color:var(--navy); align-self:start; }
     .status-item.phase .status-icon,.status-item.decisions .status-icon { color:#d58a00; }
     .status-item.health .status-icon,.status-item.health .status-value { color:#15945a; }
+    .status-item.health.tone-risk .status-icon,.status-item.health.tone-risk .status-value { color:#d58a00; }
     .status-item.blockers .status-icon { color:#df241f; }
     .status-item.blockers .status-value { color:var(--text); }
     .status-item.finalAcceptance .status-icon { color:#1e0d45; }
@@ -489,7 +490,7 @@
       $("project-title").textContent = d.projectTitle.replace(" - ", " – ");
       $("status-line").textContent = d.statusLine;
       $("last-updated").textContent = `Last updated ${d.lastUpdated}`;
-      $("status-strip").innerHTML = d.kpis.map(k => `<article class="status-item ${esc(k.key)}${k.detail ? " clickable" : ""}"${k.detail ? ` role="button" tabindex="0" data-detail="${esc(k.detail)}" data-detail-label="${esc(k.label)}"` : ""}>${statusIcons[k.key] || ""}<div><div class="status-label">${esc(k.label)}</div><div class="status-value">${esc(k.value)}</div>${k.subLabel ? `<div class="status-sub">${esc(k.subLabel)}</div>` : ""}</div></article>`).join("");
+      $("status-strip").innerHTML = d.kpis.map(k => `<article class="status-item ${esc(k.key)}${k.tone ? " tone-" + esc(k.tone) : ""}${k.detail ? " clickable" : ""}"${k.detail ? ` role="button" tabindex="0" data-detail="${esc(k.detail)}" data-detail-label="${esc(k.label)}"` : ""}>${statusIcons[k.key] || ""}<div><div class="status-label">${esc(k.label)}</div><div class="status-value">${esc(k.value)}</div>${k.subLabel ? `<div class="status-sub">${esc(k.subLabel)}</div>` : ""}</div></article>`).join("");
       const progress = d.missionProgress;
       const missionPercent = progress.target ? Math.round(progress.current / progress.target * 100) : 0;
       $("mission-current").textContent = progress.current;
