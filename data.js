@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "23 October 2026",
+  lastUpdated: "26 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -79,7 +79,7 @@ window.DASHBOARD_DATA = {
       { text: "Filing accuracy at the target rate (98%), carried from Milestone 3.", done: false },
       { text: "Retrieval accuracy at the target rate (99%), carried from Milestone 3.", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "On current evidence, M5 will not be met on 30 October as written: the LEAP and InfoTrack priority paths have not started, and the validated mission suite is far below the 300 to 400 target.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "On current evidence, M5 will not be met on 30 October as written: the LEAP and InfoTrack priority paths have not started, and the validated mission suite is far below the 300 to 400 target. LEAP use through its normal interface, not the API, is being investigated.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M7: { code: "M7", due: "27 Nov", title: "Security hardened: no critical weakness, proven on the real device at scale.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -209,6 +209,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "26 October 2026",
+      items: [
+        "Matter-driven execution: end-to-end testing was completed locally on a synthetic lease matter, with a scripted stand-in model in place of a live model. Plan execution, approvals, rejection with a solicitor reset, crash recovery, step verification and matter isolation were all exercised, and a second matter could not retrieve information from the first. Safeguards were added so an invalid resume attempt cannot create execution records or start work. All local tests passed. This is local acceptance only: it is not yet in a Windows build, and solicitor validation remains outstanding.",
+        "Task lookup: a correction to how tasks are found by their title was completed and verified locally. It has not been released.",
+        "LEAP: the LEAP integration decision report was delivered. Following the firm's suggestion, Gideon operating LEAP through its normal interface, instead of through the API, is now being investigated. No LEAP integration implementation has started.",
+        "OneDrive: the first stage is scoped as read-only search and a limited file list, on the test account only. Testing it needs a separate encrypted test environment. No date has been set.",
+        "Milestone 5: validated mission throughput on v0.1.48 was measured from test records. A revised Milestone 5 proposal will follow, with no new date committed."
+      ]
+    },
     {
       date: "23 October 2026",
       items: [
