@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "26 October 2026",
+  lastUpdated: "27 October 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -209,6 +209,17 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "27 October 2026",
+      items: [
+        "Matter-driven execution: the first end-to-end test with a live model, in place of the scripted stand-in used on 26 October, was run locally on a synthetic NSW retail lease matter. In the first run the plan fell below the pass mark and its steps could not proceed. After corrections, the second run produced a 22-item plan with dates, legal positions and NSW requirements. It passed an independent automated assessment, with no invented facts found. No solicitor took part in the assessment.",
+        "Execution: in the second run, Gideon worked through plan steps with its own tools and stopped for approval where required. One approval was granted and one was rejected, and nothing was sent externally. The execution steps were not scored, and completion of the whole matter has not been established.",
+        "Reliability: four issues found in that run were corrected locally and independently reviewed. A further live-model test will follow once the remaining follow-up corrections are complete. Crash recovery was exercised on an earlier version by stopping the server mid-run, and the interrupted step was recovered with no duplicate actions. This work is local only: it is not in a Windows build and is switched off by default.",
+        "Duplicate email approvals: a correction for repeated Send clicks creating duplicate approval requests for the same email was completed locally. It has not been released.",
+        "LEAP: an early prototype for Gideon to operate desktop applications through their normal interface was tested against a simulated application only. No live LEAP testing has taken place. This work proceeds at the firm's direction of 26 October.",
+        "Milestone 5: it will not be met on 30 October as originally defined. A revised proposal is under review, with no new date committed."
+      ]
+    },
     {
       date: "26 October 2026",
       items: [
