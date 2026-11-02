@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "27 October 2026",
+  lastUpdated: "2 November 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -21,9 +21,9 @@ window.DASHBOARD_DATA = {
     { code: "M0", due: "28 Aug", goal: "Mission blueprint locked and the build accelerator switched on.", status: "Passed" },
     { code: "M1", due: "4 Sep", goal: "Core proven stable: the same task run 50+ times with no lost file, missed approval or wrong status.", status: "Passed" },
     { code: "M2", due: "18 Sep", goal: "Speak to Gideon in plain English within the matter you have open and it acts on the right thing, or asks rather than guessing.", status: "Engineering passed · awaiting confirmation" },
-    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "In progress · Open" },
+    { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Awaiting confirmation" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "In progress · Open" },
-    { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Upcoming" },
+    { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Not Met" },
     { code: "M6", due: "13 Nov", goal: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", status: "Upcoming" },
     { code: "C1", due: "20 Nov", goal: "In-house agent-search reader live: pulls from public sources, kept current with its upstream project.", status: "Upcoming" },
     { code: "M7", due: "27 Nov", goal: "Security hardened: no critical weakness, proven on the real device at scale.", status: "Upcoming" },
@@ -65,7 +65,7 @@ window.DASHBOARD_DATA = {
       { text: "Recognises a non-existent or ambiguous matter and says so", done: true },
       { text: "Instructions carry to later steps in the same matter", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: 2, evidenceTotal: 3, evidenceNote: "Two command-layer evidence items are in hand on the scope shared with the firm on 11 September: Gideon acts only in the matter named and does not write to the wrong matter, and it asks rather than guessing when a reference is genuinely ambiguous. The third, correctly identifying what you reference within the matter you have open from plain English, has passed engineering validation on the released build under the recognition approach shared with the firm and awaits the firm's confirmation that it meets expectations in practice. Carrying standing instructions forward automatically is separate follow-on work on its own date. Verification artifacts are held in the engagement records." },
-    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "In progress · Open", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "Milestone 3 remains open until the matter-separation check is re-run on the released build (v0.1.46) and passes; the nine installed-build separation checks passed on the test machine on 12 October.", conditions: [
+    M3: { code: "M3", due: "2 Oct", title: "Every matter file impeccable, and your decisions turn straight into completed work.", description: "Matter-file integrity includes knowledge handling: documents are sanitised and added to the knowledge base reliably, and retrieval returns the right passages for the right matter, with no cross-matter bleed. A prioritised acceptance requirement.", acceptanceTest: "Seeded documents are retrievable by their own content, returned only within their own matter, with no stale or cross-matter results.", status: "Awaiting confirmation", type: "Knowledge & matter files", owner: "Engineering", dependencies: "Scope freeze", risks: "Milestone 3 remains open until the matter-separation check is re-run on a released build (v0.1.46 or later) and passes. All 60 checks passed during v0.1.46 candidate testing on 14 October, and nine installed-build separation checks passed on the test machine on 12 October.", conditions: [
       { text: "Knowledge base released and tested end to end with test documents", done: true },
       { text: "No cross-matter results in testing", done: false },
       { text: "Accuracy measures reported in Milestone 4", done: false }
@@ -79,7 +79,7 @@ window.DASHBOARD_DATA = {
       { text: "Filing accuracy at the target rate (98%), carried from Milestone 3.", done: false },
       { text: "Retrieval accuracy at the target rate (99%), carried from Milestone 3.", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "On current evidence, M5 will not be met on 30 October as written: the LEAP and InfoTrack priority paths have not started, and the validated mission suite is far below the 300 to 400 target. LEAP use through its normal interface, not the API, is being investigated.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Not Met", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "Not met at its 30 October date: the original acceptance criteria remain unmet. LEAP testing so far has been against simulated applications, and live LEAP remains unverified. A revised plan will follow once capacity is measured, with no replacement date committed.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M7: { code: "M7", due: "27 Nov", title: "Security hardened: no critical weakness, proven on the real device at scale.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -103,7 +103,7 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
-      "v0.1.46 was released on 16 October after Windows acceptance testing on the test machine. Work in the development build is reported in the daily log until it is released and verified."
+      "v0.1.47 and v0.1.48 were released on 21 and 22 October; v0.1.48 was installed on the Windows test machine and rechecked on 23 October. Earlier, v0.1.46 was released on 16 October after Windows acceptance testing. Work in the development build is reported in the daily log until it is released and verified."
     ] },
     { week: "21 to 25 Sep", items: [
       "Traced and fixed last Friday's email continuation issue in the matter-recognition layer and re-confirmed it in a follow-up run: supplying a missing recipient no longer makes Gideon lose the matter it has open or fall back into matter lookup. Fixed a separate email-delivery formatting issue and independently confirmed clean delivery in the recipient mailbox, attachment intact. Both released as v0.1.38, with the published release verified at the build and installer level; packaged confirmation on the released Windows build follows.",
@@ -209,6 +209,46 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "2 November 2026",
+      items: [
+        "Matter-driven execution: issues from last week's real-model lease test were fixed, including skipped steps, rejection handling, hold and send controls, and grounding labels. Five independent review rounds were completed, with the backend tests passing. The changes remain local and unreleased.",
+        "Security: the approval-workflow signing protections were completed. Four independent security testing rounds were run, with the backend and desktop tests passing. The release remains blocked pending final security acceptance.",
+        "LEAP: the component for Gideon to operate Windows desktop applications passed 30 of 31 simulated scenarios. The remaining result was a test expectation mismatch, and the safer halted state was preserved. Live LEAP remains unverified.",
+        "Test missions: 24 repaired missions were re-reviewed independently. Of these, 21 held up, two need minor corrections and one is proposed for retirement.",
+        "Reporting: the October Engineering Progress Report was finalised and independently audited."
+      ]
+    },
+    {
+      date: "30 October 2026",
+      items: [
+        "Matter-driven execution: solicitor verification for drafting and research was implemented. Gideon is designed to require solicitor acceptance before marking these activities complete. Three independent security review rounds were completed, the authorization gaps they identified were corrected, and the fixes were verified. The backend regression suite passed. This validation was at the code level, not through the released Gideon desktop app.",
+        "Real-model testing: an isolated lease-matter test using synthetic data was run directly against the backend, which is not yet available in the desktop app. Gideon generated a 12-step plan, and execution stopped safely at step 3 because outbound correspondence was not permitted under the test rules. Workflow issues were identified for correction. Matter separation held during the observed run.",
+        "Security: the implementation is saved locally and has not been released. A separate authorization issue was also identified in the existing approval workflow, and it must be resolved before the next release.",
+        "Milestone 5: the milestone review was completed. The original acceptance criteria remain unmet, and there is now a clearer baseline for the remaining LEAP, InfoTrack and mission-suite work. A revised plan will be prepared once capacity is measured, without committing to an unsupported date.",
+        "Next: the LEAP independent review and the OneDrive security corrections remain pending."
+      ]
+    },
+    {
+      date: "29 October 2026",
+      items: [
+        "Matter-driven execution: another round of completion-integrity fixes was completed, and the full regression suite passed. These fixes have not yet been independently reviewed. Solicitor-controlled verification is next. No new build has been released.",
+        "LEAP: the approach for Gideon to operate Windows desktop applications was rebuilt to prevent competing desktop actions. Its tests passed, and independent review is still pending. Testing remains against a simulated application, not live LEAP.",
+        "OneDrive: further security corrections are required. The 30 October beta target will not be met.",
+        "Other work: the grounding-status correction and the regression missions remain pending.",
+        "Roadmap: Milestone 4 acceptance remains outstanding. Milestone 5 reaches its review on 30 October with its acceptance requirements still open. A revised plan is being prepared, with no replacement date committed."
+      ]
+    },
+    {
+      date: "28 October 2026",
+      items: [
+        "Matter-driven execution: the findings from the first two independent reviews were fixed, and the full backend test suite passed. A third independent review identified one remaining high-severity issue, where work could be marked complete without sufficient evidence. The changes remain local, and no new build has been released.",
+        "Real-model retest: postponed until the completion-integrity fix passes independent review. The test conditions remain unchanged.",
+        "LEAP: the first Windows tests passed against a simulated practice-management application, including approval checks, file-note creation, verification and stopping when the target changes. There is no live LEAP access.",
+        "Reliability: the cause of the inconsistent source-status indicator was identified. The fix remains pending.",
+        "Roadmap: revised Milestone 5 options were prepared internally. No replacement date has been committed. Milestone 4 acceptance remains outstanding."
+      ]
+    },
     {
       date: "27 October 2026",
       items: [
