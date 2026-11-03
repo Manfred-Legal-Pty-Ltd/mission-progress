@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "2 November 2026",
+  lastUpdated: "3 November 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -209,6 +209,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "3 November 2026",
+      items: [
+        "Matter workflows: the real-model lease test was repeated. Two steps passed, and the third exposed two reliability issues, both now corrected locally, with further real-model verification pending.",
+        "Security: another round of approval-workflow improvements was completed. All five areas held during independent security testing. The changes are being prepared for the next release candidate.",
+        "Mission testing: a validation weakness that could produce misleading mission results was identified and addressed. The new guard flagged 55 original missions, while 24 repaired missions and 13 probes passed.",
+        "LEAP: a recovery safeguard was added for actions with uncertain outcomes after restart. Independent review passed, and live integration testing remains pending.",
+        "Roadmap: evidence for the revised M5/M6 plan was consolidated."
+      ]
+    },
     {
       date: "2 November 2026",
       items: [
