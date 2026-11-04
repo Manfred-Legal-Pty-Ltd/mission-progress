@@ -1,7 +1,7 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "3 November 2026",
+  lastUpdated: "4 November 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
@@ -209,6 +209,16 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "4 November 2026",
+      items: [
+        "Security: the approval-workflow protections were brought onto the current release version, including an additional fix identified through independent testing. All backend tests passed locally.",
+        "Matter-driven execution: the real-model lease test was repeated. Five previous issues did not recur, and two remaining issues have been fixed locally. Further real-model verification is pending.",
+        "LEAP: the restart safeguards passed all checks on the Windows test device in a simulated environment. Live LEAP remains unverified.",
+        "Windows build: the previous automated Windows build stopped at its time limit near the end, with no test failures reported. Another test build is underway, with a performance fix prepared if needed.",
+        "Release: the Windows installer and device validation remain the release blockers."
+      ]
+    },
     {
       date: "3 November 2026",
       items: [
