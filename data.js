@@ -1,11 +1,11 @@
 window.DASHBOARD_DATA = {
   projectTitle: "Gideon Pennyworth - Mission Progress",
   statusLine: "Foundation stage. Targeting 18 December acceptance, governed by each milestone passing rather than the calendar.",
-  lastUpdated: "4 November 2026",
+  lastUpdated: "6 November 2026",
   kpis: [
     { key: "phase", label: "Programme stage", value: "Foundation", subLabel: "P3 · P4 · P5 · P6 · P8 active" },
     { key: "current", label: "Current", value: "M4", subLabel: "In progress · Open" },
-    { key: "health", label: "Health", value: "At risk", tone: "risk", subLabel: "v0.1.48 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.48 was released on 22 October and installed on the Windows test machine. Independent review of the benchmark missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on v0.1.46 is complete and its results are under review. No mission results are counted yet. The 18 December target is unchanged." },
+    { key: "health", label: "Health", value: "At risk", tone: "risk", subLabel: "v0.1.49 released", detail: "Progress is governed by each milestone passing on its evidence, not by the calendar alone. Milestone 4 was not passed at its 16 October date: some capabilities are incomplete and its measured targets have no qualifying results yet. Milestone 3 remains open past its 2 October date. v0.1.49 was released on 5 November after Windows regression testing and security checks. Independent review of the benchmark missions is complete at 113 of 113: eight passed review, and the rest need corrections before they can support acceptance testing. The first full benchmark run on v0.1.46 is complete and its results are under review. No mission results are counted yet. The 18 December target is unchanged." },
     { key: "blockers", label: "Client blockers", value: "0", subLabel: "None open", detail: "No client blockers are open. The limit that held the v0.1.44 release was lifted on 1 October and the release was published that morning." },
     { key: "decisions", label: "Decisions", value: "1", subLabel: "1 open" },
     { key: "finalAcceptance", label: "Final acceptance", value: "18 Dec 2026", subLabel: "Target date", detail: "18 December 2026 is the target for mission acceptance. In line with the roadmap's own rule, progression is governed by each milestone gate passing on its evidence, not by the calendar alone: the deadline does not turn a failed gate into a pass. The acceptance scope is to be frozen together first, then the gates sequenced. Key dates: M0 28 Aug (agreed 17 Aug window; passed 25 Aug), M1 4 Sep, M2 18 Sep, M3 2 Oct, M4 16 Oct, M5 30 Oct, M6 13 Nov, agent search 20 Nov, M7 27 Nov, world monitor 28 Nov, M8 30 Nov (feature freeze), M9 11 Dec, final acceptance 14 to 18 Dec." }
@@ -24,7 +24,7 @@ window.DASHBOARD_DATA = {
     { code: "M3", due: "2 Oct", goal: "Every matter file impeccable: documents sanitised into the knowledge base, decisions turn straight into completed work.", status: "Awaiting confirmation" },
     { code: "M4", due: "16 Oct", goal: "Gideon finishes what it starts and returns to you exactly when needed, never silently.", status: "In progress · Open" },
     { code: "M5", due: "30 Oct", goal: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", status: "Not Met" },
-    { code: "M6", due: "13 Nov", goal: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", status: "Upcoming" },
+    { code: "M6", due: "13 Nov", goal: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", status: "At risk" },
     { code: "C1", due: "20 Nov", goal: "In-house agent-search reader live: pulls from public sources, kept current with its upstream project.", status: "Upcoming" },
     { code: "M7", due: "27 Nov", goal: "Security hardened: no critical weakness, proven on the real device at scale.", status: "Upcoming" },
     { code: "C2", due: "28 Nov", goal: "In-house world-monitoring view live, built without third-party licensed code.", status: "Upcoming" },
@@ -80,7 +80,7 @@ window.DASHBOARD_DATA = {
       { text: "Retrieval accuracy at the target rate (99%), carried from Milestone 3.", done: false }
     ], conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M5: { code: "M5", due: "30 Oct", title: "Works across Leap, InfoTrack, Lexa, PEXA and your connected systems without you operating them.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Not Met", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "Not met at its 30 October date: the original acceptance criteria remain unmet. LEAP testing so far has been against simulated applications, and live LEAP remains unverified. A revised plan will follow once capacity is measured, with no replacement date committed.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
-    M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
+    M6: { code: "M6", due: "13 Nov", title: "500+ benchmark missions validated against a legal standard, plus live-pilot evidence.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "At risk", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "Will not be met as currently defined: its acceptance conditions cannot be evidenced by 13 November. A revised plan will distinguish verified progress from remaining implementation and validation work before updated commitments are proposed.", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M7: { code: "M7", due: "27 Nov", title: "Security hardened: no critical weakness, proven on the real device at scale.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M8: { code: "M8", due: "30 Nov", title: "Feature freeze: only acceptance repairs from here.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
     M9: { code: "M9", due: "11 Dec", title: "Full system re-run and re-acceptance.", description: "To be defined at planning.", acceptanceTest: "To be defined at planning.", status: "Upcoming", type: "To be defined at planning", owner: "To be defined at planning", dependencies: "To be defined at planning", risks: "To be defined at planning", conditionsSatisfied: null, conditionsTotal: null, evidenceCurrent: null, evidenceTotal: null },
@@ -103,7 +103,7 @@ window.DASHBOARD_DATA = {
   ],
   thisWeek: [
     { week: "This week", items: [
-      "v0.1.47 and v0.1.48 were released on 21 and 22 October; v0.1.48 was installed on the Windows test machine and rechecked on 23 October. Earlier, v0.1.46 was released on 16 October after Windows acceptance testing. Work in the development build is reported in the daily log until it is released and verified."
+      "v0.1.49 was released on 5 November after Windows regression testing and security checks, and the published installer was confirmed to match the tested build. Before that, v0.1.47 and v0.1.48 were released on 21 and 22 October; v0.1.48 was installed on the Windows test machine and rechecked on 23 October. Earlier, v0.1.46 was released on 16 October after Windows acceptance testing. Work in the development build is reported in the daily log until it is released and verified."
     ] },
     { week: "21 to 25 Sep", items: [
       "Traced and fixed last Friday's email continuation issue in the matter-recognition layer and re-confirmed it in a follow-up run: supplying a missing recipient no longer makes Gideon lose the matter it has open or fall back into matter lookup. Fixed a separate email-delivery formatting issue and independently confirmed clean delivery in the recipient mailbox, attachment intact. Both released as v0.1.38, with the published release verified at the build and installer level; packaged confirmation on the released Windows build follows.",
@@ -209,6 +209,29 @@ window.DASHBOARD_DATA = {
     { date: "14 Aug 2026", text: "Shipped document-accuracy and reliability improvements to the app." }
   ],
   dailyLog: [
+    {
+      date: "6 November 2026",
+      items: [
+        "v0.1.49: the publication was confirmed, and the published installer was verified to match the tested build.",
+        "Matter-driven execution: real-model testing reached step 4 of 9 for the first time, with approvals enforced and matters kept separate. Further testing identified an evidence-validation issue. The citation fix is complete, and the remaining policy decision is being handled before the next run. These changes are in development and have not been released.",
+        "OneDrive: the beta was integrated with v0.1.49 on a development branch. Regression tests passed, an authorization issue was corrected, and the Windows test environment is ready. Live integration and rollback testing are next. Nothing has been released.",
+        "Mission testing: improvements to the mission evaluation process were prepared, and the new prompt-echo check identified 63 missions requiring re-authoring. The revised measurement process is prepared for activation on Monday 9 November, and mission counts will be adjusted to reflect the updated evidence requirements.",
+        "LEAP: the safety approach for the first live LEAP session was established. Initial live validation will be supervised and read-only, and implementation of the additional protection remains pending. Live LEAP integration has not yet been verified.",
+        "Roadmap: Friday's milestone review confirmed that M6 will not meet its 13 November acceptance conditions as written, and C1 (20 November) is at risk. A revised plan will be prepared based on verified progress."
+      ]
+    },
+    {
+      date: "5 November 2026",
+      items: [
+        "Security: the Run Now and document-archiving issues were fixed. The corrected build passed Windows testing, including approvals and a controlled email send.",
+        "Matter-driven execution: the completion-tracking issue was fixed. Regression tests pass, with real-model validation next.",
+        "LEAP: the connection was rebuilt on the updated security foundation, and all development tests pass. Live testing remains outstanding.",
+        "OneDrive: the encrypted setup issue was fixed. Windows validation is next.",
+        "Milestones: the decision pack for Friday's M5/M6 review was prepared.",
+        "Security approach: as Gideon gains the ability to send emails, modify matter records and work inside LEAP, these protections ensure those actions cannot be triggered without approval. This is not a change in roadmap direction; security work is progressing alongside the planned capabilities.",
+        "Release: v0.1.49 was undergoing final verification for conditional overnight publication."
+      ]
+    },
     {
       date: "4 November 2026",
       items: [
